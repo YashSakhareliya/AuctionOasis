@@ -67,3 +67,82 @@ header{
 /* NAV LINKS DONE */
 
 
+/* Hero COntainer Start */
+/* First image default height weight */
+img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.hero-container{
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    margin: 0rem 0;
+    gap: 2rem;
+}
+.hero-content{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: left;
+    margin-top: 4rem;
+}
+
+.hero-content-text{
+    display: flex;
+    flex-direction: column;
+    /* gap: 0rem; */
+
+}
+.hero-content-text span{
+    font-size: 4rem;
+    font-weight: 700;
+    /* color: var(--text-color); */
+}
+#span2{
+    margin-top: -15px;
+    color: var(--primary-color);
+}
+
+.hero-content-text p{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.hero-content-button{
+    display: flex;
+    gap: 2rem;
+    
+}
+
+.hero-content-button button{
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    /* background-color: var(--primary-color); */
+    /* color: #fff; */
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.hero-content-button #hero-btn1{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.hero-content-button #hero-btn2{
+    background-color: #cbcdf7;;
+    color: #000;
+}
+
+.hero-photo img{
+    height: 500px;
+    width: 750px;
+}
+
+
