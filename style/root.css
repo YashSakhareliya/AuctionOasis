@@ -13,5 +13,8 @@
   /* Transitions */
   --transition: all 0.3s ease;
 
+  --primary-btn-color: #646cff;
   --secndary-btn-color:#cbcdf7;
+  --primary-btn-font-color: #fff;
+  --secondary-btn-font-color: #000;
 }
