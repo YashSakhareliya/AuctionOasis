@@ -1,0 +1,15 @@
+:root{
+     /* Light Theme Colors */
+  --primary-color: #646cff;
+  --secondary-color: #535bf2;
+  --text-color: #213547;
+  --bg-color: #ffffff;
+  --bg-color-rgb: 255, 255, 255;
+  --card-bg: #f8f9fa;
+  --section-bg: #ffffff;
+  --input-border: #ddd;
+  --input-bg: #ffffff;
+
+  /* Transitions */
+  --transition: all 0.3s ease;
+}
