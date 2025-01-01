@@ -17,4 +17,8 @@
   --secndary-btn-color:#cbcdf7;
   --primary-btn-font-color: #fff;
   --secondary-btn-font-color: #000;
+
+  /* Font */
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 1.5rem;
 }
