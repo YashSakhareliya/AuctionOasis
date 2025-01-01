@@ -98,7 +98,7 @@ img{
 }
 .hero-content-text span{
     font-size: 4rem;
-    font-weight: 700;
+    font-weight: 1000;
     /* color: var(--text-color); */
 }
 #span2{
@@ -136,7 +136,7 @@ img{
 }
 
 .hero-content-button #hero-btn2{
-    background-color: #cbcdf7;;
+    background-color: #cbcdf7;
     color: #000;
 }
 

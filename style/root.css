@@ -12,4 +12,6 @@
 
   /* Transitions */
   --transition: all 0.3s ease;
+
+  --secndary-btn-color:#cbcdf7;
 }
