@@ -321,8 +321,12 @@ img{
 
 /* Footer section start */
 
+footer{
+    background-color: var(--footer-color);
+    color: #fff;
+}
 .footer-section{
     margin-top: 6rem;
-    background-color: var(--footer-color);
+    
 }
 
