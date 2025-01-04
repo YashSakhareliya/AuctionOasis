@@ -315,3 +315,14 @@ img{
 .about-auctionoasis-flex-item-content p{
     color: var(--text-color);
 }
+
+
+/* about auction oasis Done */
+
+/* Footer section start */
+
+.footer-section{
+    margin-top: 6rem;
+    background-color: var(--footer-color);
+}
+
