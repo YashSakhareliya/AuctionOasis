@@ -69,6 +69,9 @@ header{
 
 /* Hero COntainer Start */
 /* First image default height weight */
+.hero-section{
+    margin-right: 0;
+}
 img{
     width: 250px;
     height: 250px;
