@@ -284,9 +284,10 @@ img{
 
 .about-auctionoasis-flex{
     display: flex;
+    /* flex-direction: column; */
     justify-content: space-between;
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 4rem;
 }
 
 .about-auctionoasis-flex-item{
@@ -296,7 +297,7 @@ img{
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.179);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.179);
 }
 
 .about-auctionoasis-flex-item img{
