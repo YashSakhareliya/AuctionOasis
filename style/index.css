@@ -16,16 +16,22 @@ ul{
 }
 
 /* nav section start */
+header{
+    width: 100%;
+    background-color: #fff;
+    position: fixed;
+}
 .nav-section{
     margin-left: 4%;
     margin-right: 2%;
+    
 }
 header{
     box-shadow: 2px 0px 2px 0.1px;
 }
 
 .nav-container{
-    padding: 1rem;
+    padding: 0.8rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,8 +81,12 @@ header{
 
 /* Hero COntainer Start */
 /* First image default height weight */
+
+
 .hero-section{
+    padding-top: 3rem;
     margin-right: 0;
+
 }
 img{
     width: 250px;
