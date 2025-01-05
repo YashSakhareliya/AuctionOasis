@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuctionOasis</title>
+
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="/style/index.css">
+    <link rel="stylesheet" href="/style/root.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header>
+        <section class="nav-section">
+            <div class="nav-container">
+                <div class="logo-name">
+                    <a href="#home">AuctionOasis</a>
+                </div>
+                <div class="search-bar">
+                    <input type="text" name="search" id="" placeholder="Search here">
+                </div>
+                <div class="nav-links-container">
+                    <ul class="nav-links">
+                        <li><a href="#">Live Auction</a></li>
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+                        <li><a href="#"><i class="fa-regular fa-user"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-content-text">
+                        <span id="span1">Discover Unique</span>
+                        <span id="span2">Auction Treasures</span>
+                        <p>Join thousands of collectors and enthusiasts in the most trusted online auction platform. Bid, win, and collect your next treasure.</p>
+                    </div>
+                    <div class="hero-content-button">
+                        <button id="hero-btn1">Start Bidding</button>
+                        <button id="hero-btn2">Learn More</button>
+                    </div>
+                </div>
+                <div class="hero-photo">
+                    <img src="/images/Home_page_photo.avif" alt="Hero Image">
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Section End -->
+
+        <section class="feature-section">
+            <div class="feature-container">
+                <div class="feature-content">
+                    <h1>Featured Auctions</h1>
+                    <p>Discover our most exciting active auctions</p>
+                </div>
+                <div class="feature-item-grid">
+                    <% const items = [1, 2, 3]; %>
+                    <% items.forEach((item) => { %>
+                    <div class="feature-item">
+                        <div class="feature-item-image">
+                            <img src="/images/auction-items/auction-item-<%= item %>.avif" alt="Auction Item">
+                        </div>
+                        <div class="feature-item-content">
+                            <div class="feature-item-title">
+                                <h2>Antique Furniture</h2>
+                            </div>
+                            <div class="feature-item-price">
+                                <p>Current Bid: $10,000</p>
+                            </div>
+                            <div class="feature-item-summery">
+                                <ul class="feature-item-summery-list">
+                                    <li>2h 30m</li>
+                                    <li>23 bids</li>
+                                    <li><a href="#"><i class="fa-regular fa-heart"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+                <div class="feature-view-all-btn">
+                    <button>View All Auction</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Section End -->
+
+        <section class="about-auctionoasis">
+            <div class="about-auctionoasis-container">
+                <div class="about-auctionoasis-heading">
+                    <h1>Why Choose AuctionOasis?</h1>
+                    <p>We provide the most secure and efficient online auction experience</p>
+                </div>
+                <div class="about-auctionoasis-flex">
+                    <% const reasons = [
+                        { logo: "encrypted.png", title: "Secure Bidding", description: "Advanced encryption and fraud protection systems ensure your transactions are always safe." },
+                        { logo: "clock.png", title: "Real-time Updates", description: "Get instant notifications about your bids and watch auctions unfold in real-time." },
+                        { logo: "audience.png", title: "Verified Sellers", description: "All sellers go through a strict verification process to maintain quality standards." },
+                        { logo: "game-trophy.png", title: "Winning Guarantee", description: "Our escrow service ensures both buyers and sellers are protected throughout the process." }
+                    ]; %>
+                    <% reasons.forEach((reason) => { %>
+                    <div class="about-auctionoasis-flex-item">
+                        <div class="about-auctionoasis-flex-item-logo">
+                            <img src="/images/about-auctionoasis-logo/<%= reason.logo %>" alt="<%= reason.title %>">
+                        </div>
+                        <div class="about-auctionoasis-flex-item-content">
+                            <h3><%= reason.title %></h3>
+                            <p><%= reason.description %></p>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section End -->
+    </main>
+
+    <footer>
+        <section class="footer-section">
+            <div class="footer-container">
+                <div class="footer-flex">
+                    <div class="footer-content">
+                        <h2>AuctionOasis</h2>
+                        <p>Your trusted destination for unique finds and amazing deals.</p>
+                    </div>
+                    <div class="footer-content">
+                        <h2>Quick Links</h2>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">How It Works</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">FAQs</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-content">
+                        <h2>Legal</h2>
+                        <ul>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-content">
+                        <h2>Connect With Us</h2>
+                        <ul id="footer-social-links">
+                            <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="footer-bottom">
+                    <p>&copy; 2021 AuctionOasis. All rights reserved.</p>
+                </div>
+            </div>
+        </section>
+    </footer>
+</body>
+
+</html>
