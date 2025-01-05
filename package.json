@@ -1,0 +1,15 @@
+{
+  "name": "auctionoasis",
+  "version": "1.0.0",
+  "description": "auction oasis online auction plateform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "oasis"
+  ],
+  "author": "yash sakhareliya",
+  "license": "ISC"
+}
