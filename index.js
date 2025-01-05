@@ -11,10 +11,13 @@ app.use(express.static(path.join(__dirname, 'public')));   // for all css and ja
 app.set('view engine', 'ejs')   // told to express my frontend is in EJS file
 
 
-app.get('/', (req, res) => {
-    res.render('index')
+app.get('/login', (req, res) => {
+    res.render('auth/login')
 })
 
+app.get('/', (req, res) => {
+  res.render('index')
+})
 
 app.listen(port, () => {
   console.log(`Example app listening localhost:${port}`)
