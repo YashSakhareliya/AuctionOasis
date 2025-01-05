@@ -1,39 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuctionOasis</title>
-
-    <!-- CSS Links -->
-    <link rel="stylesheet" href="/style/index.css">
-    <link rel="stylesheet" href="/style/root.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-
-<body>
-    <header>
-        <section class="nav-section">
-            <div class="nav-container">
-                <div class="logo-name">
-                    <a href="#home">AuctionOasis</a>
-                </div>
-                <div class="search-bar">
-                    <input type="text" name="search" id="" placeholder="Search here">
-                </div>
-                <div class="nav-links-container">
-                    <ul class="nav-links">
-                        <li><a href="#">Live Auction</a></li>
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-                        <li><a href="#"><i class="fa-regular fa-user"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-    </header>
-
+    <%- include('partials/header') %>
     <main>
         <section class="hero-section">
             <div class="hero-container">
@@ -126,48 +92,5 @@
         <!-- About Section End -->
     </main>
 
-    <footer>
-        <section class="footer-section">
-            <div class="footer-container">
-                <div class="footer-flex">
-                    <div class="footer-content">
-                        <h2>AuctionOasis</h2>
-                        <p>Your trusted destination for unique finds and amazing deals.</p>
-                    </div>
-                    <div class="footer-content">
-                        <h2>Quick Links</h2>
-                        <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">How It Works</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">FAQs</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-content">
-                        <h2>Legal</h2>
-                        <ul>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Cookie Policy</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-content">
-                        <h2>Connect With Us</h2>
-                        <ul id="footer-social-links">
-                            <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <hr>
-                <div class="footer-bottom">
-                    <p>&copy; 2021 AuctionOasis. All rights reserved.</p>
-                </div>
-            </div>
-        </section>
-    </footer>
-</body>
 
-</html>
+    <%- include('partials/footer') %>
