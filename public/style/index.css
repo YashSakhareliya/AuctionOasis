@@ -116,6 +116,49 @@ header{
     border-radius: 5px;
     padding: 6px 12px;
 }
+
+
+/* Profile DropDown */
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.profile-dropdown ul {
+    list-style: none;
+    padding: 10px;
+    margin: 0;
+}
+
+.profile-dropdown ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-dropdown ul li:last-child {
+    border-bottom: none;
+}
+
+.profile-dropdown ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.profile-dropdown ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Show dropdown when clicked */
+.show-dropdown {
+    display: block;
+}
+
 /* NAV LINKS DONE */
 
 
