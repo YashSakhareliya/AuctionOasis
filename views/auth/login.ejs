@@ -4,12 +4,12 @@
         <div class="login-content">
             <h1>Sign in to your account</h1>
             <div class="login-form">
-                <form action="/" id="login-form">
+                <form action="/login" method="post" id="login-form">
                     <label id="Email" for="username">Username:</label> <br>
-                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="text" id="username" placeholder="Username" required name="username">
                     <br>
                     <label id="password"for="password">Password:</label> <br>
-                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="password" id="password" placeholder="Password" required name="password">
                     <br>
                     <button type="submit">Sign In</button>
                 </form>
