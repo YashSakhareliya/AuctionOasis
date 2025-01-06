@@ -128,6 +128,8 @@ header{
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    width: 200px;
+    transition: opacity 0.3s ease;
 }
 
 .profile-dropdown ul {
@@ -157,6 +159,16 @@ header{
 /* Show dropdown when clicked */
 .show-dropdown {
     display: block;
+    opacity: 1;
+}
+
+/* .profile-dropdown {
+    opacity: 0;
+} */
+
+
+.profile-icon-wrapper {
+    position: relative; /* Keep it relative for absolute positioning of dropdown */
 }
 
 /* NAV LINKS DONE */

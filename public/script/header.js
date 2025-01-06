@@ -1,5 +1,5 @@
-// show the dropdown menu when profile icon is clicked
-document.getElementById("profile-btn").addEventListener("click", function (e) {
+ // Show the dropdown menu when profile icon is clicked
+ document.getElementById("profile-icon").addEventListener("click", function (e) {
     e.preventDefault();
     var dropdown = document.getElementById("profile-dropdown");
     dropdown.classList.toggle("show-dropdown"); // Toggle dropdown visibility
