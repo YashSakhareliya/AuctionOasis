@@ -94,15 +94,18 @@ header{
     gap: 2rem;
 }
 
-.nav-links li a {
+
+.nav-links li  {
     color: var(--text-color);
     font-size: 1.3rem;
     font-weight: 500;
+    
 }
 
-.nav-links li a:hover {
+
+.nav-links li:hover {
     color: #fff;
-    background-color: rgb(109, 71, 232);
+    background-color: rgb(69, 69, 69);
     transform: scale(1.1); /* Slight scale effect instead of padding */
     border-radius: 5px;
 }
