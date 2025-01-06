@@ -122,8 +122,8 @@ header{
 .profile-dropdown {
     display: none;
     position: absolute;
-    top: 50px;
-    right: 0;
+    top: 60px;
+    right: 50px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -147,11 +147,11 @@ header{
 
 .profile-dropdown ul li a {
     text-decoration: none;
-    color: #333;
+    color: #000;
 }
 
 .profile-dropdown ul li a:hover {
-    color: var(--primary-color);
+    color: #000;
 }
 
 /* Show dropdown when clicked */
