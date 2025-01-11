@@ -6,7 +6,7 @@
 }
 
 body {
-    margin-top: 60px;
+    margin-top: 50px;
     font-family: var(--font-family);
     font-size: var(--body-font-size);
     background-color: var(--primary-bg-color);
@@ -46,7 +46,7 @@ button {
 /* nav section start */
 header {
     width: 100%;
-    height: 70px;
+    height: var(--navbar-height);
     background-color: var(--primary-bg-color);
     position: fixed;
     top: 0;
@@ -54,11 +54,10 @@ header {
     box-shadow: var(--navbar-shadow);
     z-index: 1000;
 }
-/* .nav-section{
-    margin-left: 4%;
-    margin-right: 2%;
-    
+.nav-section{
+    padding: 0.5rem 8%;
 }
+    /*
 header{
     box-shadow: 2px 0px 2px 0.1px;
 } */
@@ -81,11 +80,14 @@ header{
 .search-bar input {
     width: 100%;
     max-width: 600px;
-    min-width: 200px;
+    min-width: 400px;
     padding: 1rem;
     border: 1px solid var(--input-border-color);
     border-radius: var(--border-radius);
     height: 40px;
+    color: #474747;
+    font-weight: 600;
+    font-size: medium;
 }
 
 .nav-links {
@@ -97,7 +99,7 @@ header{
 
 .nav-links li  {
     color: var(--text-color);
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 500;
     padding: 6px 12px;
     
@@ -107,8 +109,15 @@ header{
 .nav-links li:hover {
     color: #000;
     background-color: rgb(226, 226, 226);
-   /* transform: scale(1.1);  Slight scale effect instead of padding */
     border-radius: 5px;
+}
+
+.nav-links #list-item{
+    font-weight: lighter;
+    color: #fff;
+    border-radius: 5px;
+    background-color: var(--primary-btn-color);
+
 }
 #sign-up-btn{
     background-color: var(--primary-color);
@@ -120,9 +129,10 @@ header{
 
 /* Profile DropDown */
 .profile-dropdown {
-    display: none;
+    display: none; /* Initially hidden */
+    opacity: 0;
     position: absolute;
-    top: 50px;
+    top: 40px;
     right: -12px;
     background-color: #fff;
     border-radius: 5px;
@@ -139,6 +149,7 @@ header{
 }
 
 .profile-dropdown ul li {
+    font-size: medium;
     padding: 10px;
     border-bottom: 1px solid #ddd;
 }
@@ -147,9 +158,19 @@ header{
     border-bottom: none;
 }
 
-.profile-dropdown ul li a {
-    text-decoration: none;
+.profile-dropdown #username{
     color: #000;
+    border-bottom:1px solid #000;
+}
+
+.profile-dropdown ul li a {
+    
+    text-decoration: none;
+    color: #1e1e1e;
+    
+}
+.profile-dropdown i{
+    padding-right: 15px;
 }
 
 .profile-dropdown ul li a:hover {
@@ -158,18 +179,14 @@ header{
 
 /* Show dropdown when clicked */
 .show-dropdown {
-    display: block;
+    display: block; /* Make dropdown visible */
     opacity: 1;
 }
-
-/* .profile-dropdown {
-    opacity: 0;
-} */
-
 
 .profile-icon-wrapper {
     position: relative; /* Keep it relative for absolute positioning of dropdown */
 }
+
 
 /* NAV LINKS DONE */
 

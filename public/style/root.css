@@ -1,32 +1,4 @@
-/*:root{
-     /* Light Theme Colors */
-  /* --primary-color: #646cff;
-  --secondary-color: #535bf2;
-  --text-color: #213547;
-  --footer-color: #213547;
-  --bg-color: #ffffff;
-  --bg-color-rgb: 255, 255, 255;
-  --card-bg: #f8f9fa;
-  --section-bg: #ffffff;
-  --input-border: #ddd;
-  --input-bg: #ffffff; */
 
-  /* Transitions */
-  /* --transition: all 0.3s ease;
-
-  --primary-btn-color: #646cff;
-  --secndary-btn-color:#cbcdf7;
-  --primary-btn-font-color: #fff;
-  --secondary-btn-font-color: #000; */
-
-  /* Font */
-    /* --h1-font-size: 2.5rem;
-    --h2-font-size: 1.5rem; */
-/*} */
-/* @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap'); */
-
-
-/* Root Variables */
 :root {
   /* Light Theme Colors */
   --primary-color: #646cff;
@@ -35,7 +7,7 @@
   --secondary-bg-color: #f8f9fa;
   --text-color: #213547;
   --footer-color: #213547;
-  --input-border-color: #ddd;
+  --input-border-color: #9b9999;
   --card-bg: #f8f9fa;
 
   /* Button Colors */
@@ -47,6 +19,7 @@
   /* Font */
   --h1-font-size: 2.5rem;
   --h2-font-size: 1.5rem;
+  --h3-font-size: 1.3rem;
   --body-font-size: 1rem;
   --font-family: 'Arial', sans-serif;
   --line-height: 1.5; /* Improved line-height for better text readability */
@@ -65,6 +38,6 @@
   --transition: all 0.3s ease;
 
   /* Navbar */
-  --navbar-height: 80px;
+  --navbar-height: 60px;
   --navbar-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
