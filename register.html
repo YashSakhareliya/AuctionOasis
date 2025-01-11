@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/root.css">
+    <link rel="stylesheet" href="./styles/login.css">
+    <link rel="stylesheet" href="./styles/register.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+</head>
+<body>
+    <!-- Header hear -->
+    <div id="header"></div>
+
+    <!-- main  hear -->
+
+    <main>
+        <div class="register-container">
+            <div class="register-content">
+                <h1>Create a new account</h1>
+                <div class="register-form">
+                    <form action="/login.html" id="register-form">
+                        <label id="Email" for="username">Username:</label> <br>
+                        <input type="text" id="username" placeholder="Username" required name="username">
+                        <br>
+                        <label id="email" for="email">Email:</label> <br>
+                        <input type="email" id="email" placeholder="Email" required name="email">
+                        <br>
+                        <label id="password" for="password">Password:</label> <br>
+                        <input type="password" id="password" placeholder="Password" required name="password">
+                        <br>
+                        <label id="confirm-password" for="confirm-password">Confirm Password:</label> <br>
+                        <input type="password" id="confirm-password" placeholder="Confirm Password" required name="confirm-password">
+                        <br>
+                        <button type="submit">Register</button>
+                    </form>
+                    <p>Already have an account? <a href="/login.html">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+
+    <!-- footer hear -->
+
+    <div id="footer"></div>
+
+    <script src="./include.js"></script>
+    <script src="scripts/header.js"></script>
+</body>
+</html>
