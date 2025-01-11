@@ -3,6 +3,7 @@ const { render } = require('ejs')
 const express = require('express')
 const bodyParser = require("body-parser");
 const path = require('path')
+const fs = require('fs')
 
 
 const app = express()
@@ -24,10 +25,49 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  const {username , password} = req.body
-  console.log(username, password)
-  res.render('index')
-})
+  const { username, password } = req.body;
+  console.log(username, password);
+
+  if (!username || !password) {
+    res.send('Please enter both username and password');
+    return;
+  }
+
+  const user = { username, password };
+
+  
+  const filePath = path.join(__dirname, 'files', 'login.json');
+
+  
+  let data = [];
+  if (fs.existsSync(filePath)) {
+    try {
+      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      if (fileContent.trim()) {
+        data = JSON.parse(fileContent); 
+      }
+    } catch (err) {
+      console.error('Error parsing JSON file:', err);
+      res.status(500).send('Error reading login data');
+      return;
+    }
+  }
+
+  
+  data.push(user);
+
+  
+  fs.writeFile(filePath, JSON.stringify(data, null, 2), (err) => {
+    if (err) {
+      console.error('Error writing to file:', err);
+      res.status(500).send('Internal Server Error');
+      return;
+    }
+
+    console.log('User details saved successfully!');
+    res.render('index'); 
+  });
+});
 
 
 app.get('/signout', (req, res) => {
