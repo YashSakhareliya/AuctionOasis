@@ -39,7 +39,8 @@
                         <li id="list-item">
                             <a href="/"><span><i class="fa-solid fa-plus"></i></span> List Item</a>
                         </li>
-                    
+                        
+                        <% if (isAuthenticated) { %>
                         <!-- Notification & Profile Icons initially visible -->
                         <li id="notification-icon" style="display: block;">
                             <a href="/"><i class="fa-solid fa-bell"></i></a>
@@ -61,11 +62,12 @@
                                 </div>
                             </div>
                         </li>
-                    
+                        <% } else { %>
                         <!-- Sign Up Button initially hidden -->
-                        <li style='display: none;' id="sign-up-btn">
-                            <a href="/signup">Sign Up</a>
+                        <li id="sign-up-btn">
+                            <a href="/auth/login">Sign Up</a>
                         </li>
+                        <% } %>
                     </ul>
                     
     
