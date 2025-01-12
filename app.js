@@ -12,6 +12,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs'); // Use EJS as the template engine
 app.set('views', path.join(__dirname, 'views'));
 
+app.use((req, res, next) => {
+  res.locals.username = null; // Default value
+  next();
+});
+
 // Import routes
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');

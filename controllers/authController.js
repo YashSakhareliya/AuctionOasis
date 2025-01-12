@@ -21,6 +21,7 @@ const loginUser = (req, res) => {
   if (!loginUserExist) {
     return res.send('User does not exist');
   }else{
+
     if(loginUserExist.password === loginUser.password){
 
       let data = readFile(loginFilePath);
@@ -29,7 +30,9 @@ const loginUser = (req, res) => {
 
       writeFile(loginFilePath, data);
 
-      res.render('index', { title: 'Home' });
+      res.locals.username = loginUser.username;
+      console.log(loginUser.username)
+      return res.redirect('/');
     }else{
       res.send('Invalid password');
     }
