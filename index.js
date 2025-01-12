@@ -66,6 +66,14 @@ app.post('/login', (req, res) => {
   });
 });
 
+app.get('/register', (req, res) => {
+  res.render('auth/register')
+})
+
+app.post('/register', (req, res) => {
+
+  res.render('auth/login')
+})
 
 app.get('/signout', (req, res) => {
   res.render('auth/login')
