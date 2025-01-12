@@ -1,88 +1,31 @@
-require('dotenv').config()
-const { render } = require('ejs')
-const express = require('express')
+require('dotenv').config();
+const express = require('express');
 const bodyParser = require("body-parser");
-const path = require('path')
-const fs = require('fs')
+const path = require('path');
 
+const app = express();
+const port = process.env.PORT || 3000;
 
-const app = express()
-const port = process.env.PORT
-
-
-app.use(express.static(path.join(__dirname, 'public')));   // for all css and javascript files
+// Middleware
+app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('view engine', 'ejs')   // told to express my frontend is in EJS file
+app.set('view engine', 'ejs'); // Use EJS as the template engine
+app.set('views', path.join(__dirname, 'views'));
 
+// Import routes
+const authRoutes = require('./routes/auth');
+const indexRoutes = require('./routes/index');
 
-app.get('/', (req, res) => {
-  res.render('index')
-})
+// Use routes
+app.use('/', indexRoutes);
+app.use('/auth', authRoutes);
 
-
-app.get('/login', (req, res) => {
-  res.render('auth/login')
-})
-
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  console.log(username, password);
-
-  if (!username || !password) {
-    res.send('Please enter both username and password');
-    return;
-  }
-
-  const user = { username, password };
-  const login_filePath = path.join(__dirname, 'files', 'login.json');
-
-  let data = [];
-
-  if (fs.existsSync(login_filePath)) {
-    try {
-      const fileContent = fs.readFileSync(login_filePath, 'utf-8');
-      if (fileContent.trim()) {
-        data = JSON.parse(fileContent); 
-      }
-    } catch (err) {
-      console.error('Error parsing JSON file:', err);
-      res.status(500).send('Error reading login data');
-      return;
-    }
-  }
-
-  data.push(user);
-  
-  fs.writeFile(login_filePath, JSON.stringify(data, null, 2), (err) => {
-    if (err) {
-      console.error('Error writing to file:', err);
-      res.status(500).send('Internal Server Error');
-      return;
-    }
-
-    console.log('User details saved successfully!');
-    res.render('index'); 
-
-  });
+// Handle 404 errors
+app.use((req, res) => {
+  res.status(404).render('404', { title: 'Page Not Found' });
 });
 
-app.get('/register', (req, res) => {
-  res.render('auth/register')
-})
-
-app.post('/register', (req, res) => {
-  const {username, email, password, conformpassword} = req.body;
-  const register_user = {username, email, password, conformpassword}
-  console.log(register_user)
-
-  res.render('auth/login')
-})
-
-app.get('/signout', (req, res) => {
-  res.render('auth/login')
-})
-
-
+// Start the server
 app.listen(port, () => {
-  console.log(`Example app listening localhost:${port}`)
-})
+  console.log(`Server is running on http://localhost:${port}`);
+});
