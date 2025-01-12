@@ -19,5 +19,12 @@ const verifyToken = (req, res, next)=>{
     }
 }
 
+const ensureAuthenticated = (req, res, next) => {
+    if (!res.locals.isAuthenticated) {
+      return res.redirect('/auth/login');
+    }
+    next();
+};
 
-module.exports = {verifyToken};
+
+module.exports = {verifyToken, ensureAuthenticated};
