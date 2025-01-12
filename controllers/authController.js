@@ -10,18 +10,31 @@ const renderLogin = (req, res) => {
 
 const loginUser = (req, res) => {
   const { username, password } = req.body;
-
+  const loginUser = { username, password };
   if (!username || !password) {
     return res.send('Please enter both username and password');
   }
 
-  const user = { username, password };
-  let data = readFile(loginFilePath);
+  let userData = readFile(registeruserFilePath)
+  let loginUserExist = userData.find(user=>user.username === loginUser.username);
 
-  data.push(user);
+  if (!loginUserExist) {
+    return res.send('User does not exist');
+  }else{
+    if(loginUserExist.password === loginUser.password){
 
-  writeFile(loginFilePath, data);
-  res.render('index', { title: 'Home' });
+      let data = readFile(loginFilePath);
+
+      data.push(loginUser);
+
+      writeFile(loginFilePath, data);
+
+      res.render('index', { title: 'Home' });
+    }else{
+      res.send('Invalid password');
+    }
+  }
+  
 };
 
 const renderRegister = (req, res) => {
