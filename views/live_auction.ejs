@@ -1,0 +1,60 @@
+<% include('./partials/header') %>
+
+<main>
+    <section class="live-auction-section">
+        <div class="live-auction-container">
+            <div class="live-auction-filter">
+                <select name="" id="filter-categories">
+                    <option disabled value="">All Categories</option>
+                    <option value="Watches">Watches</option>
+                    <option value="Art">Art</option>
+                    <option value="Antiques">Antiques</option>
+                </select>
+
+                <select name="" id="price-range">
+                    <option disabled value="">price-range</option>
+                    <option value="">Under 2000</option>
+                    <option value="">2000 - 5000</option>
+                    <option value="">5000 - 10000</option>
+                </select>
+
+                <select name="" id="All-Statuses">
+                    <option disabled value="">All Statuses</option>
+                    <option value="">Live Now</option>
+                    <option value="">Upcomming</option>
+                    <option value="">Ended</option>
+                </select>
+            </div>
+
+            <div class="filter-item-grid">
+                <div class="filter-item">
+                    <div class="filter-item-image">
+                        <img src="/images/auction-items/auction-item-1.avif"
+                            alt="Auction-item-image">
+                    </div>
+
+                    <div class="filter-item-content">
+                        <div class="filter-item-title">
+                            <h2>Antique Furniture</h2>
+                        </div>
+                        <div class="filter-item-price">
+                            <p>Current Bid: $10,000</p>
+                        </div>
+                        <div class="filter-item-summery">
+                            <ul class="filter-item-summery-list">
+
+                                <li>2h 30m</li>
+                                <li>23 bids</li>
+                                <li><a href="#"><i class="fa-regular fa-heart"></i></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<% include('./partials/footer') %>
