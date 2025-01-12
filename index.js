@@ -71,6 +71,9 @@ app.get('/register', (req, res) => {
 })
 
 app.post('/register', (req, res) => {
+  const {username, email, password, conformpassword} = req.body;
+  const register_user = {username, email, password, conformpassword}
+  console.log(register_user)
 
   res.render('auth/login')
 })
