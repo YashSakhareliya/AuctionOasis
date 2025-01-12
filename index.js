@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/login', (req, res) => {
-    res.render('auth/login')
+  res.render('auth/login')
 })
 
 app.post('/login', (req, res) => {
@@ -34,15 +34,13 @@ app.post('/login', (req, res) => {
   }
 
   const user = { username, password };
+  const login_filePath = path.join(__dirname, 'files', 'login.json');
 
-  
-  const filePath = path.join(__dirname, 'files', 'login.json');
-
-  
   let data = [];
-  if (fs.existsSync(filePath)) {
+
+  if (fs.existsSync(login_filePath)) {
     try {
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
+      const fileContent = fs.readFileSync(login_filePath, 'utf-8');
       if (fileContent.trim()) {
         data = JSON.parse(fileContent); 
       }
@@ -53,11 +51,9 @@ app.post('/login', (req, res) => {
     }
   }
 
-  
   data.push(user);
-
   
-  fs.writeFile(filePath, JSON.stringify(data, null, 2), (err) => {
+  fs.writeFile(login_filePath, JSON.stringify(data, null, 2), (err) => {
     if (err) {
       console.error('Error writing to file:', err);
       res.status(500).send('Internal Server Error');
@@ -66,6 +62,7 @@ app.post('/login', (req, res) => {
 
     console.log('User details saved successfully!');
     res.render('index'); 
+
   });
 });
 
