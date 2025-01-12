@@ -4,7 +4,7 @@
         <div class="login-content">
             <h1>Sign in to your account</h1>
             <div class="login-form">
-                <form action="/login" method="post" id="login-form">
+                <form action="/auth/login" method="post" id="login-form">
                     <!-- Correctly associate label with input by using the input's ID -->
                     <label for="username">Username:</label> <br>
                     <input 
@@ -28,7 +28,7 @@
                     <br>
                     <button type="submit">Sign In</button>
                 </form>
-                <p>Don't have an account? <a href="/register">Register</a></p>
+                <p>Don't have an account? <a href="/auth/register">Register</a></p>
             </div>
         </div>
     </div>
