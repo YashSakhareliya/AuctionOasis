@@ -1,0 +1,43 @@
+    <!-- Include Header -->
+    <%- include('partials/header') %>
+
+    <!-- Main Content -->
+    <main>
+        <section class="wallet-section">
+            <div class="wallet-container">
+                <div class="add-wallet">
+                    <h1><i class="fa-solid fa-wallet"></i> My Wallet</h1>
+                    <a href="#">Add Funds</a>
+                </div>
+                <div class="balance">
+                    <p>Available Balance</p>
+                    <h1>$<%= availableBalance %></h1>
+                </div>
+                
+                <div class="transfer-icon">
+                    <a href="#">Deposit Funds</a>
+                    <a href="#">Withdraw Funds</a>
+                </div>
+                <div class="transaction-history">
+                    <h2>Transaction History</h2>
+                    <ul>
+                        <% transactionHistory.forEach(transaction => { %>
+                            <li>
+                                <div class="transction-type">
+                                    <p id="type"><%= transaction.type %></p>
+                                    <p id="date"><%= transaction.date %></p>
+                                </div>
+                                <div class="transection-status">
+                                    <p><%= transaction.amount %></p>
+                                    <p><%= transaction.status %></p>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Include Footer -->
+    <%- include('partials/footer') %>
