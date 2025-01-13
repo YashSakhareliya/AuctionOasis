@@ -1,3 +1,15 @@
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 /* Hero COntainer Start */
 /* First image default height weight */
 
@@ -188,7 +200,7 @@ img{
  margin-top: 6rem;   
 }
 
-.about-auctionoasis-container{
+/* .about-auctionoasis-container{
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.6s ease, transform 0.6s ease;
@@ -196,7 +208,7 @@ img{
 .about-auctionoasis-container.fade-in {
     opacity: 1;
     transform: translateY(0);
-}
+} */
 
 .about-auctionoasis-heading{
     display: flex;
