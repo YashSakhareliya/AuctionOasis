@@ -188,6 +188,16 @@ img{
  margin-top: 6rem;   
 }
 
+.about-auctionoasis-container{
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.about-auctionoasis-container.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .about-auctionoasis-heading{
     display: flex;
     flex-direction: column;
