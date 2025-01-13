@@ -17,6 +17,14 @@
     
     
 }
+.live-auction-filter button{
+    padding: 0.6rem;
+    color: white;
+    background-color: var(--primary-btn-color);
+    border-radius: 0.3rem;
+    width: 80px;
+    margin-left: 20px;
+}
 
 .live-auction-filter select{
     padding: 0.5rem;
