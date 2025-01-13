@@ -57,7 +57,7 @@ img{
     
 }
 
-.hero-content-button button{
+.hero-content-button a{
     padding: 1rem 2rem;
     border-radius: var(--border-radius);
     font-size: 1.5rem;
@@ -169,7 +169,7 @@ img{
     
 } 
 
-.feature-view-all-btn button{
+.feature-view-all-btn a{
     padding: 1rem 2rem;
     border: none;
     border-radius: 5px;
