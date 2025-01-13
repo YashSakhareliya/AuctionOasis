@@ -10,6 +10,13 @@ const liveAuction =  (req,res)=>{
 
 const liveAuctionFilter = (req, res) =>{
     console.log(req.body)
+    const {categories, priceRange, statuses} = req.body
+    // const filter = {categories, priceRange, statuses}
+    // console.log(filter)
+
+    // const filteredItems = items.filter(item => {item.categories.toLowerCase() === filter.categories.toLowerCase()})
+    // console.log(filteredItems)
+
     res.render('live_auction',{items})
 }
 
