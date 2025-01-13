@@ -36,23 +36,25 @@
                             <img src="/images/auction-items/<%= item.image %>" alt="<%= item.title %>">
                         </div>
                 
-                        <div class="filter-item-content">
-                            <div class="filter-item-title">
-                                <h2><%= item.title %></h2>
+                        <a href="/live/auction">
+                            <div class="filter-item-content">
+                                <div class="filter-item-title">
+                                    <h2><%= item.title %></h2>
+                                </div>
+                                <div class="filter-item-price">
+                                    <p>Current Bid: $<%= item.currentBid %></p>
+                                </div>
+                                <div class="filter-item-summery">
+                                    <ul class="filter-item-summery-list">
+                                        <li><%= item.timeLeft %></li>
+                                        <li><%= item.bids %> bids</li>
+                                        <li>
+                                            <a href="#"><i class="fa-regular fa-heart"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="filter-item-price">
-                                <p>Current Bid: $<%= item.currentBid %></p>
-                            </div>
-                            <div class="filter-item-summery">
-                                <ul class="filter-item-summery-list">
-                                    <li><%= item.timeLeft %></li>
-                                    <li><%= item.bids %> bids</li>
-                                    <li>
-                                        <a href="#"><i class="fa-regular fa-heart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                 <% }) %>
                 

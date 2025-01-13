@@ -176,8 +176,10 @@ img{
 .feature-item-summery-list{
     color: var(--text-color);
     display: flex;
-    gap: 1rem;
+    flex-direction: row;
+    align-items: center;
     justify-content: space-between;
+    /* border: 1px solid black; */
     
 } 
 
