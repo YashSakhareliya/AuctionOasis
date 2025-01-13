@@ -4,26 +4,29 @@
     <section class="live-auction-section">
         <div class="live-auction-container">
             <div class="live-auction-filter">
-                <select name="categories" id="filter-categories">
-                    <option disabled value="">All Categories</option>
-                    <option value="Watches">Watches</option>
-                    <option value="Art">Art</option>
-                    <option value="Antiques">Antiques</option>
-                </select>
-
-                <select name="priceRange" id="price-range">
-                    <option disabled value="">price-range</option>
-                    <option value="">Under 2000</option>
-                    <option value="">2000 - 5000</option>
-                    <option value="">5000 - 10000</option>
-                </select>
-
-                <select name="statuses" id="All-Statuses">
-                    <option disabled value="">All Statuses</option>
-                    <option value="">Live Now</option>
-                    <option value="">Upcomming</option>
-                    <option value="">Ended</option>
-                </select>
+                <form action="/live/auction" method="post">
+                    <select name="categories" id="filter-categories">
+                        <option disabled value="">All Categories</option>
+                        <option value="Watches">Watches</option>
+                        <option value="Art">Art</option>
+                        <option value="Antiques">Antiques</option>
+                    </select>
+    
+                    <select name="priceRange" id="price-range">
+                        <option disabled value="">price-range</option>
+                        <option value="Under 2000">Under 2000</option>
+                        <option value="2000 - 5000">2000 - 5000</option>
+                        <option value="5000 - 10000">5000 - 10000</option>
+                    </select>
+    
+                    <select name="statuses" id="All-Statuses">
+                        <option disabled value="">All Statuses</option>
+                        <option value="Live Now">Live Now</option>
+                        <option value="Upcomming">Upcomming</option>
+                        <option value="Ended">Ended</option>
+                    </select>
+                    <button type="submit">Search</button>
+                </form>
             </div>
 
             <div class="filter-item-grid">
