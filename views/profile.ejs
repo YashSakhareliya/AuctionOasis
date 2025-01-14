@@ -1,0 +1,91 @@
+<%- include('partials/header') %>
+
+    <main>
+        <section class="profile-section">
+            <div class="profile-container">
+                <!-- User Details -->
+                <div class="user-details-continer">
+                    <div class="user-details">
+                        <img src="<%= user.image || '/images/about-auctionoasis-logo/audience.png' %>" alt="User Image">
+                        <div class="user-details-info">
+                            <h2><%= user.name || 'Demo User' %></h2>
+                            <p><%= user.email || 'demo@example.com' %></p>
+                        </div>
+                    </div>
+                    <div class="profile-edit-btn">
+                        <a href="#"><i class="fa-solid fa-edit"></i>Edit Profile</a>
+                    </div>
+                </div>
+
+                <!-- Profile Buttons -->
+                <div class="user-profile-btn-container">
+                    <button><i id="plus-symbol" class="fa-solid fa-plus"></i>List New Item</button>
+                    <a href="/wallet">View Wallet</a>
+                </div>
+
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="my-items">My Items</button>
+                    <button class="tab" data-tab="bid-history">Bid History</button>
+                </div>
+
+                <!-- My Items Tab Content -->
+                <div class="my-items-grid tab-content active" id="my-items">
+                    <% if (user.items && user.items.length > 0) { %>
+                        <% user.items.forEach((item) => { %>
+                        <div class="my-item">
+                            <div class="my-item-image">
+                                <img src="<%= item.image %>" alt="Auction-item-image">
+                            </div>
+                            <div class="my-item-content">
+                                <div class="my-item-title">
+                                    <h2><%= item.title %></h2>
+                                </div>
+                                <div class="my-item-price">
+                                    <p>Current Bid: $<%= item.currentBid %></p>
+                                </div>
+                                <div class="my-item-summery">
+                                    <ul class="my-item-summery-list">
+                                        <div class="bid-time">
+                                            <li><%= item.remainingTime %></li>
+                                            <li><%= item.bidCount %> bids</li>
+                                        </div>
+                                        <div class="bid-info">
+                                            <li><a href="<%= item.detailsLink %>">View Details</a></li>
+                                        </div>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <% }); %>
+                    <% } else { %>
+                        <p>No items to display.</p>
+                    <% } %>
+                </div>
+
+                <!-- Bid History Tab Content -->
+                <div class="tab-content bid-history" id="bid-history">
+                    <% if (user.bidHistory && user.bidHistory.length > 0) { %>
+                        <ul class="bid-history-list">
+                            <% user.bidHistory.forEach((bid) => { %>
+                            <li class="bid-item-details">
+                                <div class="bid-details">
+                                    <h2>Bid on <%= bid.itemTitle %></h2>
+                                    <p><%= bid.date %></p>
+                                </div>
+                                <div class="bid-amount">
+                                    <h4>$<%= bid.amount %></h4>
+                                    <p><%= bid.status %></p>
+                                </div>
+                            </li>
+                            <% }); %>
+                        </ul>
+                    <% } else { %>
+                        <p>No bid history available.</p>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
