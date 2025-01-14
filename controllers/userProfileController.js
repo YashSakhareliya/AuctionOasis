@@ -1,7 +1,10 @@
 
 
 const renderUserProfile = (req, res) =>{
-    res.render('profile', {title: 'User Profile'})
+    const user = []
+    console.log(req.params.user)
+    
+    res.render('profile', {user})
 }
 
 module.exports = {renderUserProfile}
