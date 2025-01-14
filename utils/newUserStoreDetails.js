@@ -8,7 +8,7 @@ function newUserStoreDetails(newUserInput,filePath){
       name: newUserInput.name || null,
       username: newUserInput.username || null,
       email: newUserInput.email,
-      password: newUserInput.password, // Hash password securely
+      password: newUserInput.password, 
       image: null, // Default to null
       role: newUserInput.role || "buyer", // Default role
       profilePicture: null, // Default to null
