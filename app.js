@@ -25,11 +25,13 @@ app.use(verifyToken); // Apply token verification globally
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');
 const liveAuctionRoutes = require('./routes/live_auction');
+const userProfileRoutes = require('./routes/user_profile');
 
 // Use routes
 app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
 app.use('/live',liveAuctionRoutes)
+app.use('/profile',userProfileRoutes);
 
 // Handle 404 errors
 app.use((req, res) => {
