@@ -1,0 +1,282 @@
+.profile-section{
+    padding-top: 2rem;
+}
+
+/* Profile Container */
+.profile-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* User Details Section */
+.user-details-continer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    margin-bottom: 15px;
+}
+
+.user-details {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.user-details img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #6b38fb;
+}
+
+.user-details-info h2 {
+    font-size: var(--h2-font-size);
+    color: black;
+    margin: 0;
+}
+
+.user-details p {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.profile-edit-btn a {
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid #9c9c9e;
+    border-radius: 1rem;
+}
+
+.profile-edit-btn a:hover {
+    text-decoration: underline;
+}
+
+/* Profile Buttons */
+.user-profile-btn-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.user-profile-btn-container button {
+    padding: 0.8rem 1.5rem;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid var(--primary-btn-color);
+    background-color: var(--primary-btn-color);
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: var(--transition);
+}
+
+.user-profile-btn-container a {
+    padding: 0.8rem 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid #9c9c9e;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+#plus-symbol{
+    margin-right: 5px;
+}
+
+.user-profile-btn-container button:hover {
+    background-color: #5731cb;
+    text-decoration: underline;
+}
+
+
+.user-profile-btn-container a:hover{
+    background-color: #b7b8ba;
+    text-decoration: underline;
+}
+
+
+
+
+/* My Items Grid */
+.my-items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.my-item {
+    /* margin: 1rem 0; */
+    width: 420px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+}
+.my-item-image{
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+}
+
+.my-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.my-item-content {
+    background-color: var(--card-bg);
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 2rem;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.my-item-title h2 {
+    font-size: var(--h2-font-size);
+    font-weight: 1000;
+    color: #000;
+}
+
+.my-item-price p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.my-item-summery ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.bid-time, 
+.bid-info{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.my-item-summery ul li {
+    font-size: 14px;
+    color: #666;
+}
+
+.my-item-summery ul li a {
+    color: #6b38fb;
+    text-decoration: none;
+}
+
+.my-item-summery ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Bid History Content */
+.bid-history {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bid-history-list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.bid-item-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid  #9c9c9e;
+}
+.bid-details,
+.bid-amount{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bid-details h2 {
+    font-size: 18px;
+    color: #333;
+}
+
+.bid-details p {
+    font-size: 14px;
+    color: #666;
+}
+
+.bid-amount p {
+    font-size: 16px;
+    color: green;
+    font-weight: bold;
+}
+
+/* Tabs Section */
+.tabs {
+    display: flex;
+    gap: 10px;
+    /* margin-bottom: 20px; */
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab {
+    padding: 10px 20px;
+    font-size: 14px;
+    /* border: 1px solid #ddd; */
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.tab.active {
+    border-bottom: 3px solid #6b38fb;
+    background-color: #fff;
+    color: #6b38fb;
+    font-weight: bold;
+}
+
+.tab:hover {
+    background-color: #eaeaea;
+}
+
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
