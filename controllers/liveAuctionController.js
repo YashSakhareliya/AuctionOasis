@@ -22,4 +22,14 @@ const liveAuctionFilter = (req, res) =>{
     res.render('live_auction',{items})
 }
 
-module.exports = {liveAuction, liveAuctionFilter}
+const renderItem = (req, res) => {
+    let item = [];
+    console.log(req.params.itemId)
+
+    items = readFile(itemFilePath)
+    item = items.find(item => item.itemId === req.params.itemId)
+    res.render('item_details',{item})
+
+}
+
+module.exports = {liveAuction, liveAuctionFilter, renderItem}
