@@ -6,7 +6,7 @@
                 <!-- User Details -->
                 <div class="user-details-continer">
                     <div class="user-details">
-                        <img src="<%= user.image || '/images/about-auctionoasis-logo/audience.png' %>" alt="User Image">
+                        <img src="<%= user.image %>" alt="User Image">
                         <div class="user-details-info">
                             <h2><%= user.name || 'Demo User' %></h2>
                             <p><%= user.email || 'demo@example.com' %></p>
@@ -31,8 +31,8 @@
 
                 <!-- My Items Tab Content -->
                 <div class="my-items-grid tab-content active" id="my-items">
-                    <% if (user.items && user.items.length > 0) { %>
-                        <% user.items.forEach((item) => { %>
+                    <% if (user.myItems && user.myItems.length > 0) { %>
+                        <% user.myItems.forEach((item) => { %>
                         <div class="my-item">
                             <div class="my-item-image">
                                 <img src="<%= item.image %>" alt="Auction-item-image">
@@ -47,11 +47,11 @@
                                 <div class="my-item-summery">
                                     <ul class="my-item-summery-list">
                                         <div class="bid-time">
-                                            <li><%= item.remainingTime %></li>
-                                            <li><%= item.bidCount %> bids</li>
+                                            <li><%= item.bidTimeRemaining %></li>
+                                            <li><%= item.bidsCount %> bids</li>
                                         </div>
                                         <div class="bid-info">
-                                            <li><a href="<%= item.detailsLink %>">View Details</a></li>
+                                            <li><a href="<%= item.detailsLink || `/` %>">View Details</a></li>
                                         </div>
                                     </ul>
                                 </div>
@@ -74,7 +74,7 @@
                                     <p><%= bid.date %></p>
                                 </div>
                                 <div class="bid-amount">
-                                    <h4>$<%= bid.amount %></h4>
+                                    <h4>$<%= bid.bidAmount %></h4>
                                     <p><%= bid.status %></p>
                                 </div>
                             </li>
