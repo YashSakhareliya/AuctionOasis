@@ -62,15 +62,15 @@ const registerUser = (req, res) => {
     return res.send('Passwords do not match');
   }
 
-  const registerUser  = readFile(registeruserFilePath)
+  const registeredUser  = readFile(registeruserFilePath)
 
-  const existUser = registerUser.some(user=>user.username === newUser.username)
+  const existUser = registeredUser.some(user=>user.username === newUser.username)
 
   if(existUser){
     return res.send('Username already exists');
   }else{
-    registerUser.push(newUser)
-    writeFile(registeruserFilePath, registerUser)
+    registeredUser.push(newUser)
+    writeFile(registeruserFilePath, registeredUser)
     res.render('auth/login', { title: 'Login' });
   }
 

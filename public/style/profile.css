@@ -119,11 +119,10 @@
 .my-items-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 1rem;
 }
 
 .my-item {
-    /* margin: 1rem 0; */
     width: 420px;
     height: 350px;
     display: flex;
@@ -278,5 +277,5 @@
 }
 
 .tab-content.active {
-    display: block;
+    display: grid;
 }
