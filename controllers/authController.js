@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const path = require('path');
-const { v4: uuidv4 } = require("uuid");
 const { readFile, writeFile } = require('../utils/fileHandler');
+const { newUserStoreDetails } = require('../utils/newUserStoreDetails');
 
 const loginFilePath = path.join(__dirname, '../files/login.json');
 const registeruserFilePath = path.join(__dirname, '../files/registeruser.json');
@@ -73,12 +73,12 @@ const registerUser = (req, res) => {
   }else{
     
     // Store all details of user in json file 
-    newUserStoreDetails(newUser)
+    newUserStoreDetails(newUser, newUserStoreDetailsFilePath)
     
 
     // store detais on registered user
     registeredUser.push(newUser)
-    
+
     writeFile(registeruserFilePath, registeredUser)
     res.render('auth/login', { title: 'Login' });
   }
@@ -87,28 +87,7 @@ const registerUser = (req, res) => {
   res.redirect('auth/login');
 };
 
-function newUserStoreDetails(newUserInput){
 
-  const User = {
-    _id: uuidv4(), // Generate a unique ID
-    name: newUserInput.name || null,
-    username: newUserInput.username || null,
-    email: newUserInput.email,
-    password: newUserInput.password, // Hash password securely
-    image: null, // Default to null
-    role: newUserInput.role || "buyer", // Default role
-    profilePicture: null, // Default to null
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    myItems: [], // Default empty array
-    bidHistory: [] // Default empty array
-  };
-  const oldDetails = readFile(newUserStoreDetailsFilePath)
-  oldDetails.push(User)
-  writeFile(newUserStoreDetailsFilePath,oldDetails)
-
-  console.log("Updated: user store details")
-}
 
 const signOut = (req, res) => {
   res.clearCookie('auth_token');
