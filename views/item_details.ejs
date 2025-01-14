@@ -1,0 +1,60 @@
+<%- include('/partials/header') %>
+
+<!-- main here -->
+<main>
+    <section class="item-details">
+        <div class="item-container">
+            <div class="item-image">
+                <img src="<%= item.image %>" alt="Item-image">
+            </div>
+            <div class="item-description">
+                 <div class="item-info">
+                   <div class="item-name">
+                    <h1><%= item.name %></h1>
+                    <p>Listed by <%= item.seller %></p>
+                   </div>
+                   <div class="item-like">
+                     <a href="#"><i class="fa-solid fa-heart"></i></a>
+                   </div>
+                 </div>
+                 <div class="item-about">
+                    <h3>About This Item</h3>
+                    <p><%= item.description %></p>
+                 </div>
+                 <div class="item-bid">
+                    <div class="current-bid">
+                        <p>Current Bid</p>
+                        <h1>$<%= item.currentBid %></h1>
+                    </div>
+                    <div class="item-time">
+                        <p>Auction Ends In: <%= item.timeRemaining || "Ended" %></p>
+                    </div>
+                 </div>
+                 <div class="item-bid-button">
+                    <a href="/place-bid/<%= item.id %>">Place Bid</a>
+                 </div>
+                 <div class="item-resent-bid">
+                    <h2>Recent Bids</h2>
+                    <div class="item-bid-record">
+                        <ul>
+                            <% item.recentBids.forEach(bid => { %>
+                                <li>
+                                    <div class="bidder-name">
+                                        <p><%= bid.bidderName %></p>
+                                    </div>
+                                    <div class="bid-record">
+                                        <p id="bid-amount">$<%= bid.amount %></p>
+                                        <p id="bid-time"><%= bid.time %></p>
+                                    </div>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<%- include('/partials/footer') %>
