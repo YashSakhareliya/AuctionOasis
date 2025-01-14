@@ -1,4 +1,4 @@
-<%- include('/partials/header') %>
+<%- include('partials/header') %>
 
 <!-- main here -->
 <main>
@@ -37,7 +37,8 @@
                     <h2>Recent Bids</h2>
                     <div class="item-bid-record">
                         <ul>
-                            <% item.recentBids.forEach(bid => { %>
+                            <% if (item.bids.length > 0 && item.bids) { %>
+                            <% item.bids.forEach(bid => { %>
                                 <li>
                                     <div class="bidder-name">
                                         <p><%= bid.bidderName %></p>
@@ -48,6 +49,9 @@
                                     </div>
                                 </li>
                             <% }) %>
+                            <% } else { %>
+                                <p>No Resent Bids to display.</p>
+                            <% } %>
                         </ul>
                     </div>
                  </div>
@@ -57,4 +61,4 @@
 </main>
 
 
-<%- include('/partials/footer') %>
+<%- include('partials/footer') %>
