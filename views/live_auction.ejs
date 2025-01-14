@@ -33,21 +33,21 @@
                 <% items.forEach(item => { %>
                     <div class="filter-item">
                         <div class="filter-item-image">
-                            <img src="/images/auction-items/<%= item.image %>" alt="<%= item.title %>">
+                            <img src="/images/auction-items/<%= item.image %>" alt="<%= item.name %>">
                         </div>
                 
                         <a href=<%=`/live/auction/item/${item.itemId}`%>>
                             <div class="filter-item-content">
                                 <div class="filter-item-title">
-                                    <h2><%= item.title %></h2>
+                                    <h2><%= item.name %></h2>
                                 </div>
                                 <div class="filter-item-price">
                                     <p>Current Bid: $<%= item.currentBid %></p>
                                 </div>
                                 <div class="filter-item-summery">
                                     <ul class="filter-item-summery-list">
-                                        <li><%= item.timeLeft %></li>
-                                        <li><%= item.bids %> bids</li>
+                                        <li><%= item.timeRemaining %></li>
+                                        <li><%= len(item.bids) %> bids</li>
                                         <li>
                                             <a href="#"><i class="fa-regular fa-heart"></i></a>
                                         </li>
