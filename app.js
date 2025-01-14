@@ -25,7 +25,7 @@ app.use(verifyToken); // Apply token verification globally
 const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');
 const liveAuctionRoutes = require('./routes/live_auction');
-const userProfileRoutes = require('./routes/user_profile');
+const userProfileRoutes = require('./routes/userProfile');
 
 // Use routes
 app.use('/', indexRoutes);
