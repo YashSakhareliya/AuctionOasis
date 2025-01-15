@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
 const path = require('path');
+const bcrypt = require('bcrypt');
 const { readFile, writeFile } = require('../utils/fileHandler');
 const { newUserStoreDetails } = require('../utils/newUserStoreDetails');
+const User = require('../models/userModel')
 
 const loginFilePath = path.join(__dirname, '../files/login.json');
 const registeruserFilePath = path.join(__dirname, '../files/registeruser.json');
@@ -61,30 +63,28 @@ const registerUser = (req, res) => {
   const newUser = { username, email, password}
 
   if (password !== conformpassword) {
-    return res.send('Passwords do not match');
+    return res.status(403).json({status: "Password and conform password dose not match"});
   }
 
-  const registeredUser  = readFile(registeruserFilePath)
+  const saltRounds = 10;
+  try{
+    bcrypt.hash(password, saltRounds,async function(err,hashPassword) {
+      if (err) return res.status(err).json({status:err.message});
 
-  const existUser = registeredUser.some(user=>user.username === newUser.username)
+      const userToSave = new User({
+        username: newUser.username,
+        email: newUser.email,
+        password: hashPassword
+      })
 
-  if(existUser){
-    return res.send('Username already exists');
-  }else{
-    
-    // Store all details of user in json file 
-    newUserStoreDetails(newUser, newUserStoreDetailsFilePath)
-    
+      const savedUser = await userToSave.save()
+      res.status(200).json(savedUser)
 
-    // store detais on registered user
-    registeredUser.push(newUser)
-
-    writeFile(registeruserFilePath, registeredUser)
-    res.render('auth/login', { title: 'Login' });
+  });
+  }catch(err){
+    res.status(500).json({status:err.message})
   }
-
-  console.log({ username, email, password });
-  res.redirect('auth/login');
+  
 };
 
 
