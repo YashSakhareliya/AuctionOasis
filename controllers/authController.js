@@ -1,14 +1,9 @@
 const jwt = require('jsonwebtoken');
 const path = require('path');
 const bcrypt = require('bcrypt');
-const { readFile, writeFile } = require('../utils/fileHandler');
-const { newUserStoreDetails } = require('../utils/newUserStoreDetails');
 const User = require('../models/userModel')
 const UserWallet = require('../models/userWalletModel')
 
-const loginFilePath = path.join(__dirname, '../files/login.json');
-const registeruserFilePath = path.join(__dirname, '../files/registeruser.json');
-const newUserStoreDetailsFilePath = path.join(__dirname, '../files/userDetails.json');
 
 // JWT Secret Key
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -106,6 +101,7 @@ const registerUser = async (req, res) => {
 
 
 const signOut = (req, res) => {
+  res.locals.username = ""
   res.clearCookie('auth_token');
   res.redirect('/auth/login');
 };
