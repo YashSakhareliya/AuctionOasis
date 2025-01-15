@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const { verifyToken } = require('./Middleware/authMiddleware');
 const path = require('path');
+const  connectDb  =  require('./config/db')
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,6 +17,8 @@ app.set('view engine', 'ejs'); // Use EJS as the template engine
 app.set('views', path.join(__dirname, 'views'));
 app.use(verifyToken); // Apply token verification globally
 
+// connect with Database
+connectDb()
 // app.use((req, res, next) => {
 //   res.locals.username = null; // Default value
 //   next();
