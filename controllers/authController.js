@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const { readFile, writeFile } = require('../utils/fileHandler');
 const { newUserStoreDetails } = require('../utils/newUserStoreDetails');
 const User = require('../models/userModel')
+const UserWallet = require('../models/userWalletModel')
 
 const loginFilePath = path.join(__dirname, '../files/login.json');
 const registeruserFilePath = path.join(__dirname, '../files/registeruser.json');
@@ -79,6 +80,13 @@ const registerUser = async (req, res) => {
     if(emailExist) {
       return res.status(409).json({status: "Email is already taken"});
     }
+    // create user wallet 
+    let newUserWallet = new UserWallet({
+      username: newUser.username,
+      email: newUser.email,
+      availableAmount: 0
+    })
+    await newUserWallet.save()
 
     bcrypt.hash(password, saltRounds,async function(err,hashPassword) {
       if (err) return res.status(err).json({status:err.message});
@@ -86,7 +94,8 @@ const registerUser = async (req, res) => {
       const userToSave = new User({
         username: newUser.username,
         email: newUser.email,
-        password: hashPassword
+        password: hashPassword,
+        wallet: newUserWallet._id
       })
 
       const savedUser = await userToSave.save()
