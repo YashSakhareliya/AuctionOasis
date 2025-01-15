@@ -58,7 +58,7 @@ const renderRegister = (req, res) => {
   res.render('auth/register', { title: 'Register' });
 };
 
-const registerUser = (req, res) => {
+const registerUser = async (req, res) => {
   const { username, email, password, conformpassword } = req.body;
   const newUser = { username, email, password}
 
@@ -68,6 +68,18 @@ const registerUser = (req, res) => {
 
   const saltRounds = 10;
   try{
+   
+    // check username is not already registered
+    let usernameExist =await User.findOne({username:newUser.username})
+    
+    let emailExist = await User.findOne({email:newUser.email})
+    if(usernameExist) {
+      return res.status(409).json({status: "Username is already taken"});
+    }
+    if(emailExist) {
+      return res.status(409).json({status: "Email is already taken"});
+    }
+
     bcrypt.hash(password, saltRounds,async function(err,hashPassword) {
       if (err) return res.status(err).json({status:err.message});
 
