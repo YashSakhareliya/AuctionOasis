@@ -21,7 +21,7 @@ const loginUser = async (req, res) => {
 
   const isUserExist = await User.findOne({username: loginUser.username})
   if(!isUserExist) {
-    res.status(403).json({status: 'Username Not Found'});
+    res.status(403).send('Username Not Found');
   }
   // match password
   
@@ -38,8 +38,11 @@ const loginUser = async (req, res) => {
       res.cookie('auth_token',token,{httpOnly: true, secure: true})
 
       res.locals.username = loginUser.username
-      res.status(200).json({status: 'Logged In Successfully', token: token});
+
+      res.render('index');
       
+    }else{
+      res.send('Invalid Password');
     }
   });
   
@@ -54,7 +57,7 @@ const registerUser = async (req, res) => {
   const newUser = { username, email, password}
 
   if (password !== conformpassword) {
-    return res.status(403).json({status: "Password and conform password dose not match"});
+    return res.send("Password and conform password dose not match");
   }
 
   const saltRounds = 10;
@@ -65,10 +68,10 @@ const registerUser = async (req, res) => {
     
     let emailExist = await User.findOne({email:newUser.email})
     if(usernameExist) {
-      return res.status(409).json({status: "Username is already taken"});
+      return res.send("Username is already taken");
     }
     if(emailExist) {
-      return res.status(409).json({status: "Email is already taken"});
+      return res.send("Email is already taken");
     }
     // create user wallet 
     let newUserWallet = new UserWallet({
@@ -89,7 +92,7 @@ const registerUser = async (req, res) => {
       })
 
       const savedUser = await userToSave.save()
-      res.status(200).json(savedUser)
+      res.render('auth/login')
 
   });
   }catch(err){
