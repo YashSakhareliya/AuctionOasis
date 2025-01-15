@@ -1,18 +1,16 @@
 const path = require('path');
 const {readFile, writeFile} = require('../utils/fileHandler')
+const User =  require('../models/userModel')
 
 const userDetailsFilePath = path.join(__dirname, '../files/userDetails.json')
 
-const renderUserProfile = (req, res) =>{
-    let user = []
-    let userDetails = readFile(userDetailsFilePath)
-    user = userDetails.find(u=>u.username === req.params.user)
-    console.log(user)
-    if(user === undefined){
-        user = []
+const renderUserProfile = async (req, res) =>{
+    try{
+        let userDetails =  await User.findOne({username: req.params.user})
+        return res.render('profile', {user: userDetails})
+    }catch(err){
+        return res.status(500).send({error: err.message})
     }
-    
-    res.render('profile', {user})
 }
 
 module.exports = {renderUserProfile}
