@@ -39,7 +39,7 @@ const loginUser = async (req, res) => {
 
       res.locals.username = loginUser.username
 
-      res.render('index');
+      res.redirect('/');
       
     }else{
       res.send('Invalid Password');
@@ -104,7 +104,6 @@ const registerUser = async (req, res) => {
 
 
 const signOut = (req, res) => {
-  res.locals.username = ""
   res.clearCookie('auth_token');
   res.redirect('/auth/login');
 };
