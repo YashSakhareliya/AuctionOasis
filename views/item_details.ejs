@@ -11,7 +11,7 @@
                  <div class="item-info">
                    <div class="item-name">
                     <h1><%= item.name %></h1>
-                    <p>Listed by <%= item.seller %></p>
+                    <p>Listed by <%= item.sellerName %></p>
                    </div>
                    <div class="item-like">
                      <a href="#"><i class="fa-solid fa-heart"></i></a>
@@ -27,18 +27,18 @@
                         <h1>$<%= item.currentBid %></h1>
                     </div>
                     <div class="item-time">
-                        <p>Auction Ends In: <%= item.timeRemaining || "Ended" %></p>
+                        <p class="item-remTime" data-endtime="<%= item.timeRemaining %>">Auction Ends In: <span id="timeRemainingDisplay"></span></p>
                     </div>
                  </div>
                  <div class="item-bid-button">
-                    <a href="/place-bid/<%= item.id %>">Place Bid</a>
+                    <a href="/place-bid/<%= item._id %>">Place Bid</a>
                  </div>
                  <div class="item-resent-bid">
                     <h2>Recent Bids</h2>
                     <div class="item-bid-record">
                         <ul>
-                            <% if (item.bids.length > 0 && item.bids) { %>
-                            <% item.bids.forEach(bid => { %>
+                            <% if (item.recentBids && item.recentBids.length > 0 ) { %>
+                            <% item.recentBids.forEach(bid => { %>
                                 <li>
                                     <div class="bidder-name">
                                         <p><%= bid.bidderName %></p>

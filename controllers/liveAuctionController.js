@@ -22,13 +22,24 @@ const liveAuctionFilter = (req, res) =>{
     res.render('live_auction',{items})
 }
 
-const renderItem = (req, res) => {
-    let item = [];
-    console.log(req.params.itemId)
+const renderItem = async (req, res) => {
+    
+    try{
+        const itemId = req.params.itemId;
 
-    items = readFile(itemFilePath)
-    item = items.find(item => item.itemId === req.params.itemId)
-    res.render('item_details',{item})
+        // Validate the ObjectId
+        // if (!mongoose.Types.ObjectId.isValid(itemId)) {
+        //     return res.status(400).render('404', { error: 'Invalid Item ID' });
+        // }
+
+        let item = await Item.findOne({_id: itemId})
+        if(!item){
+            return res.status(404).send({error: 'Item not found'})
+        }
+        res.render('item_details',{item})
+    }catch(err){
+        return res.status(500).send({status: err.message})
+    }
 
 }
 
