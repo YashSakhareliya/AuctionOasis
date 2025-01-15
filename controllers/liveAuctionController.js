@@ -1,11 +1,11 @@
 const path = require('path')
 const {readFile} = require('../utils/fileHandler')
 const itemFilePath = path.join(__dirname,'../files/items.json')
+const Item = require('../models/itemModel')
 
-let  items =  readFile(itemFilePath)
 
-const liveAuction =  (req,res)=>{
-    items =  readFile(itemFilePath)
+const liveAuction =  async (req,res)=>{
+    let items = await Item.find()
     res.render('live_auction', {items})
 }
 

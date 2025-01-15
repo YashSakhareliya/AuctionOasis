@@ -36,7 +36,7 @@
                             <img src="<%= item.image %>" alt="<%= item.name %>">
                         </div>
                 
-                        <a href=<%=`/live/auction/item/${item.itemId}`%>>
+                        <a href=<%=`/live/auction/item/${item._id}`%>>
                             <div class="filter-item-content">
                                 <div class="filter-item-title">
                                     <h2><%= item.name %></h2>
@@ -46,8 +46,8 @@
                                 </div>
                                 <div class="filter-item-summery">
                                     <ul class="filter-item-summery-list">
-                                        <li><%= item.timeRemaining %></li>
-                                        <li><%= item.bids.length %> bids</li>
+                                        <li class="item-remTime" data-endtime="<%= item.timeRemaining %>"></li>
+                                        <li><%= item.recentBids.length %> bids</li>
                                         <li>
                                             <a href="#"><i class="fa-regular fa-heart"></i></a>
                                         </li>
