@@ -17,41 +17,36 @@ const renderLogin = (req, res) => {
   res.render('auth/login', { title: 'Login' });
 };
 
-const loginUser = (req, res) => {
+const loginUser = async (req, res) => {
   const { username, password } = req.body;
   const loginUser = { username, password };
   if (!username || !password) {
     return res.send('Please enter both username and password');
   }
 
-  let userData = readFile(registeruserFilePath)
-  let loginUserExist = userData.find(user=>user.username === loginUser.username);
-
-  if (!loginUserExist) {
-    return res.send('User does not exist');
-  }else{
-
-    if(loginUserExist.password === loginUser.password){
-
-      // Generate JWT
-      const token = jwt.sign({ username }, JWT_SECRET, { expiresIn: '1h' });
-
-      // Set token in a secure cookie
-      res.cookie('auth_token', token, { httpOnly: true, secure: true });
-
-      let data = readFile(loginFilePath);
-
-      data.push(loginUser);
-
-      writeFile(loginFilePath, data);
-
-      res.locals.username = loginUser.username;
-      console.log(loginUser.username)
-      return res.redirect('/');
-    }else{
-      res.send('Invalid password');
-    }
+  const isUserExist = await User.findOne({username: loginUser.username})
+  if(!isUserExist) {
+    res.status(403).json({status: 'Username Not Found'});
   }
+  // match password
+  
+  bcrypt.compare(loginUser.password, isUserExist.password, function(err, result) {
+    if(err){
+      res.status(500).json({status: err.message});
+    }
+    if(result){
+      // Create JWT token
+      userId = isUserExist._id
+      const token = jwt.sign({userId, username}, JWT_SECRET, {expiresIn: '1h'})
+      
+      // set cookie
+      res.cookie('auth_token',token,{httpOnly: true, secure: true})
+
+      res.locals.username = loginUser.username
+      res.status(200).json({status: 'Logged In Successfully', token: token});
+      
+    }
+  });
   
 };
 
