@@ -15,14 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.set('view engine', 'ejs'); // Use EJS as the template engine
 app.set('views', path.join(__dirname, 'views'));
-app.use(verifyToken); // Apply token verification globally
-
+ 
 // connect with Database
-connectDb()
-// app.use((req, res, next) => {
-//   res.locals.username = null; // Default value
-//   next();
-// });
+connectDb();
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -30,16 +25,29 @@ const indexRoutes = require('./routes/index');
 const liveAuctionRoutes = require('./routes/live_auction');
 const userProfileRoutes = require('./routes/userProfile');
 
+app.use(verifyToken);
 // Use routes
 app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
 app.use('/live',liveAuctionRoutes)
 app.use('/profile',userProfileRoutes);
 
+
+
+
+// Error handling middleware
+app.use((err, req, res) => {
+  res.status(err.statusCode || 500).render('error', {
+    statusCode: err.statusCode || 500,
+    errorMessage: err.message || 'An unexpected error occurred'
+  });
+});
+
 // Handle 404 errors
 app.use((req, res) => {
   res.status(404).render('404', { title: 'Page Not Found' });
 });
+
 
 // Start the server
 app.listen(port, () => {
