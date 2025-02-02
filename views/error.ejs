@@ -1,14 +1,74 @@
-<%- include('partials/header') %>
+<!DOCTYPE html>
+<html lang="en">
 
-<main>
-    <section class="error-section">
-        <div class="error-container">
-            <h1>Oops! Something Went Wrong</h1>
-            <p class="error-status">Error Code: <%= statusCode || '500' %></p>
-            <p class="error-message"><%= errorMessage || 'An unexpected error occurred. Please try again later.' %></p>
-            <a href="/" class="btn-return-home">Go to Home</a>
-        </div>
-    </section>
-</main>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Error</title>
+        <style>
+            .error-section {
+                padding: 50px 10%;
+                text-align: center;
+            }
 
-<%- include('partials/footer') %>
+            .error-container {
+                background: var(--primary-bg-color);
+                border-radius: var(--border-radius);
+                padding: 40px;
+                box-shadow: var(--box-shadow);
+                display: inline-block;
+                max-width: 600px;
+                width: 100%;
+            }
+
+            .error-container h1 {
+                font-size: 2rem;
+                color: var(--text-color);
+                margin-bottom: 20px;
+            }
+
+            .error-status {
+                font-size: 1.1rem;
+                color: #e74c3c;
+                /* Red for error status */
+                margin-bottom: 20px;
+            }
+
+            .error-message {
+                font-size: 1rem;
+                color: var(--text-color);
+                margin-bottom: 30px;
+            }
+
+            .btn-return-home {
+                padding: var(--btn-padding);
+                background-color: var(--primary-color);
+                color: var(--primary-btn-font-color);
+                text-decoration: none;
+                border-radius: var(--border-radius);
+                display: inline-block;
+            }
+
+            .btn-return-home:hover {
+                background-color: var(--secondary-color);
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <main>
+            <section class="error-section">
+                <div class="error-container">
+                    <h1>Oops! Something Went Wrong</h1>
+                    <p class="error-status">Error Code: <%= statusCode || '500' %></p>
+                    <p class="error-message">
+                        <%= errorMessage || 'An unexpected error occurred. Please try again later.' %></p>
+                    <a href="/" class="btn-return-home">Go to Home</a>
+                </div>
+            </section>
+        </main>
+
+    </body>
+
+</html>

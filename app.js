@@ -2,8 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
-const { verifyToken } = require('./Middleware/authMiddleware');
 const path = require('path');
+const { verifyToken } = require('./Middleware/authMiddleware');
+const { appendLogs } = require('./Middleware/logMiddleware');
 const  connectDb  =  require('./config/db')
 
 const app = express();
@@ -15,7 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.set('view engine', 'ejs'); // Use EJS as the template engine
 app.set('views', path.join(__dirname, 'views'));
- 
+app.use(verifyToken);
+
 // connect with Database
 connectDb();
 
@@ -25,7 +27,9 @@ const indexRoutes = require('./routes/index');
 const liveAuctionRoutes = require('./routes/live_auction');
 const userProfileRoutes = require('./routes/userProfile');
 
-app.use(verifyToken);
+// Log Middleware
+app.use(appendLogs);
+
 // Use routes
 app.use('/', indexRoutes);
 app.use('/auth', authRoutes);
@@ -36,7 +40,9 @@ app.use('/profile',userProfileRoutes);
 
 
 // Error handling middleware
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
+  console.log("in error handling middleware")
+  console.log(err);
   res.status(err.statusCode || 500).render('error', {
     statusCode: err.statusCode || 500,
     errorMessage: err.message || 'An unexpected error occurred'
