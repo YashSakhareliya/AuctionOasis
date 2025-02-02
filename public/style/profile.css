@@ -282,7 +282,6 @@
 
 
 /* Edit Profile Section */
-
 /* General Styles */
 .hidden {
     display: none;
@@ -290,21 +289,35 @@
 
 .edit-profile-container {
     position: fixed;
-    top: 0;
+    top: 45%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%); /* Centers the container in the middle of the page */
     background: #fff;
     width: 50%;
     padding: 20px;
     border-radius: 8px;
-    z-index: 1001; 
+    z-index: 1001;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: none; 
+    display: none;
+    max-height: 80%; /* Limiting the height */
+    overflow-y: auto; /* Allow scrolling if content exceeds max-height */
+    margin-top: 40px; /* Add top margin */
+    margin-bottom: 40px; /* Add bottom margin */
 }
 
 .edit-profile-container h2 {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
+}
+#edit-profile-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+#cancel-profile-icon{
+    cursor: pointer;
 }
 
 .edit-profile-container label {
@@ -320,6 +333,12 @@
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+.edit-profile-container textarea{
+    resize: vertical;
+}
+.edit-profile-container fieldset{
+    padding: 10px;
 }
 
 .edit-profile-container .edit-profile-actions {
@@ -337,7 +356,7 @@
     cursor: pointer;
 }
 
-.edit-profile-container button:hover
+.edit-profile-container button:hover,
 .edit-profile-container a:hover {
     background-color: #0056b3;
 }
@@ -347,7 +366,6 @@
     position: relative;
     transition: filter 0.3s ease-in-out;
 }
-
 
 .profile-container.blur-background {
     filter: blur(8px);
@@ -375,6 +393,36 @@
 /* Ensure Edit Profile modal appears above everything */
 .edit-profile-container.active {
     display: block;
+}
+
+/* Styles for Image Upload Section */
+.photo-upload {
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    /* width: 150px; */
+    min-height: 150px;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.photo-label {
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}
+
+#profile-photo-preview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#profile-photo {
+    display: none;
 }
 
 

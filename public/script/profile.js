@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const saveProfileBtn = document.getElementById('save-profile');
     const cancelProfileBtn = document.getElementById('cancel-profile');
     const profileSection = document.querySelector('.profile-container');
+    const cancelItemIcon = document.getElementById('cancel-profile-icon');
     
     editProfileBtn.addEventListener('click', (e) => {
         e.preventDefault(); 
@@ -31,6 +32,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     cancelProfileBtn.addEventListener("click", function () {
         editProfileSection.style.display = "none"; // Hide the edit profile section
         editProfileOverlay.classList.remove("active"); // Hide the overlay
+       
+    });
+    cancelItemIcon.addEventListener("click", function () {
+        editProfileSection.style.display = "none";
+        editProfileOverlay.classList.remove("active"); 
        
     });
 });
@@ -55,6 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
         listItemSection.style.display = "none"; // Hide the list item section
         listItemOverlay.classList.remove("active"); // Hide the overlay
     });
+});
+
+document.getElementById('profile-photo').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('profile-photo-preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
 });
 
 
