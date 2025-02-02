@@ -2,6 +2,10 @@
 
 <main>
     <section class="profile-section">
+
+        <!-- Overlay Background (Initially Hidden) -->
+        <div id="edit-profile-overlay"></div>
+
         <div class="profile-container">
             <!-- User Details -->
             <div class="user-details-continer">
@@ -13,7 +17,7 @@
                     </div>
                 </div>
                 <div class="profile-edit-btn">
-                    <a href="#"><i class="fa-solid fa-edit"></i>Edit Profile</a>
+                    <a href="#" id="edit-profile-btn"><i class="fa-solid fa-edit"></i>Edit Profile</a>
                 </div>
             </div>
 
@@ -87,7 +91,7 @@
         </div>
 
         <!-- Edit Profile Section (Initially Hidden) -->
-        <div id="edit-profile-section" class="edit-profile-container hidden">
+        <div id="edit-profile-section" class="edit-profile-container hidden" >
             <h2>Edit Profile</h2>
             <form id="edit-profile-form">
                 <label for="name">Name:</label>
