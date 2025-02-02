@@ -92,23 +92,77 @@
 
         <!-- Edit Profile Section (Initially Hidden) -->
         <div id="edit-profile-section" class="edit-profile-container hidden">
-            <h2>Edit Profile</h2>
+            <div id="edit-profile-header">
+                <h2 id="edit-profile-text">Edit Profile</h2>
+                <h2 id="cancel-profile-icon"><i class="fa-solid fa-xmark"></i></h2>
+            </div>
+            <!-- Photo Upload Section -->
+            <div class="photo-upload">
+                <label for="profile-photo" class="photo-label">
+                    <img id="profile-photo-preview" src="https://via.placeholder.com/150" alt="Profile Photo" class="photo-preview">
+                    <input type="file" id="profile-photo" name="profile-photo" accept="image/*" onchange="previewImage(event)" />
+                </label>
+            </div>
+        
+            <!-- Edit Profile Form -->
             <form id="edit-profile-form" method="get" action="#">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="Demo User">
-
+                <!-- Full Name -->
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" placeholder="Demo User">
+        
+                <!-- Email -->
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="demo@example.com">
-
+                <input type="email" id="email" name="email" placeholder="demo@example.com">
+        
+                <!-- Bio -->
                 <label for="bio">Bio:</label>
-                <textarea id="bio" placeholder="Enter your bio"></textarea>
-
+                <textarea id="bio" name="bio" placeholder="Enter your bio"></textarea>
+        
+                <!-- Location -->
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="New York">
+        
+                <!-- Website -->
+                <label for="website">Website:</label>
+                <input type="url" id="website" name="website" placeholder="https://www.example.com">
+        
+                <!-- Phone -->
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1234567890">
+        
+                <!-- Occupation -->
+                <label for="occupation">Occupation:</label>
+                <input type="text" id="occupation" name="occupation" placeholder="Software Developer">
+        
+                <!-- Birthday -->
+                <label for="birthday">Birthday:</label>
+                <input type="date" id="birthday" name="birthday" placeholder="1990-01-01">
+        
+                <!-- Social Links -->
+                <fieldset>
+                    <legend>Social Links</legend>
+                    <label for="twitter">Twitter:</label>
+                    <input type="url" id="twitter" name="twitter" placeholder="https://twitter.com/user">
+        
+                    <label for="linkedin">LinkedIn:</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/user">
+        
+                    <label for="instagram">Instagram:</label>
+                    <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/user">
+                </fieldset>
+        
+                <!-- Interests -->
+                <label for="interests">Interests:</label>
+                <textarea id="interests" name="interests" placeholder="Enter your interests"></textarea>
+        
+                <!-- Actions -->
                 <div class="edit-profile-actions">
-                    <a href="#" id="save-profile">Save</a>
+                    <button type="submit" id="save-profile">Save</button>
                     <button type="button" id="cancel-profile">Cancel</button>
                 </div>
             </form>
         </div>
+        
 
         <!-- List New Item Section (Initially Hidden) -->
         <div id="list-item-section" class="list-item-container hidden">
