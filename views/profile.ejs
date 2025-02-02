@@ -1,91 +1,111 @@
 <%- include('partials/header') %>
 
-    <main>
-        <section class="profile-section">
-            <div class="profile-container">
-                <!-- User Details -->
-                <div class="user-details-continer">
-                    <div class="user-details">
-                        <img src="<%= user.profilePicture %>" alt="User Image">
-                        <div class="user-details-info">
-                            <h2><%= user.name || 'Demo User' %></h2>
-                            <p><%= user.email || 'demo@example.com' %></p>
-                        </div>
-                    </div>
-                    <div class="profile-edit-btn">
-                        <a href="#"><i class="fa-solid fa-edit"></i>Edit Profile</a>
+<main>
+    <section class="profile-section">
+        <div class="profile-container">
+            <!-- User Details -->
+            <div class="user-details-continer">
+                <div class="user-details">
+                    <img src="<%= user.profilePicture %>" alt="User Image">
+                    <div class="user-details-info">
+                        <h2><%= user.name || 'Demo User' %></h2>
+                        <p><%= user.email || 'demo@example.com' %></p>
                     </div>
                 </div>
-
-                <!-- Profile Buttons -->
-                <div class="user-profile-btn-container">
-                    <button><i id="plus-symbol" class="fa-solid fa-plus"></i>List New Item</button>
-                    <a href="/wallet">View Wallet</a>
-                </div>
-
-                <!-- Tabs -->
-                <div class="tabs">
-                    <button class="tab active" data-tab="my-items">My Items</button>
-                    <button class="tab" data-tab="bid-history">Bid History</button>
-                </div>
-
-                <!-- My Items Tab Content -->
-                <div class="my-items-grid tab-content active" id="my-items">
-                    <% if (user.myItems && user.myItems.length > 0) { %>
-                        <% user.myItems.forEach((item) => { %>
-                        <div class="my-item">
-                            <div class="my-item-image">
-                                <img src="<%= item.image %>" alt="Auction-item-image">
-                            </div>
-                            <div class="my-item-content">
-                                <div class="my-item-title">
-                                    <h2><%= item.title %></h2>
-                                </div>
-                                <div class="my-item-price">
-                                    <p>Current Bid: $<%= item.currentBid %></p>
-                                </div>
-                                <div class="my-item-summery">
-                                    <ul class="my-item-summery-list">
-                                        <div class="bid-time">
-                                            <li><%= item.bidTimeRemaining %></li>
-                                            <li><%= item.bidsCount %> bids</li>
-                                        </div>
-                                        <div class="bid-info">
-                                            <li><a href="<%= item.detailsLink || `/` %>">View Details</a></li>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <% }); %>
-                    <% } else { %>
-                        <p>No items to display.</p>
-                    <% } %>
-                </div>
-
-                <!-- Bid History Tab Content -->
-                <div class="tab-content bid-history" id="bid-history">
-                    <% if (user.bidHistory && user.bidHistory.length > 0) { %>
-                        <ul class="bid-history-list">
-                            <% user.bidHistory.forEach((bid) => { %>
-                            <li class="bid-item-details">
-                                <div class="bid-details">
-                                    <h2>Bid on <%= bid.itemTitle %></h2>
-                                    <p><%= bid.date %></p>
-                                </div>
-                                <div class="bid-amount">
-                                    <h4>$<%= bid.bidAmount %></h4>
-                                    <p><%= bid.status %></p>
-                                </div>
-                            </li>
-                            <% }); %>
-                        </ul>
-                    <% } else { %>
-                        <p>No bid history available.</p>
-                    <% } %>
+                <div class="profile-edit-btn">
+                    <a href="#"><i class="fa-solid fa-edit"></i>Edit Profile</a>
                 </div>
             </div>
-        </section>
-    </main>
 
-    <%- include('partials/footer') %>
+            <!-- Profile Buttons -->
+            <div class="user-profile-btn-container">
+                <button><i id="plus-symbol" class="fa-solid fa-plus"></i>List New Item</button>
+                <a href="/wallet">View Wallet</a>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab active" data-tab="my-items">My Items</button>
+                <button class="tab" data-tab="bid-history">Bid History</button>
+            </div>
+
+            <!-- My Items Tab Content -->
+            <div class="my-items-grid tab-content active" id="my-items">
+                <% if (user.myItems && user.myItems.length > 0) { %>
+                <% user.myItems.forEach((item) => { %>
+                <div class="my-item">
+                    <div class="my-item-image">
+                        <img src="<%= item.image %>" alt="Auction-item-image">
+                    </div>
+                    <div class="my-item-content">
+                        <div class="my-item-title">
+                            <h2><%= item.title %></h2>
+                        </div>
+                        <div class="my-item-price">
+                            <p>Current Bid: $<%= item.currentBid %></p>
+                        </div>
+                        <div class="my-item-summery">
+                            <ul class="my-item-summery-list">
+                                <div class="bid-time">
+                                    <li><%= item.bidTimeRemaining %></li>
+                                    <li><%= item.bidsCount %> bids</li>
+                                </div>
+                                <div class="bid-info">
+                                    <li><a href="<%= item.detailsLink || `/` %>">View Details</a></li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+                <% } else { %>
+                <p>No items to display.</p>
+                <% } %>
+            </div>
+
+            <!-- Bid History Tab Content -->
+            <div class="tab-content bid-history" id="bid-history">
+                <% if (user.bidHistory && user.bidHistory.length > 0) { %>
+                <ul class="bid-history-list">
+                    <% user.bidHistory.forEach((bid) => { %>
+                    <li class="bid-item-details">
+                        <div class="bid-details">
+                            <h2>Bid on <%= bid.itemTitle %></h2>
+                            <p><%= bid.date %></p>
+                        </div>
+                        <div class="bid-amount">
+                            <h4>$<%= bid.bidAmount %></h4>
+                            <p><%= bid.status %></p>
+                        </div>
+                    </li>
+                    <% }); %>
+                </ul>
+                <% } else { %>
+                <p>No bid history available.</p>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- Edit Profile Section (Initially Hidden) -->
+        <div id="edit-profile-section" class="edit-profile-container hidden">
+            <h2>Edit Profile</h2>
+            <form id="edit-profile-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" value="Demo User">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" value="demo@example.com">
+
+                <label for="bio">Bio:</label>
+                <textarea id="bio" placeholder="Enter your bio"></textarea>
+
+                <div class="edit-profile-actions">
+                    <button type="button" id="save-profile">Save</button>
+                    <button type="button" id="cancel-profile">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+<%- include('partials/footer') %>
