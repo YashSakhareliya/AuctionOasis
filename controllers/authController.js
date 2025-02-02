@@ -32,7 +32,7 @@ const loginUser = async (req, res) => {
     if(result){
       // Create JWT token
       let userId = isUserExist._id
-      const token = jwt.sign({userId, username}, JWT_SECRET, {expiresIn: '1h'})
+      const token = jwt.sign({userId, username}, JWT_SECRET, {expiresIn: '1d'})
       
       // set cookie
       res.cookie('auth_token',token,{httpOnly: true, secure: true})

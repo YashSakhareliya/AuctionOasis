@@ -6,6 +6,7 @@ const path = require('path');
 const { verifyToken } = require('./Middleware/authMiddleware');
 const { appendLogs } = require('./Middleware/logMiddleware');
 const  connectDb  =  require('./config/db')
+const Transaction = require('./models/transactionModel');
 
 const app = express();
 const port = process.env.PORT || 3000;
