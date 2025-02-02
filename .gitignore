@@ -1,6 +1,7 @@
 login.json
 # *.json
 files/
+logs.txt
 
 # Logs
 logs
