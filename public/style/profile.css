@@ -327,7 +327,8 @@
     justify-content: space-between;
 }
 
-.edit-profile-container button {
+.edit-profile-container button,
+.edit-profile-container a {
     padding: 10px 20px;
     background-color: #007BFF;
     color: #fff;
@@ -336,7 +337,8 @@
     cursor: pointer;
 }
 
-.edit-profile-container button:hover {
+.edit-profile-container button:hover
+.edit-profile-container a:hover {
     background-color: #0056b3;
 }
 

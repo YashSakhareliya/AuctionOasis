@@ -93,18 +93,18 @@
         <!-- Edit Profile Section (Initially Hidden) -->
         <div id="edit-profile-section" class="edit-profile-container hidden">
             <h2>Edit Profile</h2>
-            <form id="edit-profile-form">
+            <form id="edit-profile-form" method="get" action="#">
                 <label for="name">Name:</label>
-                <input type="text" id="name" value="Demo User">
+                <input type="text" id="name" name="name" value="Demo User">
 
                 <label for="email">Email:</label>
-                <input type="email" id="email" value="demo@example.com">
+                <input type="email" id="email" name="email" value="demo@example.com">
 
                 <label for="bio">Bio:</label>
                 <textarea id="bio" placeholder="Enter your bio"></textarea>
 
                 <div class="edit-profile-actions">
-                    <button type="button" id="save-profile">Save</button>
+                    <a href="#" id="save-profile">Save</a>
                     <button type="button" id="cancel-profile">Cancel</button>
                 </div>
             </form>

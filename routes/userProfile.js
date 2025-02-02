@@ -5,4 +5,5 @@ const router = express.Router()
 
 router.get('/:user',ensureAuthenticated, renderUserProfile);
 
+// router.post()
 module.exports = router
