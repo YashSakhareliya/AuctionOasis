@@ -6,6 +6,5 @@ const router = express.Router();
 
 router.get('/', renderIndex);
 
-router.get('/wallet',ensureAuthenticated, renderWallet);
 
 module.exports = router;
