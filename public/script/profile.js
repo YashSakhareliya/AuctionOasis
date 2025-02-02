@@ -14,23 +14,25 @@ tabs.forEach(tab=>{
 })
 
 document.addEventListener('DOMContentLoaded',()=>{
-    const editProfileSection = document.getElementById('edit-profile-section')
-    const editProfileBtn = document.getElementById('edit-profile-btn')
-    const editProfileOverlay = document.getElementById('"edit-profile-overlay')
-    const saveProfileBtn = document.getElementById('save-profile')
-    const cancleProfileBtn = document.getElementById('cancel-profile')
-    const profileSection = document.getElementsByClassName('profile-section') 
+    const editProfileSection = document.getElementById('edit-profile-section');
+    const editProfileBtn = document.getElementById('edit-profile-btn');
+    const editProfileOverlay = document.getElementById('edit-profile-overlay');
+    const saveProfileBtn = document.getElementById('save-profile');
+    const cancelProfileBtn = document.getElementById('cancel-profile');
+    const profileSection = document.querySelector('.profile-container');
     
-    editProfileBtn.addEventListener('click', (e)=>{
-        e.preventDefault()
-        editProfileSection.classList.toggle('hidden')
-        profileSection.classList.toggle('blur-background')
-        editProfileOverlay.style.display = 'block'
-    })
-
-    cancleProfileBtn.addEventListener("click", function () {
-        editProfileSection.classList.add("hidden");
-        profileSection.classList.remove("blur-background"); // Remove the blur effect
-        editProfileOverlay.style.display = "none"; // Hide the overlay
+    editProfileBtn.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        editProfileSection.style.display = "block"; // Show the edit profile section
+        editProfileOverlay.classList.add("active"); // Show the overlay
+       
     });
-})
+
+    cancelProfileBtn.addEventListener("click", function () {
+        editProfileSection.style.display = "none"; // Hide the edit profile section
+        editProfileOverlay.classList.remove("active"); // Hide the overlay
+       
+    });
+});
+
+
