@@ -31,14 +31,14 @@ const loginUser = async (req, res) => {
     }
     if(result){
       // Create JWT token
-      userId = isUserExist._id
+      let userId = isUserExist._id
       const token = jwt.sign({userId, username}, JWT_SECRET, {expiresIn: '1h'})
       
       // set cookie
       res.cookie('auth_token',token,{httpOnly: true, secure: true})
 
       res.locals.username = loginUser.username
-
+      res.locals.userId = userId
       res.redirect('/');
       
     }else{
