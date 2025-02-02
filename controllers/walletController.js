@@ -8,9 +8,8 @@ const renderWallet = async (req, res) => {
             model: "Transaction",
         },
     });
-    const userWallet = user.wallet
-    const userTransaction = user.transactionHistory
-    console.log(userTransaction);
-    res.json(user);
+    const userWallet = user.wallet[0]
+    const userTransaction = userWallet.transactionHistory
+    res.render('wallet', {wallet:userWallet})
 }
 module.exports = { renderWallet }

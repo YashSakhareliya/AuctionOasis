@@ -9,31 +9,39 @@
                     <h1><i class="fa-solid fa-wallet"></i> My Wallet</h1>
                     <a href="#">Add Funds</a>
                 </div>
+                
                 <div class="balance">
                     <p>Available Balance</p>
-                    <h1>$<%= wallet.availableBalance %></h1>
+                    <h1>$<%= wallet ? wallet.availableAmount : "0.00" %></h1>
                 </div>
-                
+
                 <div class="transfer-icon">
                     <a href="#">Deposit Funds</a>
                     <a href="#">Withdraw Funds</a>
                 </div>
+
                 <div class="transaction-history">
                     <h2>Transaction History</h2>
-                    <ul>
-                        <% transactionHistory.forEach(transaction => { %>
-                            <li>
-                                <div class="transction-type">
-                                    <p id="type"><%= transaction.type %></p>
-                                    <p id="date"><%= transaction.date %></p>
-                                </div>
-                                <div class="transection-status">
-                                    <p><%= transaction.amount %></p>
-                                    <p><%= transaction.status %></p>
-                                </div>
-                            </li>
-                        <% }) %>
-                    </ul>
+                    
+                    <% if (wallet && wallet.transactionHistory && wallet.transactionHistory.length > 0) { %>
+                        <ul>
+                            <% wallet.transactionHistory.forEach(transaction => { %>
+                                <li>
+                                    <div class="transction-type">
+                                        <p id="type"><%= transaction.type %></p>
+                                        <p id="date"><%= transaction.date %></p>
+                                    </div>
+                                    <div class="transection-status">
+                                        <p>$<%= transaction.amount %></p>
+                                        <p><%= transaction.status %></p>
+                                    </div>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    <% } else { %>
+                        <p class="no-transactions">No transactions found.</p>
+                    <% } %>
+
                 </div>
             </div>
         </section>
