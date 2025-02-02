@@ -36,3 +36,25 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const listItemSection = document.getElementById('list-item-section');
+    const listItemBtn = document.querySelector('.list-item-btn'); 
+    const cancelItemBtn = document.getElementById('cancel-item-btn');
+    const listItemOverlay = document.getElementById('edit-profile-overlay'); 
+    
+    
+    // Open List Item Form
+    listItemBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        listItemSection.style.display = "block"; // Show the list item section
+        listItemOverlay.classList.add("active"); // Show the overlay
+    });
+
+    // Cancel List Item Form
+    cancelItemBtn.addEventListener('click', () => {
+        listItemSection.style.display = "none"; // Hide the list item section
+        listItemOverlay.classList.remove("active"); // Hide the overlay
+    });
+});
+
+
