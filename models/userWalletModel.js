@@ -48,6 +48,6 @@ userWalletSchema.pre('save', function (next) {
 });
 
 
-const UserWallet = mongoose.model('UserWallet', userWalletSchema);
+const UserWallet = mongoose.model('Wallet', userWalletSchema);
 
 module.exports = UserWallet;
