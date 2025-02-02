@@ -12,10 +12,11 @@ const verifyToken = (req, res, next)=>{
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
         res.locals.isAuthenticated = true
         res.locals.username = decoded.username
+        res.locals.userId = decoded.userId
         next()
     }catch(err){
         res.locals.isAuthenticated = false
-        return next()
+        return next(err)
     }
 }
 

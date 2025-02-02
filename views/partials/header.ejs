@@ -58,7 +58,7 @@
                                         <li id="username"><%= username || "Not Available" %></li>
                                         <li><a href=<%= `/profile/${username}` %>><i class="fa-regular fa-user"></i>Profile</a></li>
                                         <li><a href="/"><i class="fa-solid fa-box"></i>My Items</a></li>
-                                        <li><a href="/wallet"><i class="fa-solid fa-wallet"></i>Wallet</a></li>
+                                        <li><a href=<%=`/wallet/${userId}`%>><i class="fa-solid fa-wallet"></i>Wallet</a></li>
                                         <li><a href="/auth/signout"><i class="fa-solid fa-right-from-bracket"></i>Sign Out</a></li>
                                     </ul>
                                 </div>

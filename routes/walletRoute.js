@@ -4,6 +4,6 @@ const { renderWallet } = require('../controllers/walletController');
 
 const router =  express.Router();
 
-router.get('/',ensureAuthenticated, renderWallet);
+router.get('/:userId',ensureAuthenticated, renderWallet);
 
 module.exports = router;
