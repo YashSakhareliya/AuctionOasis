@@ -96,16 +96,20 @@
                 <h2 id="edit-profile-text">Edit Profile</h2>
                 <h2 id="cancel-profile-icon"><i class="fa-solid fa-xmark"></i></h2>
             </div>
-            <!-- Photo Upload Section -->
-            <div class="photo-upload">
-                <label for="profile-photo" class="photo-label">
-                    <img id="profile-photo-preview" src="https://via.placeholder.com/150" alt="Profile Photo" class="photo-preview">
-                    <input type="file" id="profile-photo" name="profile-photo" accept="image/*" onchange="previewImage(event)" />
-                </label>
-            </div>
-        
+
             <!-- Edit Profile Form -->
-            <form id="edit-profile-form" method="get" action="#">
+            
+            <form id="edit-profile-form" method="post" action=<%= `/profile/edit/${user._id}` %>>
+
+            <!-- Photo Upload Section -->
+                <div class="photo-upload">
+                    <label for="profile-photo" class="photo-label">
+                        <img id="profile-photo-preview" src="https://via.placeholder.com/150" alt="Profile Photo" class="photo-preview">
+                        <input type="file" id="profile-photo" name="profile-photo" accept="image/*" onchange="previewImage(event)" />
+                    </label>
+                </div>
+        
+            
                 <!-- Full Name -->
                 <label for="full-name">Full Name:</label>
                 <input type="text" id="full-name" name="full-name" placeholder="Demo User">
