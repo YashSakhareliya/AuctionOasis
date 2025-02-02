@@ -1,9 +1,9 @@
 const express = require('express');
-const {renderUserProfile} = require('../controllers/userProfileController')
+const {renderUserProfile , updateUserProfile} = require('../controllers/userProfileController')
 const { ensureAuthenticated } = require('../Middleware/authMiddleware')
 const router = express.Router()
 
 router.get('/:user',ensureAuthenticated, renderUserProfile);
 
-// router.post()
+router.post('/edit/:userId',ensureAuthenticated, updateUserProfile)
 module.exports = router

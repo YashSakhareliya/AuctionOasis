@@ -105,14 +105,14 @@
                 <div class="photo-upload">
                     <label for="profile-photo" class="photo-label">
                         <img id="profile-photo-preview" src="https://via.placeholder.com/150" alt="Profile Photo" class="photo-preview">
-                        <input type="file" id="profile-photo" name="profile-photo" accept="image/*" onchange="previewImage(event)" />
+                        <input type="file" id="profile-photo" name="profilePicture" accept="image/*" onchange="previewImage(event)" />
                     </label>
                 </div>
         
             
                 <!-- Full Name -->
                 <label for="full-name">Full Name:</label>
-                <input type="text" id="full-name" name="full-name" placeholder="Demo User">
+                <input type="text" id="full-name" name="name" placeholder="Demo User">
         
                 <!-- Email -->
                 <label for="email">Email:</label>
@@ -140,7 +140,7 @@
         
                 <!-- Birthday -->
                 <label for="birthday">Birthday:</label>
-                <input type="date" id="birthday" name="birthday" placeholder="1990-01-01">
+                <input type="date" id="birthday" name="birthdate" placeholder="1990-01-01">
         
                 <!-- Social Links -->
                 <fieldset>
@@ -148,9 +148,9 @@
                     <label for="twitter">Twitter:</label>
                     <input type="url" id="twitter" name="twitter" placeholder="https://twitter.com/user">
         
-                    <label for="linkedin">LinkedIn:</label>
-                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/user">
-        
+                    <!-- <label for="linkedin">LinkedIn:</label>
+                    <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/user"> -->
+         
                     <label for="instagram">Instagram:</label>
                     <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/user">
                 </fieldset>
