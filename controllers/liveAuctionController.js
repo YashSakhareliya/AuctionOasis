@@ -5,22 +5,55 @@ const Item = require('../models/itemModel')
 
 
 const liveAuction =  async (req,res)=>{
-    let items = await Item.find()
-    res.render('live_auction', {items})
+    try {
+        const { categories, priceRange, statuses } = req.query;
+        
+        // Build filter object
+        let filter = {};
+        
+        // Add category filter
+        if (categories && categories !== '') {
+            filter.categories = categories;
+        }
+        
+        // Add price range filter
+        if (priceRange && priceRange !== '') {
+            const priceRanges = {
+                'Under 2000': { $lt: 2000 },
+                '2000 - 5000': { $gte: 2000, $lte: 5000 },
+                '5000 - 10000': { $gte: 5000, $lte: 10000 }
+            };
+            
+            if (priceRanges[priceRange]) {
+                filter.currentBid = priceRanges[priceRange];
+            }
+        }
+        
+        // Add status filter
+        if (statuses && statuses !== '') {
+            const statusMap = {
+                'Live Now': 'live',
+                'Upcomming': 'upcoming',
+                'Ended': 'ended'
+            };
+            filter.status = statusMap[statuses];
+        }
+        console.log(filter)
+        // Get items with filters
+        const items = await Item.find(filter)
+            .sort({ createdAt: -1 })
+            
+        
+        res.render('live_auction', { 
+            items,
+            selectedFilters: { categories, priceRange, statuses }
+        });
+    } catch (error) {
+        next(error);
+    }
 }
 
-const liveAuctionFilter = (req, res) =>{
-    items =  readFile(itemFilePath)
-    console.log(req.body)
-    const {categories, priceRange, statuses} = req.body
-    // const filter = {categories, priceRange, statuses}
-    // console.log(filter)
 
-    // const filteredItems = items.filter(item => {item.categories.toLowerCase() === filter.categories.toLowerCase()})
-    // console.log(filteredItems)
-
-    res.render('live_auction',{items})
-}
 
 const renderItem = async (req, res, next) => {
     
@@ -43,4 +76,4 @@ const renderItem = async (req, res, next) => {
 
 }
 
-module.exports = {liveAuction, liveAuctionFilter, renderItem}
+module.exports = {liveAuction, renderItem}

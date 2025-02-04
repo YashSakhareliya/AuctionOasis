@@ -5,7 +5,6 @@ const router =  express.Router()
 
 router.get('/auction',ensureAuthenticated, liveAuction)
 
-router.post('/auction',ensureAuthenticated, liveAuctionFilter)
 
 router.get('/auction/item/:itemId',ensureAuthenticated, renderItem)
 
