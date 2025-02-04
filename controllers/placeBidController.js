@@ -14,19 +14,21 @@ const placeBid = async (req, res, next) => {
             User.findById(userId)
         ]);
         // console.log(item, user)
-        // if (!item || !user) {
-        //     return res.status(404).render('error', { error: 'Item or User not found' });
-        // }
+        if (!item || !user) {
+            return res.status(404).render('error', { error: 'Item or User not found' });
+        }
 
-        // // Check if user is bidding on their own item
-        // if (item.sellerId.toString() === userId) {
-        //     return res.status(400).render('error', { error: 'You cannot bid on your own item' });
-        // }
+        // need imporvement of this section
+        // need to solve error is user place bid on his placed item 
+        // Check if user is bidding on their own item
+        if (item.sellerId.toString() === userId) {
+            return res.status(400).render('error', { error: 'You cannot bid on your own item' });
+        }
 
-        // // Check if item has expired
-        // if (new Date(item.timeRemaining) <= new Date()) {
-        //     return res.status(400).render('error', { error: 'Auction has ended' });
-        // }
+        // Check if item has expired
+        if (new Date(item.timeRemaining) <= new Date()) {
+            return res.status(400).render('error', { error: 'Auction has ended' });
+        }
 
         // Calculate new bid amount (10% higher than current bid or starting bid)
         const currentAmount = item.currentBid || item.startingBid;

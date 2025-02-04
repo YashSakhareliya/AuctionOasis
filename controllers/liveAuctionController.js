@@ -65,7 +65,7 @@ const renderItem = async (req, res, next) => {
             .populate('sellerId', 'name _id') // Get seller's name and ID
             .populate({
                 path: 'recentBids',
-                populate: { path: 'userId', select: 'name' }, // Populate userId with user's name
+                populate: { path: 'userId', select: 'username' }, // Populate userId with user's name
                 options: { 
                     sort: { date: -1 },
                     limit: 10 // Limit to last 10 bids
@@ -75,11 +75,7 @@ const renderItem = async (req, res, next) => {
         if (!item) {
             return res.status(404).render('error', { error: 'Item not found' });
         }
-        console.log(item)
 
-        // Add seller name to item for easy access in template
-        item.sellerName = item.sellerId?.name;
-        
         // Ensure currentBid exists
         item.currentBid = item.currentBid || item.startingBid;
 
