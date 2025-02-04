@@ -89,11 +89,11 @@
                     <% user.bidHistory.forEach((bid) => { %>
                     <li class="bid-item-details">
                         <div class="bid-details">
-                            <h2>Bid on <%= bid.itemTitle %></h2>
+                            <h2>Bid on <%= bid.itemId.name %></h2>
                             <p><%= bid.date %></p>
                         </div>
                         <div class="bid-amount">
-                            <h4>$<%= bid.bidAmount %></h4>
+                            <h4>$<%= bid.amount %></h4>
                             <p><%= bid.status %></p>
                         </div>
                     </li>

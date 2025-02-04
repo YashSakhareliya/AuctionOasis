@@ -16,6 +16,11 @@ const renderUserProfile = async (req, res, next) => {
                 path: 'myItems',
                 model: 'Item',
             })
+            .populate({
+                path: 'bidHistory',
+                model: 'Bid',
+                populate: { path: 'itemId', select: 'name' }, // Populate itemId with item name
+            })
             
         return res.render('profile', { user: userDetails })
     } catch (err) {

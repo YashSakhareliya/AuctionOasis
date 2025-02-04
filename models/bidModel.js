@@ -26,7 +26,7 @@ const bidSchema = new mongoose.Schema({
     },
     
 });
-
+// need to add bid status
 
 bidSchema.pre('save', function (next) {
    
