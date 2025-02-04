@@ -38,11 +38,13 @@
                 <div class="nav-links-container">
                     <ul class="nav-links">
                         <li><a href="/live/auction">Live Auction</a></li>
+                        <% if (isAuthenticated) { %>
+                            
                         <li id="list-item">
                             <a href="<%= `/profile/${username}` %>"><span><i class="fa-solid fa-plus"></i></span> List Item</a>
                         </li>
                         
-                        <% if (isAuthenticated) { %>
+                        
                         <!-- Notification & Profile Icons initially visible -->
                         <li id="notification-icon" style="display: block;">
                             <a href="/"><i class="fa-solid fa-bell"></i></a>
