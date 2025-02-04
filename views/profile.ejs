@@ -171,7 +171,7 @@
         <!-- List New Item Section (Initially Hidden) -->
         <div id="list-item-section" class="list-item-container hidden">
             <h2>List New Item</h2>
-            <form id="list-item-form">
+            <form id="list-item-form" action="<%= `/list/item/${userId}` %>" method="post" enctype="multipart/form-data">
                 
                 <!-- Item Name -->
                 <label for="item-title">Item Name:</label>

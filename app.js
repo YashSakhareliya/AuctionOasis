@@ -28,6 +28,7 @@ const indexRoutes = require('./routes/index');
 const liveAuctionRoutes = require('./routes/live_auction');
 const userProfileRoutes = require('./routes/userProfile');
 const walletRoutes = require('./routes/walletRoute');
+const listItemRoutes = require('./routes/listItemRoute');
 // Log Middleware
 app.use(appendLogs);
 
@@ -37,6 +38,7 @@ app.use('/auth', authRoutes);
 app.use('/live',liveAuctionRoutes)
 app.use('/profile',userProfileRoutes);
 app.use('/wallet',walletRoutes);
+app.use('/list', listItemRoutes);
 
 
 
