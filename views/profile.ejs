@@ -172,24 +172,54 @@
         <div id="list-item-section" class="list-item-container hidden">
             <h2>List New Item</h2>
             <form id="list-item-form">
-                <label for="item-title">Title:</label>
-                <input type="text" id="item-title" placeholder="Item Title">
-
+                
+                <!-- Item Name -->
+                <label for="item-title">Item Name:</label>
+                <input type="text" id="item-title" name="name" placeholder="Enter item name" required>
+        
+                <!-- Description -->
                 <label for="item-description">Description:</label>
-                <textarea id="item-description" placeholder="Item Description"></textarea>
-
+                <textarea id="item-description" name="description" placeholder="Enter item description" required></textarea>
+        
+                <!-- Seller Information (Auto-filled / Hidden) -->
+                <input type="hidden" id="seller-name" name="sellerName">
+                <input type="hidden" id="seller-id" name="sellerId">
+        
+                <!-- Categories -->
+                <label for="item-category">Category:</label>
+                <select id="item-category" name="categories" required>
+                    <option value="">Select Category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Art">Art</option>
+                    <option value="Books">Books</option>
+                    <option value="Others">Others</option>
+                </select>
+        
+                <!-- Image Upload -->
                 <label for="item-image">Item Image:</label>
-                <input type="file" id="item-image" accept="image/*">
-
-                <label for="item-price">Price:</label>
-                <input type="number" id="item-price" placeholder="Starting Bid Price">
-
+                <input type="file" id="item-image" name="image" accept="image/*">
+        
+                <!-- Starting Bid -->
+                <label for="item-price">Starting Bid Price:</label>
+                <input type="number" id="item-price" name="startingBid" placeholder="Enter starting bid price" min="0" required>
+        
+                <!-- Time Remaining -->
+                <label for="item-time">Auction Ends On:</label>
+                <input type="datetime-local" id="item-time" name="timeRemaining" required>
+        
+                <!-- Status (Hidden - Default 'live') -->
+                <input type="hidden" id="item-status" name="status" value="live">
+        
+                <!-- Actions -->
                 <div class="list-item-actions">
-                    <button type="button" id="list-item-btn">List Item</button>
+                    <button type="submit" id="list-item-btn">List Item</button>
                     <button type="button" id="cancel-item-btn">Cancel</button>
                 </div>
             </form>
         </div>
+        
 
     </section>
 </main>

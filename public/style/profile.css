@@ -426,16 +426,15 @@
 }
 
 
-/* List new Item code */
-
-
+/* List New Item Modal */
 .list-item-container {
     position: fixed;
-    top: 0;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
     background: #fff;
     width: 50%;
+    max-width: 600px;
     padding: 20px;
     border-radius: 8px;
     z-index: 1001;
@@ -443,46 +442,75 @@
     display: none; /* Initially hidden */
 }
 
+/* Modal Header */
 .list-item-container h2 {
     margin-bottom: 20px;
     text-align: center;
 }
 
+/* Labels */
 .list-item-container label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
 }
 
+/* Inputs & Textarea */
 .list-item-container input,
-.list-item-container textarea {
+.list-item-container textarea,
+.list-item-container select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 16px;
 }
 
+/* Textarea Auto-Expand */
+.list-item-container textarea {
+    resize: none;
+    min-height: 80px;
+    overflow-y: auto;
+}
+
+/* Select (Dropdown) */
+.list-item-container select {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* File Input */
+.list-item-container input[type="file"] {
+    padding: 5px;
+    border: none;
+    background: none;
+}
+
+/* Buttons Container */
 .list-item-container .list-item-actions {
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
+/* Buttons */
 .list-item-container button {
     padding: 10px 20px;
-    background-color: #007BFF; /* Green for List Item */
+    background-color: #007BFF; /* Blue for List Item */
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
 }
 
+/* Hover Effect */
 .list-item-container button:hover {
     background-color: #0056b3;
 }
 
-
+/* Show Modal */
 .list-item-container.active {
     display: block;
 }
-
