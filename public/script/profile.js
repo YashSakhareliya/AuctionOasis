@@ -63,15 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-document.getElementById('profile-photo').addEventListener('change', function(event) {
+function previewImage(event) {
     const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('profile-photo-preview').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = function () {
+        document.getElementById("profile-photo-preview").src = reader.result;
+    };
+    reader.onerror = function(error) {
+        console.error('Error reading file:', error);
+    };
+    reader.readAsDataURL(file);
+}
 
 

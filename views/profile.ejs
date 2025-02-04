@@ -99,12 +99,12 @@
 
             <!-- Edit Profile Form -->
             
-            <form id="edit-profile-form" method="post" action=<%= `/profile/edit/${user._id}` %>>
+            <form id="edit-profile-form" method="post" action="<%= `/profile/edit/${user._id}` %>" enctype="multipart/form-data">                >
 
             <!-- Photo Upload Section -->
                 <div class="photo-upload">
                     <label for="profile-photo" class="photo-label">
-                        <img id="profile-photo-preview" src="https://via.placeholder.com/150" alt="Profile Photo" class="photo-preview">
+                        <img id="profile-photo-preview" src="<%= user.profileImage || 'https://via.placeholder.com/150' %>" alt="Profile Photo" class="photo-preview">
                         <input type="file" id="profile-photo" name="profilePicture" accept="image/*" onchange="previewImage(event)" />
                     </label>
                 </div>
@@ -112,7 +112,7 @@
             
                 <!-- Full Name -->
                 <label for="full-name">Full Name:</label>
-                <input type="text" id="full-name" name="name" placeholder="Demo User">
+                <input type="text" id="full-name" name="name" placeholder="Demo User" value="<%= user.name %>">
         
                 <!-- Email -->
                 <label for="email">Email:</label>

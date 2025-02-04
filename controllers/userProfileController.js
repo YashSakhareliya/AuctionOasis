@@ -26,6 +26,7 @@ const updateUserProfile = async (req, res, next) => {
         const userId = req.params.userId
 
         let updatedUserDetails = { ...req.body }
+        let profileImageUrl = req.file ? req.file.secure_url : null;
 
         // Separate socialLinks fields
         const socialLinksFields = ["twitter", "instagram"];
@@ -46,6 +47,10 @@ const updateUserProfile = async (req, res, next) => {
         // Add socialLinks only if there are valid values
         if (Object.keys(socialLinks).length > 0) {
             updatedUserDetails.socialLinks = socialLinks;
+        }
+        // check image is not null
+        if(profileImageUrl){
+            updatedUserDetails.profileImage = profileImageUrl;
         }
         
         const updateduser = await User.findByIdAndUpdate(
