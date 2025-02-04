@@ -4,7 +4,7 @@ const User = require('../models/userModel')
 
 const userDetailsFilePath = path.join(__dirname, '../files/userDetails.json')
 
-const renderUserProfile = async (req, res) => {
+const renderUserProfile = async (req, res, next) => {
     try {
         console.log(res.locals.username)
         console.log(req.params.user)
@@ -12,10 +12,14 @@ const renderUserProfile = async (req, res) => {
             return res.render('404')
         }
         let userDetails = await User.findOne({ username: res.locals.username })
-       
+            .populate({
+                path: 'myItems',
+                model: 'Item',
+            })
+            
         return res.render('profile', { user: userDetails })
     } catch (err) {
-        return res.status(500).send({ error: err.message })
+        return next(err)
     }
 }
 

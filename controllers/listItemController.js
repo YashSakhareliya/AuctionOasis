@@ -36,7 +36,7 @@ const listNewItem = async (req, res, next) => {
         // Update user's items array
         await User.findByIdAndUpdate(
             userId,
-            { $push: { items: newItem._id } }
+            { $push: { myItems: newItem._id } }
         );
 
         res.redirect(`/profile/${res.locals.username}`);
