@@ -23,4 +23,13 @@ const profileStorage = new CloudinaryStorage({
     },
 });
 
-module.exports = { profileStorage, cloudinary };
+const itemStorage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: "auctionoasis/item_picture",
+        allowed_formats: ['jpg', 'png', 'jpeg'],
+        transformation: [{ width: 800, height: 800, crop: "fill" }],
+    }
+})
+
+module.exports = { profileStorage, itemStorage, cloudinary };
