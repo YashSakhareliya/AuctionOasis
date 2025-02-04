@@ -113,27 +113,36 @@
 }
 
 
-
-
 /* My Items Grid */
 .my-items-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 1.5rem; /* Adjusted for better spacing */
 }
 
+/* Item Container */
 .my-item {
     width: 420px;
-    height: 350px;
+    height: 380px; /* Increased height for better spacing */
     display: flex;
     flex-direction: column;
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
+    background-color: var(--card-bg);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
 }
-.my-item-image{
+
+.my-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+/* Image Section */
+.my-item-image {
     width: 100%;
-    height: 60%;
-    object-fit: cover;
+    height: 55%;
+    overflow: hidden;
 }
 
 .my-item-image img {
@@ -143,50 +152,73 @@
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
+/* Content Section */
 .my-item-content {
-    background-color: var(--card-bg);
-    height: 40%;
+    height: 45%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    padding: 0 2rem;
+    justify-content: space-between; /* Adjusted to distribute content evenly */
+    padding: 1rem 1.5rem; /* Adjusted padding */
     border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
+/* Title */
 .my-item-title h2 {
     font-size: var(--h2-font-size);
-    font-weight: 1000;
-    color: #000;
+    font-weight: 700;
+    color: var(--primary-text);
+    margin: 0;
+    text-align: center; /* Centering title */
 }
 
-.my-item-price p {
-    margin: 0;
+/* Current Bid */
+.my-item-price {
+    text-align: center; /* Centered bid price */
     font-size: 16px;
     color: var(--text-color);
     font-weight: bold;
 }
 
+/* Item Summary */
+.my-item-summery {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures alignment in the center */
+    gap: 10px;
+}
+
 .my-item-summery ul {
     display: flex;
     justify-content: space-between;
-    gap: 15px;
+    align-items: center;
     padding: 0;
     margin: 0;
     list-style: none;
+    width: 100%;
 }
 
-.bid-time, 
-.bid-info{
+.bid-time, .bid-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-}
-
-.my-item-summery ul li {
+    align-items: center; /* Align items to center */
     font-size: 14px;
-    color: #666;
+    color: var(--text-light);
 }
 
+/* View Details Button */
+.bid-info a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.bid-info a:hover {
+    text-decoration: underline;
+    color: var(--primary-hover);
+}
+
+/* Heart Icon */
 .my-item-summery ul li a {
     color: #6b38fb;
     text-decoration: none;
@@ -195,6 +227,21 @@
 .my-item-summery ul li a:hover {
     text-decoration: underline;
 }
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .my-items-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .my-items-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
 
 /* Bid History Content */
 .bid-history {

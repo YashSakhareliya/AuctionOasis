@@ -39,26 +39,33 @@
                 <% user.myItems.forEach((item) => { %>
                 <div class="my-item">
                     <div class="my-item-image">
-                        <img src="<%= item.image %>" alt="Auction-item-image">
+                        <img src="<%= item.image %>" alt="<%= item.name %>">
                     </div>
-                    <div class="my-item-content">
-                        <div class="my-item-title">
-                            <h2><%= item.title %></h2>
+            
+                    <a href="<%= item.detailsLink || `/live/auction/item/${item._id}` %>">
+                        <div class="my-item-content">
+                            <div class="my-item-title">
+                                <h2><%= item.name %></h2>
+                            </div>
+                            <div class="my-item-price">
+                                <p>Current Bid: $<%= item.currentBid %></p>
+                            </div>
+                            <div class="my-item-summery">
+                                <ul class="my-item-summery-list">
+                                    <li class="item-remTime" data-endtime="<%= item.timeRemaining %>">
+                                        <span id="timeRemainingDisplay"></span>
+                                    </li>
+                                    <li><%= item.recentBids.length %> bids</li>
+                                    <li>
+                                        <a href="#"><i class="fa-regular fa-heart"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="my-item-price">
-                            <p>Current Bid: $<%= item.currentBid %></p>
-                        </div>
-                        <div class="my-item-summery">
-                            <ul class="my-item-summery-list">
-                                <div class="bid-time">
-                                    <li><%= item.bidTimeRemaining %></li>
-                                    <li><%= item.bidsCount %> bids</li>
-                                </div>
-                                <div class="bid-info">
-                                    <li><a href="<%= item.detailsLink || `/` %>">View Details</a></li>
-                                </div>
-                            </ul>
-                        </div>
+                    </a>
+            
+                    <div class="bid-info">
+                        <a href="<%= item.detailsLink || `/live/auction/item/${item._id}` %>">View Details</a>
                     </div>
                 </div>
                 <% }); %>
@@ -66,6 +73,7 @@
                 <p>No items to display.</p>
                 <% } %>
             </div>
+            
 
             <!-- Bid History Tab Content -->
             <div class="tab-content bid-history" id="bid-history">

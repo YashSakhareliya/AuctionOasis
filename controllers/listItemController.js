@@ -9,7 +9,7 @@ const listNewItem = async (req, res, next) => {
         }
 
         const itemDetails = req.body;
-        const itemImageUrl = req.file ? req.file.secure_url : null;
+        const itemImageUrl = req.file ? req.file.path : null;
         const userId = req.params.userId;
 
         // Set current bid equal to starting bid initially
