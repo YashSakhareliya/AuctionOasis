@@ -77,3 +77,19 @@ function formatTimeRemaining() {
 
 // Update every second
 setInterval(formatTimeRemaining, 1000);
+
+
+function checkExpiry(event) {
+    const button = event.currentTarget;
+    const endTime = new Date(button.getAttribute('data-endtime'));
+    const currentTime = new Date();
+    
+    if (endTime <= currentTime) {
+        event.preventDefault();
+        button.innerText = "Expired";
+        button.style.pointerEvents = "none";
+        button.classList.add('disabled');
+        return false;
+    }
+    return true;
+}
