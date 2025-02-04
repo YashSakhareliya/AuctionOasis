@@ -80,18 +80,36 @@ setInterval(formatTimeRemaining, 1000);
 
 
 function checkExpiry(event) {
-    const button = event.currentTarget;
-    const endTime = new Date(button.getAttribute('data-endtime'));
+    const form = event.currentTarget; // Get the form
+    const button = form.querySelector('button'); // Get the button inside form
+    const endTime = new Date(form.parentElement.previousElementSibling.querySelector('.item-remTime').getAttribute('data-endtime'));
     const currentTime = new Date();
-    
+
     if (endTime <= currentTime) {
         event.preventDefault();
         button.innerText = "Expired";
-        button.style.color = 'black';
-
+        button.style.color = "black";
         button.style.pointerEvents = "none";
-        button.classList.add('disabled');
+        button.disabled = true;
+        button.classList.add("disabled");
         return false;
     }
     return true;
 }
+
+// Disable button on page load if expired
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".item-bid-button form");
+    const button = form.querySelector("button");
+    const endTime = new Date(document.querySelector(".item-remTime").getAttribute("data-endtime"));
+    const currentTime = new Date();
+
+    if (endTime <= currentTime) {
+        button.innerText = "Expired";
+        button.style.color = "black";
+        button.style.pointerEvents = "none";
+        button.disabled = true;
+        button.classList.add("disabled");
+    }
+});
+

@@ -56,25 +56,45 @@ const liveAuction =  async (req,res)=>{
 
 
 const renderItem = async (req, res, next) => {
-    
-    try{
+    try {
         const itemId = req.params.itemId;
+        
 
-        // Validate the ObjectId
-        // if (!mongoose.Types.ObjectId.isValid(itemId)) {
-        //     return res.status(400).render('404', { error: 'Invalid Item ID' });
-        // }
+        // Find item and populate seller and recent bids with user information
+        const item = await Item.findOne({ _id: itemId })
+            .populate('sellerId', 'name _id') // Get seller's name and ID
+            .populate({
+                path: 'recentBids',
+                populate: { path: 'userId', select: 'name' }, // Populate userId with user's name
+                options: { 
+                    sort: { date: -1 },
+                    limit: 10 // Limit to last 10 bids
+                }
+            });
 
-        let item = await Item.findOne({_id: itemId})
-        if(!item){
-            return res.status(404).send({error: 'Item not found'})
+        if (!item) {
+            return res.status(404).render('error', { error: 'Item not found' });
         }
-        res.render('item_details',{item})
-    }catch(err){
-        return next(err)
-    }
+        console.log(item)
 
-}
+        // Add seller name to item for easy access in template
+        item.sellerName = item.sellerId?.name;
+        
+        // Ensure currentBid exists
+        item.currentBid = item.currentBid || item.startingBid;
+
+        // Check if auction has ended
+        const isExpired = new Date(item.timeRemaining) <= new Date();
+
+        res.render('item_details', {
+            item,
+            isExpired
+        });
+    } catch (err) {
+        console.error('Error rendering item:', err);
+        return next(err);
+    }
+};
 
 // update item expiry status
 const updateExpiredItem = async (req, res, next) => {
