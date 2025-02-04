@@ -48,7 +48,12 @@ function formatTimeRemaining() {
 
         if (timeDiff <= 0) {
             timeRemainingDisplay.textContent = "Expired";
-            
+            const placeBidButton = document.querySelector('#item-place-bid');
+            if (placeBidButton) {
+                placeBidButton.innerText = "Expired";
+                placeBidButton.style.pointerEvents = "none";
+                placeBidButton.classList.add('disabled');
+            }
             // Update status in database if not already updated
             if (!item.hasAttribute('data-status-updated')) {
                 const result = await updateExpiredItemStatus(itemId);
