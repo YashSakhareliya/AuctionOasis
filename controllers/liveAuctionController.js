@@ -22,7 +22,7 @@ const liveAuctionFilter = (req, res) =>{
     res.render('live_auction',{items})
 }
 
-const renderItem = async (req, res) => {
+const renderItem = async (req, res, next) => {
     
     try{
         const itemId = req.params.itemId;
@@ -38,7 +38,7 @@ const renderItem = async (req, res) => {
         }
         res.render('item_details',{item})
     }catch(err){
-        return res.status(500).send({status: err.message})
+        return next(err)
     }
 
 }
