@@ -76,4 +76,25 @@ const renderItem = async (req, res, next) => {
 
 }
 
-module.exports = {liveAuction, renderItem}
+// update item expiry status
+const updateExpiredItem = async (req, res, next) => {
+    try {
+        const { itemId } = req.params;
+        
+        const updatedItem = await Item.findByIdAndUpdate(
+            itemId,
+            { $set: { status: 'ended' } },
+            { new: true }
+        );
+
+        if (!updatedItem) {
+            return res.status(404).json({ error: 'Item not found' });
+        }
+
+        res.json({ success: true, item: updatedItem });
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports = {liveAuction, renderItem, updateExpiredItem}

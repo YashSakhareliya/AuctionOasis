@@ -14,21 +14,48 @@ document.addEventListener('scroll', () => {
    
 });
 
+// update item status is it is expire
+async function updateExpiredItemStatus(itemId) {
+    try {
+        const response = await fetch(`/live/auction/item/${itemId}/expire`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error('Failed to update item status');
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error('Error updating item status:', error);
+    }
+}
+
+
 function formatTimeRemaining() {
     const items = document.querySelectorAll('.item-remTime'); 
 
-    items.forEach(item => {
-        const endTime = item.getAttribute('data-endtime'); 
-        const endDate = new Date(endTime); // Convert to Date object
-        const currentDate = new Date(); // Get the current date and time
-
-        
+    items.forEach(async item => {
+        const endTime = item.getAttribute('data-endtime');
+        const endDate = new Date(endTime);
+        const currentDate = new Date();
         const timeDiff = endDate - currentDate;
-
         const timeRemainingDisplay = item.querySelector('#timeRemainingDisplay');
+        const itemId = item.getAttribute('data-item-id'); // Add this attribute to your HTML
 
         if (timeDiff <= 0) {
             timeRemainingDisplay.textContent = "Expired";
+            
+            // Update status in database if not already updated
+            if (!item.hasAttribute('data-status-updated')) {
+                const result = await updateExpiredItemStatus(itemId);
+                if (result?.success) {
+                    item.setAttribute('data-status-updated', 'true');
+                }
+            }
             return;
         }
 

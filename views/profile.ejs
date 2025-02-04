@@ -53,7 +53,9 @@
                             <div class="my-item-summery">
                                 <ul class="my-item-summery-list">
                                     <div>
-                                        <li class="item-remTime" data-endtime="<%= item.timeRemaining %>">
+                                        <li class="item-remTime" 
+                                            data-endtime="<%= item.timeRemaining %>"
+                                            data-item-id="<%= item._id %>">
                                             <span id="timeRemainingDisplay"></span>
                                         </li>
                                         <li><%= item.recentBids.length %> bids</li>
