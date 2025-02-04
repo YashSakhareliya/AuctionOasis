@@ -168,12 +168,12 @@
     font-weight: 700;
     color: var(--primary-text);
     margin: 0;
-    text-align: center; /* Centering title */
+    
 }
 
 /* Current Bid */
 .my-item-price {
-    text-align: center; /* Centered bid price */
+   
     font-size: 16px;
     color: var(--text-color);
     font-weight: bold;
@@ -196,6 +196,9 @@
     list-style: none;
     width: 100%;
 }
+.my-item-summery li{
+    margin-bottom: 5px;
+} 
 
 .bid-time, .bid-info {
     display: flex;
@@ -206,14 +209,14 @@
 }
 
 /* View Details Button */
-.bid-info a {
+#view-details {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
-.bid-info a:hover {
+#view-details:hover {
     text-decoration: underline;
     color: var(--primary-hover);
 }

@@ -42,7 +42,7 @@
                         <img src="<%= item.image %>" alt="<%= item.name %>">
                     </div>
             
-                    <a href="<%= item.detailsLink || `/live/auction/item/${item._id}` %>">
+                    <a>
                         <div class="my-item-content">
                             <div class="my-item-title">
                                 <h2><%= item.name %></h2>
@@ -52,21 +52,26 @@
                             </div>
                             <div class="my-item-summery">
                                 <ul class="my-item-summery-list">
-                                    <li class="item-remTime" data-endtime="<%= item.timeRemaining %>">
-                                        <span id="timeRemainingDisplay"></span>
-                                    </li>
-                                    <li><%= item.recentBids.length %> bids</li>
-                                    <li>
-                                        <a href="#"><i class="fa-regular fa-heart"></i></a>
-                                    </li>
+                                    <div>
+                                        <li class="item-remTime" data-endtime="<%= item.timeRemaining %>">
+                                            <span id="timeRemainingDisplay"></span>
+                                        </li>
+                                        <li><%= item.recentBids.length %> bids</li>
+                                    </div>
+                                    <div>
+                                        <li>
+                                            <a href="#"><i class="fa-regular fa-heart"></i></a>
+                                        </li>
+                                        <li>
+                                            <a id="view-details" href="<%= item.detailsLink || `/live/auction/item/${item._id}` %>">View Details</a>
+                                        </li>
+                                    </div>
                                 </ul>
                             </div>
                         </div>
                     </a>
             
-                    <div class="bid-info">
-                        <a href="<%= item.detailsLink || `/live/auction/item/${item._id}` %>">View Details</a>
-                    </div>
+                
                 </div>
                 <% }); %>
                 <% } else { %>
