@@ -12,6 +12,7 @@ const renderUserProfile = async (req, res) => {
             return res.render('404')
         }
         let userDetails = await User.findOne({ username: res.locals.username })
+       
         return res.render('profile', { user: userDetails })
     } catch (err) {
         return res.status(500).send({ error: err.message })
@@ -26,7 +27,7 @@ const updateUserProfile = async (req, res, next) => {
         const userId = req.params.userId
 
         let updatedUserDetails = { ...req.body }
-        let profileImageUrl = req.file ? req.file.secure_url : null;
+        let profileImageUrl = req.file ? req.file.path : null;
 
         // Separate socialLinks fields
         const socialLinksFields = ["twitter", "instagram"];
@@ -50,7 +51,7 @@ const updateUserProfile = async (req, res, next) => {
         }
         // check image is not null
         if(profileImageUrl){
-            updatedUserDetails.profileImage = profileImageUrl;
+            updatedUserDetails.profilePicture = profileImageUrl;
         }
         
         const updateduser = await User.findByIdAndUpdate(
@@ -58,6 +59,7 @@ const updateUserProfile = async (req, res, next) => {
             { $set: updatedUserDetails }, // Only update non-empty fields
             { new: true, runValidators: true, upsert: false}
         );
+        
         res.redirect(`/profile/${updateduser.username}`)
     } catch (err) {
         return next(err)
