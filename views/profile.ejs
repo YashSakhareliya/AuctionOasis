@@ -182,8 +182,8 @@
                 <textarea id="item-description" name="description" placeholder="Enter item description" required></textarea>
         
                 <!-- Seller Information (Auto-filled / Hidden) -->
-                <input type="hidden" id="seller-name" name="sellerName">
-                <input type="hidden" id="seller-id" name="sellerId">
+                <input type="hidden" id="seller-name" name="sellerName" value="<%= user.username %>">
+                <input type="hidden" id="seller-id" name="sellerId" value="<%= user._id %>">
         
                 <!-- Categories -->
                 <label for="item-category">Category:</label>
