@@ -117,12 +117,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+
 }
-.item-bid-button a {
+.item-bid-button button {
     text-align: center;
     /* height: 60%; */
     height: 50px;
-    width: 90%;
+    width: 550px;
     display: inline-block;
     padding: 10px 20px;
     background-color: var(--primary-btn-color);
@@ -136,7 +138,7 @@
     justify-content: center;
 }
 
-.item-bid-button a:hover {
+.item-bid-button button:hover {
     background-color: #1d4b91; /* Darker blue on hover */
     transform: scale(1.05); 
 }

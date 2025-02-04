@@ -87,6 +87,8 @@ function checkExpiry(event) {
     if (endTime <= currentTime) {
         event.preventDefault();
         button.innerText = "Expired";
+        button.style.color = 'black';
+
         button.style.pointerEvents = "none";
         button.classList.add('disabled');
         return false;

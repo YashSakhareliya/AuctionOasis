@@ -31,10 +31,9 @@
                     </div>
                  </div>
                  <div class="item-bid-button">
-                    <a id="item-place-bid" 
-                       href="/bid/place/<%= `${item._id}/${userId}` %>" 
-                       data-endtime="<%= item.timeRemaining %>"
-                       onclick="return checkExpiry(event)">Place Bid</a>
+                    <form action="/bid/place/<%= item._id %>/<%= userId %>" method="POST" onsubmit="return checkExpiry(event)">
+                        <button type="submit" id="item-place-bid">Place Bid</button>
+                    </form>
                  </div>
                  <div class="item-resent-bid">
                     <h2>Recent Bids</h2>
@@ -44,11 +43,11 @@
                             <% item.recentBids.forEach(bid => { %>
                                 <li>
                                     <div class="bidder-name">
-                                        <p><%= bid.bidderName %></p>
+                                        <p><%= bid.userId?.name || 'Anonymous' %></p>
                                     </div>
                                     <div class="bid-record">
                                         <p id="bid-amount">$<%= bid.amount %></p>
-                                        <p id="bid-time"><%= bid.time %></p>
+                                        <p id="bid-time"><%= new Date(bid.date).toLocaleString() %></p>
                                     </div>
                                 </li>
                             <% }) %>
