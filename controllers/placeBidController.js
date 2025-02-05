@@ -39,6 +39,13 @@ const placeBid = async (req, res, next) => {
             return res.status(400).render('error', { error: 'Bid must be at least 10% higher than current bid' });
         }
 
+        // Set previous winning bid to false if exists
+        // need to update
+        await Bid.findOneAndUpdate(
+            { itemId: item._id, isWinningBid: true },
+            { isWinningBid: false }
+        );
+
         // 2. Create new bid document
         const newBid = new Bid({
             amount: newBidAmount,
@@ -48,12 +55,8 @@ const placeBid = async (req, res, next) => {
             isWinningBid: true // This will be the current highest bid
         });
         const savedBid = await newBid.save();
-        console.log(savedBid)
-        // Set previous winning bid to false if exists
-        await Bid.findOneAndUpdate(
-            { itemId: item._id, isWinningBid: true },
-            { isWinningBid: false }
-        );
+        
+        
 
         
 
