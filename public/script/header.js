@@ -1,18 +1,28 @@
-// Event listener add on profile dropdown button
-document.addEventListener("click", function (e) {
-    var dropdown = document.getElementById("profile-dropdown");
-    var profileBtn = document.getElementById("profile-btn");
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("hamburger-menu");
+    const navContainer = document.querySelector(".nav-links-container");
+    const profileBtn = document.getElementById("profile-btn");
+    const profileDropdown = document.getElementById("profile-dropdown");
 
-    // Check if the clicked target is the profile button
-    if (profileBtn && profileBtn.contains(e.target)) {
-        e.preventDefault(); // Prevent default anchor behavior
-        dropdown.classList.toggle("show-dropdown"); // Toggle dropdown visibility
-        e.stopPropagation(); // Prevent the event from bubbling to the window click listener
-        return; // Exit to avoid running the next part of the code
-    }
+    // Toggle nav menu
+    menuToggle.addEventListener("click", function () {
+        navContainer.classList.toggle("active");
+    });
 
-    // If the click is outside the dropdown and profile button, close the dropdown
-    if (dropdown && !dropdown.contains(e.target)) {
-        dropdown.classList.remove("show-dropdown");
-    }
+    // Profile dropdown toggle with document click handling
+    document.addEventListener("click", function (e) {
+        // Check if the clicked target is the profile button
+        if (profileBtn && profileBtn.contains(e.target)) {
+            e.preventDefault();
+            profileDropdown.classList.toggle("show-dropdown");
+            e.stopPropagation();
+            return;
+        }
+
+        // Close dropdown if clicked outside
+        if (profileDropdown && !profileDropdown.contains(e.target)) {
+            profileDropdown.classList.remove("show-dropdown");
+        }
+    });
 });
+
