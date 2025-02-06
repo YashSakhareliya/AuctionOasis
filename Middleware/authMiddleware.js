@@ -13,6 +13,7 @@ const verifyToken = (req, res, next)=>{
         res.locals.isAuthenticated = true
         res.locals.username = decoded.username
         res.locals.userId = decoded.userId
+        req.user = decoded
         next()
     }catch(err){
         res.locals.isAuthenticated = false
@@ -21,7 +22,8 @@ const verifyToken = (req, res, next)=>{
 }
 
 const ensureAuthenticated = (req, res, next) => {
-    if (!res.locals.isAuthenticated) {
+    
+    if (!res.locals.isAuthenticated && !req.user) {
       return res.redirect('/auth/login');
     }
     next();
