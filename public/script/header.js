@@ -1,3 +1,12 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburgerMenu.addEventListener('click', function() {
+        navLinks.classList.toggle('show');
+    });
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     const menuToggle = document.getElementById("hamburger-menu");
     const navContainer = document.querySelector(".nav-links-container");

@@ -17,6 +17,8 @@ body {
 section {
     padding: var(--section-padding);
 }
+/* ✅ Responsive Design for Mobile */
+
 
 a {
     text-decoration: none;
@@ -44,7 +46,7 @@ button {
 
 /* ================= NAVIGATION BAR ================= */
 header {
-    width: 100%;
+    width: 100vw;
     height: var(--navbar-height);
     background-color: var(--primary-bg-color);
     position: fixed;
@@ -81,9 +83,9 @@ header {
 }
 
 .search-bar input {
-    width: 100%;
-    max-width: 500px;
-    min-width: 350px;
+    width: 70%;  /* Takes full width of its container */
+    max-width: 90vw; /* Adjust max width relative to viewport */
+    /* min-width: 250px; Set a lower limit for very small screens */
     padding: 10px;
     border: 1px solid var(--input-border-color);
     border-radius: var(--border-radius);
@@ -92,6 +94,9 @@ header {
     font-weight: 600;
     font-size: medium;
 }
+
+
+
 
 /* NAV LINKS */
 .nav-links {
@@ -182,7 +187,14 @@ header {
     display: block;
     opacity: 1;
 }
-
+@media (max-width: 600px) {
+    .search-bar input {
+        width: 70%;  /* Make input take most of the width */
+        min-width: unset; /* Remove fixed min-width */
+        font-size: 14px; /* Reduce font size for better fit */
+        padding: 8px; /* Adjust padding for mobile */
+    }
+}
 
 /* Responsive Header Styles */
 @media (max-width: 768px) {
@@ -260,3 +272,54 @@ header {
         display: none;
     }
 }
+@media (max-width: 768px) {
+    /* 🌟 Reduce Section Padding for Mobile */
+    section {
+      padding: 1rem ;
+    }
+  
+    /* 📝 Typography Adjustments */
+    h1 {
+      font-size: calc(var(--h1-font-size) - 0.5rem); /* Slightly reduce heading size */
+    }
+    h2 {
+      font-size: calc(var(--h2-font-size) - 0.3rem);
+    }
+    h3 {
+      font-size: calc(var(--h3-font-size) - 0.2rem);
+    }
+  
+    /* 🖼️ Image Responsiveness */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  
+    /* 🎨 Button Responsiveness */
+    .btn {
+      padding: 0.8rem 1.5rem; /* Reduce padding */
+      font-size: 0.9rem; /* Adjust font size */
+    }
+  
+    /* 🏠 Navbar Responsiveness */
+    .navbar {
+      height: var(--navbar-height);
+      box-shadow: var(--navbar-shadow);
+      padding: 0.5rem 5%;
+    }
+  
+    /* 📦 Card Responsiveness */
+    .card {
+      padding: var(--card-padding);
+      box-shadow: var(--card-shadow);
+      border-radius: var(--border-radius);
+    }
+  
+    /* 🔲 Form Inputs */
+    input, textarea {
+      padding: 8px;
+      border: 1px solid var(--input-border-color);
+      font-size: 1rem;
+      width: 100%;
+    }
+  }
