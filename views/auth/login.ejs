@@ -15,6 +15,12 @@
 <body>
     <main>
         <div class="auth-container login-container">
+            <% if (messages.error && messages.error.length) { %>
+                <div class="alert alert-danger flash-message"><%= messages.error[0] %></div>
+            <% } %>
+            
+           
+            
             <div class="auth-content">
                 <h1>Sign in to your account</h1>
                 <div class="auth-form login-form">
