@@ -44,7 +44,8 @@ const loginUser = async (req, res) => {
       res.redirect('/');
       
     }else{
-      res.send('Invalid Password');
+      req.flash('error', 'Invalid Password');
+      return res.redirect('/auth/login');
     }
   });
   
@@ -59,7 +60,8 @@ const registerUser = async (req, res) => {
   const newUser = { username, email, password}
 
   if (password !== conformpassword) {
-    return res.send("Password and conform password dose not match");
+    req.flash('error', 'Password and conform password dose not match');
+    return res.redirect('/auth/register');
   }
 
   const saltRounds = 10;
@@ -70,10 +72,12 @@ const registerUser = async (req, res) => {
     
     let emailExist = await User.findOne({email:newUser.email})
     if(usernameExist) {
-      return res.send("Username is already taken");
+      req.flash('error', 'Username is already taken');
+      return res.redirect('/auth/register');
     }
     if(emailExist) {
-      return res.send("Email is already taken");
+      req.flash('error', 'Email is already taken');
+      return res.redirect('/auth/register');
     }
     // create user wallet 
     let newUserWallet = new UserWallet({
@@ -94,7 +98,7 @@ const registerUser = async (req, res) => {
       })
 
       const savedUser = await userToSave.save()
-      res.render('auth/login')
+      res.redirect('/auth/login')
 
   });
   }catch(err){
