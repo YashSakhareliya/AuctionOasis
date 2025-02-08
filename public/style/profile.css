@@ -70,8 +70,8 @@
   }
   
   .profile-edit-btn a:hover {
-    background-color: var(--primary-color);
-    color: #fff;
+    text-decoration: underline;
+    color: black;
   }
   
   /* Profile Buttons */
@@ -349,7 +349,7 @@
   }
   
   .edit-profile-container button:hover {
-    background-color: var(--primary-hover);
+    /* background-color: var(--primary-hover); */
   }
   
   /* Overlay Background */
@@ -472,7 +472,7 @@
   }
   
   .list-item-container button:hover {
-    background-color: var(--primary-hover);
+    /* background-color: var(--primary-hover); */
   }
 
 /* Tabs Section */
