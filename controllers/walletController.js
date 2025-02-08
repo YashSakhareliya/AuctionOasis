@@ -15,7 +15,7 @@ const renderWallet = async (req, res, next) => {
             });
         const userWallet = user.wallet[0]
         const userTransaction = userWallet.transactionHistory
-        res.render('wallet', { wallet: userWallet })
+        res.render('wallet', { wallet: userWallet,  messages: req.flash()  })
 
     } catch (error) {
         next(error)

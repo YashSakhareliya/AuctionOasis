@@ -3,7 +3,9 @@
 <!-- main here -->
 <main> 
     <section class="item-details">
-        
+        <% if (messages.error && messages.error.length) { %>
+            <div class="alert alert-danger flash-message"><%= messages.error[0] %></div>
+        <% } %>
         <div class="item-container">
             <div class="item-image">
                 <img src="<%= item.image %>" alt="Item-image">

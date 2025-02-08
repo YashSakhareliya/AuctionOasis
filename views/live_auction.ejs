@@ -2,6 +2,9 @@
 
 <main>
     <section class="live-auction-section">
+        <% if (messages.error && messages.error.length) { %>
+            <div class="alert alert-danger flash-message"><%= messages.error[0] %></div>
+        <% } %>
         <div class="live-auction-container">
             <div class="live-auction-filter">
                 <form action="/live/auction" method="get" >

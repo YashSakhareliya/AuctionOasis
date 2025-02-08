@@ -46,7 +46,8 @@ const liveAuction =  async (req,res)=>{
         
         res.render('live_auction', { 
             items,
-            selectedFilters: { categories, priceRange, statuses }
+            selectedFilters: { categories, priceRange, statuses },
+            messages: req.flash() 
         });
     } catch (error) {
         next(error);
@@ -71,9 +72,9 @@ const renderItem = async (req, res, next) => {
                     limit: 10 // Limit to last 10 bids
                 }
             });
-
         if (!item) {
-            return res.status(404).render('error', { error: 'Item not found' });
+            req.flash('error', 'Item not found');
+            res.redirect('/live/auction')
         }
 
         // Ensure currentBid exists
@@ -84,7 +85,8 @@ const renderItem = async (req, res, next) => {
 
         res.render('item_details', {
             item,
-            isExpired
+            isExpired,
+            messages: req.flash() 
         });
     } catch (err) {
         console.error('Error rendering item:', err);
@@ -104,6 +106,7 @@ const updateExpiredItem = async (req, res, next) => {
         );
 
         if (!updatedItem) {
+            req.flash('error', 'Item not found');
             return res.status(404).json({ error: 'Item not found' });
         }
 

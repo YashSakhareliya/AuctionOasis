@@ -15,14 +15,15 @@ const placeBid = async (req, res, next) => {
         ]);
         // console.log(item, user)
         if (!item || !user) {
-            return res.status(404).render('error', { error: 'Item or User not found' });
+            req.flash('error', 'Item or User not found');
+            return res.redirect(`/live/auction/item/${itemId}`);
         }
 
         // need imporvement of this section
         // need to solve error is user place bid on his placed item 
         // Check if user is bidding on their own item
         if (item.sellerId.toString() === userId) {
-            req.flash('error', 'Bid must be at least 10% higher than the current bid.');
+            req.flash('error', "you can't place bid on your item");
             return res.redirect(`/live/auction/item/${itemId}`);
         }
 
@@ -73,7 +74,7 @@ const placeBid = async (req, res, next) => {
         });
 
         // 5. Redirect to item details page
-        res.redirect(`/live/auction/item/${itemId}`);
+        res.redirect(`/live/auction/item/${itemId}`, { messages: req.flash() });
 
     } catch (err) {
         // Log the error for debugging

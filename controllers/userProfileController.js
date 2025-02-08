@@ -25,7 +25,7 @@ const renderUserProfile = async (req, res, next) => {
                 } 
             })
             
-        return res.render('profile', { user: userDetails })
+        return res.render('profile', { user: userDetails,  messages: req.flash()  })
     } catch (err) {
         return next(err)
     }
