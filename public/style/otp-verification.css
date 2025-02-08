@@ -1,0 +1,56 @@
+.otp-verification {
+    margin-top: 2rem;
+  }
+  
+  .otp-verification.hidden {
+    display: none;
+  }
+  
+  .otp-verification h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+  }
+  
+  .otp-verification p {
+    margin-bottom: 1rem;
+    color: #666;
+  }
+  
+  .otp-input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .otp-input-group input {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .otp-input-group input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(107, 56, 251, 0.2);
+  }
+  
+  .resend-otp {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .resend-otp a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .resend-otp a:hover {
+    text-decoration: underline;
+  }
+  
+  

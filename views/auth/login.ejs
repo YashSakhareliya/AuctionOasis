@@ -1,45 +1,52 @@
-<%- include('../partials/header') %>
-<main>
-    <div class="auth-container login-container">
-        <div class="auth-content">
-            <h1>Sign in to your account</h1>
-            <div class="auth-form login-form">
-                <form action="/auth/login" method="post" id="login-form">
-                    <div class="form-group">
-                        <label for="username">Username or Email</label>
-                        <input 
-                            type="text" 
-                            id="username" 
-                            name="username" 
-                            placeholder="Enter your username or email" 
-                            required 
-                            autocomplete="username"
-                        >
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/root.css">
+    <link rel="stylesheet" href="/style/login.css">
+    <link rel="stylesheet" href="/style/register.css">
+    <link rel="stylesheet" href="/style/error.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Login AuctionOasis</title>
+</head>
+
+<body>
+    <main>
+        <div class="auth-container login-container">
+            <div class="auth-content">
+                <h1>Sign in to your account</h1>
+                <div class="auth-form login-form">
+                    <form action="/auth/login" method="post" id="login-form">
+                        <div class="form-group">
+                            <label for="username">Username or Email</label>
+                            <input type="text" id="username" name="username" placeholder="Enter your username or email"
+                                required autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Enter your password"
+                                required autocomplete="current-password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Sign In</button>
+                    </form>
+                    <div class="auth-divider">
+                        <span>or</span>
                     </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input 
-                            type="password" 
-                            id="password" 
-                            name="password" 
-                            placeholder="Enter your password" 
-                            required 
-                            autocomplete="current-password"
-                        >
-                    </div>
-                    <button type="submit" class="btn btn-primary">Sign In</button>
-                </form>
-                <div class="auth-divider">
-                    <span>or</span>
+                    <button class="btn btn-google">
+                        <img src="/images/google-icon.svg" alt="Google Icon">
+                        Sign in with Google
+                    </button>
+                    <p class="auth-switch">Don't have an account? <a href="/auth/register">Register</a></p>
                 </div>
-                <button class="btn btn-google">
-                    <img src="/images/google-icon.svg" alt="Google Icon">
-                    Sign in with Google
-                </button>
-                <p class="auth-switch">Don't have an account? <a href="/auth/register">Register</a></p>
             </div>
         </div>
-    </div>
-</main>
-<%- include('../partials/footer') %>
+    </main>
 
+    <script src="/script/header.js" defer></script>
+    <script src="/script/index.js" defer></script>
+    <script src="/script/profile.js" defer></script>
+</body>
+
+</html>
