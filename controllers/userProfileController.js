@@ -19,7 +19,10 @@ const renderUserProfile = async (req, res, next) => {
             .populate({
                 path: 'bidHistory',
                 model: 'Bid',
-                populate: { path: 'itemId', select: 'name' }, // Populate itemId with item name
+                populate: { path: 'itemId', select: 'name' },
+                options: { 
+                    sort: { date: -1 },
+                } 
             })
             
         return res.render('profile', { user: userDetails })

@@ -15,7 +15,7 @@ const listNewItem = async (req, res, next) => {
         // Set current bid equal to starting bid initially
         itemDetails.currentBid = itemDetails.startingBid;
         itemDetails.image = itemImageUrl;
-
+        console.log(itemDetails.image)
         // Create new item
         const newItem = new Item({
             name: itemDetails.name,

@@ -18,7 +18,7 @@ const profileStorage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: "auctionoasis/profile_picture",
-        allowed_formats: ['jpg', 'png', 'jpeg'],
+        allowed_formats: ['jpg', 'png', 'jpeg' , 'svg'],
         transformation: [{ width: 500, height: 500, crop: "fill" }],
     },
 });
@@ -27,7 +27,7 @@ const itemStorage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
         folder: "auctionoasis/item_picture",
-        allowed_formats: ['jpg', 'png', 'jpeg'],
+        allowed_formats: ['jpg', 'png', 'jpeg', 'svg'],
         transformation: [{ width: 800, height: 800, crop: "fill" }],
     }
 })
