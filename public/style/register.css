@@ -73,14 +73,19 @@
     position: absolute;
     right: 5px;
     padding: 8px 12px;
-    background-color: #a3a6a8;
+    background-color: azure;
     color: rgb(27, 26, 26);
     border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 0.9rem;
+    border: 1px solid #676666;
+    transition: text-decoration 0.3s ease;
 }
+.input-container button:hover{
+  text-decoration: underline;
   
+}
   .auth-form input:focus {
     border-color: var(--primary-color);
     outline: none;

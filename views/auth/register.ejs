@@ -50,12 +50,16 @@
                                     <label for="password">Password</label>
                                     <input type="password" id="password" name="password" placeholder="Create a password"
                                         required>
+                                        <div id="pas-msg"></div> 
                                 </div>
                                 <div class="form-group">
                                     <label for="conform-password">Conform Password</label>
-                                    <input type="password" id="conform-password" name="conformpassword" placeholder="Conform your password" required>
+                                    <input type="password" id="conform-password" name="conformpassword"
+                                        placeholder="Conform your password" required>
+                                        <div id="conf-pas-msg"></div>
                                 </div>
-                                <button type="submit" id="register-btn" disabled class="btn btn-primary">Register</button>
+                                <button type="submit" id="register-btn" disabled
+                                    class="btn btn-primary">Register</button>
                             </form>
                             <div class="auth-divider">
                                 <span>or</span>
@@ -69,28 +73,37 @@
                     </div>
         </div>
     </main>
-    <script >
+    <script>
         const sendOtp = async () => {
             console.log('in send otp function')
             const email = document.getElementById('email').value;
             console.log(email)
+
+            // Email validation using a RegEx pattern
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
             if (!email) {
                 document.getElementById('inp-msg').innerHTML = '<p style="color:red;">Please enter your email.</p>';
-                return
+                return;
+            } else if (!emailPattern.test(email)) { // Check if the email is valid
+                document.getElementById('inp-msg').innerHTML = '<p style="color:red;">Please enter a valid email address.</p>';
+                return;
             }
-            const responce = await fetch('/otp/send', {
+
+            const response = await fetch('/otp/send', {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email })
-            })
-            const data = await responce.json();
+            });
+
+            const data = await response.json();
 
             document.getElementById('inp-msg').innerHTML = `<p style="color:${data.success ? 'green' : 'red'};">${data.message}</p>`;
 
             if (data.success) {
                 document.getElementById('otp-input-container').style.display = "block";
             }
-        }
+        };
+
 
 
         const verifyOtp = async () => {
@@ -105,13 +118,56 @@
 
             const data = await response.json();
             document.getElementById('inp-msg').innerHTML = `<p style="color:${data.success ? 'green' : 'red'};">${data.message}</p>`;
-            if(!data.success){
+            if (!data.success) {
                 document.getElementById('register-btn').disabled = true;
             }
             if (data.success) {
                 document.getElementById('register-btn').disabled = false;
             }
         };
+
+        // Password strength validation function
+        const checkPasswordStrength = (password) => {
+            const passwordMsg = document.getElementById('pas-msg');
+            const strengthPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+            if (!password) {
+                passwordMsg.innerHTML = '';
+                return false;
+            }
+
+            if (!strengthPattern.test(password)) {
+                passwordMsg.innerHTML = '<p style="color:red;">Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.</p>';
+                return false;
+            } else {
+                passwordMsg.innerHTML = '<p style="color:green;">Password is strong.</p>';
+                return true;
+            }
+        };
+
+        // Password matching check function
+        const checkPasswordMatch = () => {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('conform-password').value;
+            const confirmPasswordMsg = document.getElementById('conf-pas-msg');
+
+            if (password !== confirmPassword) {
+                confirmPasswordMsg.innerHTML = '<p style="color:red;">Passwords do not match!</p>';
+                return false;
+            } else {
+                confirmPasswordMsg.innerHTML = '<p style="color:green;">Passwords match.</p>';
+                return true;
+            }
+        };
+
+        // Attach event listeners to input fields
+        document.getElementById('password').addEventListener('input', () => {
+            checkPasswordStrength(document.getElementById('password').value);
+        });
+
+        document.getElementById('conform-password').addEventListener('input', () => {
+            checkPasswordMatch();
+        });
     </script>
     <script src="/script/header.js" defer></script>
     <script src="/script/index.js" defer></script>
