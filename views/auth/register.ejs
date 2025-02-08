@@ -26,7 +26,19 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            <div class="input-container">
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                                <button type="button" id="send-otp-btn" onclick="sendOtp()">Send OTP</button>
+                            </div>
+                            <div id="inp-msg">
+                            </div>
+                        </div>
+                        <div class="form-group" id="otp-input-container" style="display: none;">
+                            <label for="otp-input">OTP</label>
+                            <div class="input-container">
+                                <input type="text" id="otp-input" placeholder="Enter OTP">
+                                <button type="button" id="verify-otp-btn" onclick="verifyOtp()">Verify</button>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
@@ -50,7 +62,21 @@
             </div>
         </div>
     </main>
-
+    <script>
+        const sendOtp = () => {
+            const email = document.getElementById('email').value;
+            if(!email){
+                document.getElementById('inp-msg').innerHTML = '<p style="color:red;">Please enter your email.</p>';
+                return
+            }
+            const sendBtn = document.getElementsByClassName('send-opt-btn')
+            const input = document.createElement('input')
+            input.type = 'text'
+            input.placeholder = 'Enter OTP'
+            document.getElementById('otp-verification').appendChild(input)
+            sendBtn.innerText = 'verify'
+        }
+    </script>
     <script src="/script/header.js" defer></script>
 <script src="/script/index.js" defer></script>
 <script src="/script/profile.js" defer></script>

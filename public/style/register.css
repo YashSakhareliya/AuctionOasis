@@ -43,6 +43,43 @@
     border-radius: 6px;
     transition: border-color 0.3s ease;
   }
+  .send-opt-btn{
+   
+    padding: 0.4rem;
+  }
+  #otp-verification{
+    width: 100%;
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+    align-items: center;
+  }
+  .input-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .input-container input{
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+    padding-right: 90px;
+  }
+  .input-container button {
+    position: absolute;
+    right: 5px;
+    padding: 8px 12px;
+    background-color: #a3a6a8;
+    color: rgb(27, 26, 26);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
   
   .auth-form input:focus {
     border-color: var(--primary-color);
