@@ -13,6 +13,14 @@ document.addEventListener('scroll', () => {
 
    
 });
+// flesh message
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+        let flashMessages = document.querySelectorAll('.flash-message');
+        flashMessages.forEach(msg => msg.style.display = 'none');
+    }, 3000); // Hide after 3 seconds
+});
+
 
 // update item status is it is expire
 async function updateExpiredItemStatus(itemId) {

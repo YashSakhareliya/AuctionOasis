@@ -22,7 +22,8 @@ const placeBid = async (req, res, next) => {
         // need to solve error is user place bid on his placed item 
         // Check if user is bidding on their own item
         if (item.sellerId.toString() === userId) {
-            return res.status(400).render('error', { error: 'You cannot bid on your own item' });
+            req.flash('error', 'Bid must be at least 10% higher than the current bid.');
+            return res.redirect(`/live/auction/item/${itemId}`);
         }
 
         // Check if item has expired

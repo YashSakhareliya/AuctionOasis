@@ -3,6 +3,10 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const path = require('path');
+const flash = require('connect-flash');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
 const { verifyToken } = require('./Middleware/authMiddleware');
 const { appendLogs } = require('./Middleware/logMiddleware');
 const  connectDb  =  require('./config/db')
@@ -11,16 +15,27 @@ const Transaction = require('./models/transactionModel');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Setup session middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
+
 // Middleware
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.set('view engine', 'ejs'); // Use EJS as the template engine
 app.set('views', path.join(__dirname, 'views'));
+app.use(flash());
 app.use(verifyToken);
 
 // connect with Database
 connectDb();
+
+
 
 // Import routes
 const authRoutes = require('./routes/auth');

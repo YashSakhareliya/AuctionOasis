@@ -9,19 +9,21 @@ const UserWallet = require('../models/userWalletModel')
 const JWT_SECRET = process.env.JWT_SECRET;
 
 const renderLogin = (req, res) => {
-  res.render('auth/login', { title: 'Login' });
+  res.render('auth/login', { title: 'Login', messages: req.flash() });
 };
 
 const loginUser = async (req, res) => {
   const { username, password } = req.body;
   const loginUser = { username, password };
   if (!username || !password) {
-    return res.send('Please enter both username and password');
+    req.flash('error', 'Please enter both username and password');
+    return res.redirect('/auth/login');
   }
 
   const isUserExist = await User.findOne({username: loginUser.username})
   if(!isUserExist) {
-    res.status(403).send('Username Not Found');
+    req.flash('error', 'Username Not Found');
+    return res.redirect('/auth/login');
   }
   // match password
   

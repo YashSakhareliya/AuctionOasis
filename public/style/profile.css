@@ -348,9 +348,9 @@
     transition: background-color 0.3s;
   }
   
-  .edit-profile-container button:hover {
-    /* background-color: var(--primary-hover); */
-  }
+  /* .edit-profile-container button:hover {
+    /* background-color: var(--primary-hover); 
+  } */
   
   /* Overlay Background */
   #edit-profile-overlay {
@@ -471,9 +471,9 @@
     transition: background-color 0.3s;
   }
   
-  .list-item-container button:hover {
-    /* background-color: var(--primary-hover); */
-  }
+  /* .list-item-container button:hover {
+     background-color: var(--primary-hover); 
+  } */
 
 /* Tabs Section */
   .tabs {
