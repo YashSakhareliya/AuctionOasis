@@ -51,7 +51,7 @@ const loginUser = async (req, res) => {
 };
 
 const renderRegister = (req, res) => {
-  res.render('auth/register', { title: 'Register' });
+  res.render('auth/register', { title: 'Register' , messages: req.flash() });
 };
 
 const registerUser = async (req, res) => {

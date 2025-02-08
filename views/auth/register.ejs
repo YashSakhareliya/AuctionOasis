@@ -13,6 +13,9 @@
 <body>
     <main>
         <div class="auth-container register-container">
+            <% if (messages.error && messages.error.length) { %>
+                <div class="alert alert-danger flash-message"><%= messages.error[0] %></div>
+            <% } %>
             <div class="auth-content">
                 <h1>Create a new account</h1>
                 <div class="auth-form register-form">

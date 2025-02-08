@@ -1,5 +1,5 @@
 const renderIndex = (req, res) => {
-    res.render('index');
+    res.render('index', { messages: req.flash() });
 };
   
 
