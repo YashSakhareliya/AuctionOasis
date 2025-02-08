@@ -11,6 +11,7 @@ const { verifyToken } = require('./Middleware/authMiddleware');
 const { appendLogs } = require('./Middleware/logMiddleware');
 const  connectDb  =  require('./config/db')
 const Transaction = require('./models/transactionModel');
+const Otp = require('./models/otpModel');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,6 +27,7 @@ app.use(session({
 // Middleware
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json())
 app.use(cookieParser());
 app.set('view engine', 'ejs'); // Use EJS as the template engine
 app.set('views', path.join(__dirname, 'views'));
@@ -45,6 +47,7 @@ const userProfileRoutes = require('./routes/userProfile');
 const walletRoutes = require('./routes/walletRoute');
 const listItemRoutes = require('./routes/listItemRoute');
 const placeBidRoutes = require('./routes/placeBidRoute');
+const otpVerifyRoutes = require('./routes/optVerificationRouts');
 // Log Middleware
 app.use(appendLogs);
 
@@ -56,6 +59,7 @@ app.use('/profile',userProfileRoutes);
 app.use('/wallet',walletRoutes);
 app.use('/list', listItemRoutes);
 app.use('/bid', placeBidRoutes);
+app.use('/otp',otpVerifyRoutes)
 
 
 

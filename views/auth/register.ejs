@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,76 +11,111 @@
     <link rel="stylesheet" href="/style/error.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
     <main>
         <div class="auth-container register-container">
             <% if (messages.error && messages.error.length) { %>
-                <div class="alert alert-danger flash-message"><%= messages.error[0] %></div>
-            <% } %>
-            <div class="auth-content">
-                <h1>Create a new account</h1>
-                <div class="auth-form register-form">
-                    <form action="/auth/register" method="post" id="register-form">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" name="username" placeholder="Choose a username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <div class="input-container">
-                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-                                <button type="button" id="send-otp-btn" onclick="sendOtp()">Send OTP</button>
-                            </div>
-                            <div id="inp-msg">
-                            </div>
-                        </div>
-                        <div class="form-group" id="otp-input-container" style="display: none;">
-                            <label for="otp-input">OTP</label>
-                            <div class="input-container">
-                                <input type="text" id="otp-input" placeholder="Enter OTP">
-                                <button type="button" id="verify-otp-btn" onclick="verifyOtp()">Verify</button>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" placeholder="Create a password" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="conform-password">Conform Password</label>
-                            <input type="password" id="confirm-password" name="conformpassword" placeholder="Conform your password" required>
-                        </div>
-                        <button type="submit" disabled class="btn btn-primary">Register</button>
-                    </form>
-                    <div class="auth-divider">
-                        <span>or</span>
-                    </div>
-                    <button class="btn btn-google">
-                        <img src="/images/google-icon.svg" alt="Google Icon">
-                        Sign up with Google
-                    </button>
-                    <p class="auth-switch">Already have an account? <a href="/auth/login">Sign In</a></p>
+                <div class="alert alert-danger flash-message">
+                    <%= messages.error[0] %>
                 </div>
-            </div>
+                <% } %>
+                    <div class="auth-content">
+                        <h1>Create a new account</h1>
+                        <div class="auth-form register-form">
+                            <form action="/auth/register" method="post" id="register-form">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" id="username" name="username" placeholder="Choose a username"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <div class="input-container">
+                                        <input type="email" id="email" name="email" placeholder="Enter your email"
+                                            required>
+                                        <button type="button" id="send-otp-btn" onclick="sendOtp()">Send OTP</button>
+                                    </div>
+                                    <div id="inp-msg">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="otp-input-container" style="display: none;">
+                                    <label for="otp-input">OTP</label>
+                                    <div class="input-container">
+                                        <input type="text" id="otp-input" name="otp" placeholder="Enter OTP">
+                                        <button type="button" id="verify-otp-btn" onclick="verifyOtp()">Verify</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="Create a password"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="conform-password">Conform Password</label>
+                                    <input type="password" id="conform-password" name="conformpassword" placeholder="Conform your password" required>
+                                </div>
+                                <button type="submit" id="register-btn" disabled class="btn btn-primary">Register</button>
+                            </form>
+                            <div class="auth-divider">
+                                <span>or</span>
+                            </div>
+                            <button class="btn btn-google">
+                                <img src="/images/google-icon.svg" alt="Google Icon">
+                                Sign up with Google
+                            </button>
+                            <p class="auth-switch">Already have an account? <a href="/auth/login">Sign In</a></p>
+                        </div>
+                    </div>
         </div>
     </main>
-    <script>
-        const sendOtp = () => {
+    <script >
+        const sendOtp = async () => {
+            console.log('in send otp function')
             const email = document.getElementById('email').value;
-            if(!email){
+            console.log(email)
+            if (!email) {
                 document.getElementById('inp-msg').innerHTML = '<p style="color:red;">Please enter your email.</p>';
                 return
             }
-            const sendBtn = document.getElementsByClassName('send-opt-btn')
-            const input = document.createElement('input')
-            input.type = 'text'
-            input.placeholder = 'Enter OTP'
-            document.getElementById('otp-verification').appendChild(input)
-            sendBtn.innerText = 'verify'
+            const responce = await fetch('/otp/send', {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email })
+            })
+            const data = await responce.json();
+
+            document.getElementById('inp-msg').innerHTML = `<p style="color:${data.success ? 'green' : 'red'};">${data.message}</p>`;
+
+            if (data.success) {
+                document.getElementById('otp-input-container').style.display = "block";
+            }
         }
+
+
+        const verifyOtp = async () => {
+            const email = document.getElementById('email').value;
+            const otp = document.getElementById('otp-input').value;
+
+            const response = await fetch("/otp/verify", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, otp }),
+            });
+
+            const data = await response.json();
+            document.getElementById('inp-msg').innerHTML = `<p style="color:${data.success ? 'green' : 'red'};">${data.message}</p>`;
+            if(!data.success){
+                document.getElementById('register-btn').disabled = true;
+            }
+            if (data.success) {
+                document.getElementById('register-btn').disabled = false;
+            }
+        };
     </script>
     <script src="/script/header.js" defer></script>
-<script src="/script/index.js" defer></script>
-<script src="/script/profile.js" defer></script>
+    <script src="/script/index.js" defer></script>
+    <script src="/script/profile.js" defer></script>
 </body>
-</html>
 
+</html>

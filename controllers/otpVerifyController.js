@@ -6,7 +6,8 @@ const transporter = require('../config/emailConfig');
 
 const sendOtp = async (req, res) => {
     const { email } = req.body;
-
+    console.log(email)
+    
     const user = await User.findOne({ email: email })
 
     if (user) {
@@ -31,7 +32,7 @@ const sendOtp = async (req, res) => {
     res.json({ success: true, message: "OTP sent to email!" });
 }
 
-const verifyOtp = async () => {
+const verifyOtp = async (req, res) => {
     const { email, otp } = req.body;
 
     const otpRecord = await Otp.findOne({ email });

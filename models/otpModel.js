@@ -1,7 +1,7 @@
 const { type } = require('express/lib/response');
 const mongoose = require('mongoose');
 
-const otpScheme = mongoose.Schema({
+const otpScheme = new mongoose.Schema({
     email:{
         type:String,
         require: true,
