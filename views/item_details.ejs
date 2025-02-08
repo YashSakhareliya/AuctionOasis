@@ -31,7 +31,7 @@
                     </div>
                  </div>
                  <div class="item-bid-button">
-                    <form action="/bid/place/<%= `${item._id}/${userId}` %>" method="POST" onsubmit="return checkExpiry(event)">
+                    <form id="submit-bid-btn" action="/bid/place/<%= `${item._id}/${userId}` %>" method="POST" onsubmit="return checkExpiry(event)">
                         <button type="submit" id="item-place-bid">Place Bid</button>
                     </form>
                  </div>

@@ -110,54 +110,18 @@
     text-decoration: underline;
   }
   
-  /* Tabs Section */
-  .tabs {
-    display: flex;
-    gap: 10px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #ddd;
-    overflow-x: auto;
-  }
-  
-  .tab {
-    padding: 10px 20px;
-    font-size: clamp(0.875rem, 1.5vw, 1rem);
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #f9f9f9;
-    transition: background-color 0.3s, color 0.3s;
-    white-space: nowrap;
-  }
-  
-  .tab.active {
-    border-bottom: 3px solid var(--primary-color);
-    background-color: #fff;
-    color: var(--primary-color);
-    font-weight: bold;
-  }
-  
-  .tab:hover {
-    background-color: #eaeaea;
-  }
-  
-  /* Tab Content */
-  .tab-content {
-    display: none;
-  }
-  
-  .tab-content.active {
-    display: grid;
-  }
   
   /* My Items Grid */
   .my-items-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    gap: 1rem;
   }
   
   /* Item Container */
   .my-item {
+    max-width: 400px;
+    max-height: 350px;
     width: 100%;
     height: auto;
     display: flex;
@@ -510,6 +474,46 @@
   .list-item-container button:hover {
     background-color: var(--primary-hover);
   }
+
+/* Tabs Section */
+  .tabs {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    overflow-x: auto;
+  }
+  
+  .tab {
+    padding: 10px 20px;
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s, color 0.3s;
+    white-space: nowrap;
+  }
+  
+  .tab.active {
+    border-bottom: 3px solid var(--primary-color);
+    background-color: #fff;
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+  
+  .tab:hover {
+    background-color: #eaeaea;
+  }
+  
+  /* Tab Content */
+  .tab-content {
+    display: none;
+  }
+  
+  .tab-content.active {
+    display: grid;
+  }
+  
   
   /* Responsive Design */
   @media screen and (max-width: 768px) {
@@ -545,11 +549,16 @@
     .profile-container {
       padding: 10px;
     }
-  
+    .user-details-continer{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .user-details {
       flex-direction: column;
       align-items: center;
       text-align: center;
+      gap: 10px;
     }
   
     .edit-profile-container,
