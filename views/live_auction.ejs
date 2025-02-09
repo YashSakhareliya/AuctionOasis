@@ -33,6 +33,7 @@
             </div>
 
             <div class="filter-item-grid">
+                <% if(items && items.length > 0) { %>
                 <% items.forEach(item => { %>
                     <div class="filter-item">
                         <div class="filter-item-image">
@@ -64,6 +65,11 @@
                         </a>
                     </div>
                 <% }) %>
+                <% } else { %>
+                    <div class="no-items-found">
+                        <p>No items found</p>
+                    </div>
+                <% } %>
                 
             </div>
         </div>
