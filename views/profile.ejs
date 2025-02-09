@@ -92,9 +92,13 @@
                             <h2>Bid on <%= bid.itemId.name %></h2>
                             <p><%= bid.date %></p>
                         </div>
-                        <div class="bid-amount">
+                        <div style="text-align: right;" class="bid-amount">
                             <h4>$<%= bid.amount %></h4>
-                            <p><%= bid.status %></p>
+                            <% if(bid.isWinningBid) { %>
+                                <p style="color: green;">Winning Bid</p>
+                            <% } else { %>
+                                <p style="color: red;">Better Luck Next Time</p>
+                            <% } %>
                         </div>
                     </li>
                     <% }); %>

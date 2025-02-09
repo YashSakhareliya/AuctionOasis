@@ -47,6 +47,9 @@
                                 <li>
                                     <div class="bidder-name">
                                         <p><%= bid.userId.username || 'Anonymous' %></p>
+                                        <% if(bid.isWinningBid) { %>
+                                            <p style="color: green;">Winning Bid</p>
+                                        <% } %>
                                     </div>
                                     <div class="bid-record">
                                         <p id="bid-amount">$<%= bid.amount %></p>
