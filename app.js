@@ -48,8 +48,9 @@ const walletRoutes = require('./routes/walletRoute');
 const listItemRoutes = require('./routes/listItemRoute');
 const placeBidRoutes = require('./routes/placeBidRoute');
 const otpVerifyRoutes = require('./routes/optVerificationRouts');
+
 // Log Middleware
-app.use(appendLogs);
+// app.use(appendLogs);
 
 // Use routes
 app.use('/', indexRoutes);
