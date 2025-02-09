@@ -163,6 +163,7 @@ header {
     border-bottom: none;
 }
 
+
 .profile-dropdown #username {
     color: #000;
     font-weight: bold;
@@ -170,12 +171,16 @@ header {
 }
 
 .profile-dropdown ul li a {
+    width: 100%;
     text-decoration: none;
     color: #1e1e1e;
+    margin-left: 10px;
 }
+
 
 .profile-dropdown ul li a:hover {
     color: #000;
+    text-decoration: underline;
 }
 
 .profile-icon-wrapper {
@@ -271,11 +276,17 @@ header {
     .hamburger-menu {
         display: none;
     }
+    .profile-dropdown ul li a i {
+        margin-right: 10px;
+    }
 }
 @media (max-width: 768px) {
     /* 🌟 Reduce Section Padding for Mobile */
     section {
       padding: 1rem ;
+    }
+    .profile-dropdown ul li a i {
+        margin-right: 10px;
     }
   
     /* 📝 Typography Adjustments */

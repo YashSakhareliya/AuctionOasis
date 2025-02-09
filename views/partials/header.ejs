@@ -61,10 +61,24 @@
                                 <div class="profile-dropdown" id="profile-dropdown">
                                     <ul>
                                         <li id="username"><%= username || "Not Available" %></li>
-                                        <li><a href=<%= `/profile/${username}` %>><i class="fa-regular fa-user"></i>Profile</a></li>
-                                        <li><a href=""><i class="fa-solid fa-box"></i>My Items</a></li>
-                                        <li><a href=<%=`/wallet/${userId}`%>><i class="fa-solid fa-wallet"></i>Wallet</a></li>
-                                        <li><a href="/auth/signout"><i class="fa-solid fa-right-from-bracket"></i>Sign Out</a></li>
+                                        <li>
+                                            <i id="profile-drop-icon" class="fa-regular fa-user"></i>
+                                            <a href=<%= `/profile/${username}` %>>
+                                                
+                                                Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <i id="profile-drop-icon" class="fa-solid fa-box"></i>
+                                            <a href="">My Items</a></li>
+                                        <li>
+                                            <i id="profile-drop-icon" class="fa-solid fa-wallet"></i>
+                                            <a href=<%=`/wallet/${userId}`%>>Wallet </a>
+                                        </li>
+                                        <li>
+                                            <i id="profile-drop-icon" class="fa-solid fa-right-from-bracket"></i>
+                                            <a href="/auth/signout">Sign Out</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
