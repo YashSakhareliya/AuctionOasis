@@ -66,10 +66,10 @@ const renderItem = async (req, res, next) => {
             .populate('sellerId', 'name _id') // Get seller's name and ID
             .populate({
                 path: 'recentBids',
-                populate: { path: 'userId', select: 'username' }, // Populate userId with user's name
+                populate: { path: 'userId', select: 'username' }, 
                 options: { 
                     sort: { date: -1 },
-                    limit: 10 // Limit to last 10 bids
+                    limit: 10 
                 }
             });
         if (!item) {
@@ -116,4 +116,25 @@ const updateExpiredItem = async (req, res, next) => {
     }
 };
 
-module.exports = {liveAuction, renderItem, updateExpiredItem}
+const searchItems = async (req, res, next) => {
+    try {
+        const param = req.url;
+        const {search} = req.query;
+        if(!search){
+            req.flash('error', 'Search not Valid');
+            return res.redirect("/live/auction");
+        }
+
+        const searchItem  = await Item.find({$text: {$search: search}}).sort({score: { $meta: "textScore" }});
+        let categories = '';
+        let priceRange = '';
+        let statuses = '';
+
+        res.render('live_auction', { items: searchItem, messages: req.flash(), selectedFilters: { categories, priceRange, statuses } })
+        
+    } catch (error) {
+        next(error);
+    }
+};
+
+module.exports = {liveAuction, renderItem, updateExpiredItem, searchItems}
