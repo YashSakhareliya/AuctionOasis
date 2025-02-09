@@ -72,6 +72,7 @@ itemSchema.pre('save', function (next) {
 
 
 itemSchema.index({ name: 1, categories: 1 });
+itemSchema.index({name: "text", description: "text"});
 
 const Item = mongoose.model('Item', itemSchema);
 
