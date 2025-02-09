@@ -77,16 +77,24 @@ header {
 
 /* SEARCH BAR */
 .search-bar {
-    flex: 1;
+    position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#input-form{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .search-bar input {
-    width: 70%;  /* Takes full width of its container */
-    max-width: 90vw; /* Adjust max width relative to viewport */
-    /* min-width: 250px; Set a lower limit for very small screens */
-    padding: 10px;
+    width: 100%;
+    max-width: 90vw;
+    padding: 10px 40px 10px 10px; /* Adjust right padding to avoid overlap */
     border: 1px solid var(--input-border-color);
     border-radius: var(--border-radius);
     height: 40px;
@@ -95,7 +103,21 @@ header {
     font-size: medium;
 }
 
-
+.search-bar button{
+    position: absolute;
+    right: 5px; /* Position inside the input field */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
 
 
 /* NAV LINKS */

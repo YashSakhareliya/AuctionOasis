@@ -115,6 +115,7 @@
     justify-content: center;
     max-width: 500px;
     margin: 0 auto;
+    position: relative;
   }
   
   .search-bar input {
@@ -127,6 +128,20 @@
     font-weight: 600;
     font-size: medium;
   }
+  .search-bar button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
   
   .nav-links {
     display: flex;

@@ -32,9 +32,12 @@
                 
                 
                 <div class="search-bar">
-                    <input type="text" name="search" id="search-input" paceholder="search hear">
+                    <form id="input-form" style="width: 100%;" action="/search" method="GET">
+                        <input type="text" name="search" id="search-input" paceholder="search hear">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
                     <div id="search-suggestions">
-                        
+                       
                     </div>
                 </div>
                 
@@ -70,7 +73,7 @@
                                         </li>
                                         <li>
                                             <i id="profile-drop-icon" class="fa-solid fa-box"></i>
-                                            <a href="">My Items</a></li>
+                                            <a href="/">My Items</a></li>
                                         <li>
                                             <i id="profile-drop-icon" class="fa-solid fa-wallet"></i>
                                             <a href=<%=`/wallet/${userId}`%>>Wallet </a>
