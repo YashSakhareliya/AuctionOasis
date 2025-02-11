@@ -63,7 +63,10 @@ app.use('/bid', placeBidRoutes);
 app.use('/otp',otpVerifyRoutes)
 
 
-
+//In developing page
+app.get('/develop', (req, res) => {
+  res.render('liveBidding');
+})
 
 // Error handling middleware
 app.use((err, req, res, next) => {
