@@ -68,6 +68,11 @@ app.get('/develop', (req, res) => {
   res.render('liveBidding');
 })
 
+app.get('/develop2', (req, res) => {
+  res.render('groupBidding');
+})
+
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.log("in error handling middleware")
