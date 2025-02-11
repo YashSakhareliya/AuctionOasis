@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDb = async () =>{
     try{
-        await mongoose.connect(process.env.MONGO_ATLAS_URL,{
+        await mongoose.connect(process.env.MONGO_URL,{
             useNewUrlParser: true,
             useUnifiedTopology: true,
             serverSelectionTimeoutMS: 30000, // 30 seconds
