@@ -89,6 +89,12 @@ const userSchema = new mongoose.Schema({
             ref: "Bid",
         },
     ],
+    likeItems: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Item",
+        },
+    ],
     createdAt: {
         type: Date,
         default: Date.now,
