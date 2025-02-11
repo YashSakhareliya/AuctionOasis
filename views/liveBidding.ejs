@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+<!-- main content -->
+
+<div class="container">
+    <div class="bidding-container">
+        <header class="bidding-header">
+            <h1>Live Bidding</h1>
+            <p class="subtitle">Track your registered auctions and participate in live bidding</p>
+        </header>
+
+        <nav class="tab-nav" id="biddingTabs">
+            <button class="tab-btn active" data-tab="upcoming">Upcoming</button>
+            <button class="tab-btn" data-tab="active">Active</button>
+            <button class="tab-btn" data-tab="ended">Ended</button>
+        </nav>
+
+        <div id="auctionsList" class="auctions-list"></div>
+    </div>
+</div>
+
+
+<script src="./script/livebidding.js"></script>
+<%- include('partials/footer') %>
+
+
