@@ -89,8 +89,13 @@ const renderItem = async (req, res, next) => {
             messages: req.flash() 
         });
     } catch (err) {
+        if (err.name === "CastError") {
+            req.flash('error', 'Invalid itemId format');
+            return res.redirect('/live/auction');
+        }
+        
         console.error('Error rendering item:', err);
-        return next(err);
+        next(err);
     }
 };
 
