@@ -1,7 +1,61 @@
 <%- include('partials/header') %>
 
 <!-- main content -->
- 
 
+<section class="group-bidding-section">
+    <div class="container">
+        <div class="auction-container">
+            <div class="auction-header">
+                <div class="header-content">
+                    <h1>Vintage Rolex Submariner</h1>
+                    <p class="subtitle">Group Bidding Round</p>
+                </div>
+                <div class="timer">
+                    <i data-lucide="clock" class="icon-sm"></i>
+                    <span id="timeLeft">05:30</span>
+                </div>
+            </div>
+
+            <div class="auction-grid">
+                <!-- Item Details -->
+                <div class="item-details">
+                    <div class="item-image">
+                        <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Vintage Rolex">
+                    </div>
+                    <div class="bid-info">
+                        <div class="bid-stat">
+                            <p class="label">Starting Bid</p>
+                            <p class="value">$10,000</p>
+                        </div>
+                        <div class="bid-stat">
+                            <p class="label">Current Highest Bid</p>
+                            <p class="value highlight">$15,500</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Bidding -->
+                <div class="bidding-section">
+                    <h2>Place Your Bid</h2>
+                    <div class="quick-bids">
+                        <button class="bid-increment">+$100</button>
+                        <button class="bid-increment">+$500</button>
+                        <button class="bid-increment">+$1000</button>
+                    </div>
+                    <div class="bid-input-group">
+                        <input type="number" id="bidAmount" class="bid-input" placeholder="Enter bid amount">
+                        <button class="btn-primary">Bid</button>
+                    </div>
+                </div>
+
+                <!-- Bidders List -->
+                <div class="bidders-section">
+                    <h2>Active Bidders</h2>
+                    <div class="bidders-list" id="biddersList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <%- include('partials/footer') %>
