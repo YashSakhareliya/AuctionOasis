@@ -31,7 +31,7 @@
                 </div>
                 
                 
-                <div class="search-bar">
+                <div id="nav-mob" class="search-bar">
                     <form id="input-form" style="width: 100%;" action="/live/auction/search" method="GET">
                         <input type="text" name="search" id="search-input" paceholder="search hear">
                         <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -43,19 +43,19 @@
                 
                 <div class="nav-links-container">
                     <ul class="nav-links">
-                        <li><a href="/live/auction">Live Auction</a></li>
+                        <li id="nav-mob"><a href="/live/auction">Live Auction</a></li>
                         <% if (isAuthenticated) { %>
                             
-                        <li id="list-item">
+                        <li class="nav-mob" id="list-item">
                             <a href="<%= `/profile/${username}` %>"><span><i class="fa-solid fa-plus"></i></span> List Item</a>
                         </li>
                         
                         
                         <!-- Notification & Profile Icons initially visible -->
-                        <li id="notification-icon" style="display: block;">
+                        <li  id="notification-icon" style="display: block;">
                             <a href="/"><i class="fa-solid fa-bell"></i></a>
                         </li>
-                        <li id="profile-icon" style="display: block;">
+                        <li  id="profile-icon" style="display: block;">
                             <div class="profile-icon-wrapper">
                                 <!-- Profile Button -->
                                 <p id="profile-btn"><i class="fa-regular fa-user"></i></p>

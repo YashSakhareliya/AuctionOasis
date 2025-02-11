@@ -1,37 +1,41 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburgerMenu = document.getElementById('hamburger-menu');
-    const navLinks = document.querySelector('.nav-links');
-
-    hamburgerMenu.addEventListener('click', function() {
-        navLinks.classList.toggle('show');
-    });
-});
-
 document.addEventListener("DOMContentLoaded", function () {
-    const menuToggle = document.getElementById("hamburger-menu");
+    const hamburgerMenu = document.getElementById("hamburger-menu");
+    const navLinks = document.querySelector(".nav-links");
     const navContainer = document.querySelector(".nav-links-container");
     const profileBtn = document.getElementById("profile-btn");
     const profileDropdown = document.getElementById("profile-dropdown");
 
-    // Toggle nav menu
-    menuToggle.addEventListener("click", function () {
-        navContainer.classList.toggle("active");
+    // Function to check screen size
+    function isMobileView() {
+        return window.innerWidth <= 768;
+    }
+
+    // Toggle hamburger menu
+    hamburgerMenu.addEventListener("click", function (e) {
+        if (isMobileView()) {
+            e.stopPropagation();
+            navLinks.classList.toggle("show");
+        }
     });
 
-    // Profile dropdown toggle with document click handling
-    document.addEventListener("click", function (e) {
-        // Check if the clicked target is the profile button
-        if (profileBtn && profileBtn.contains(e.target)) {
-            e.preventDefault();
-            profileDropdown.classList.toggle("show-dropdown");
-            e.stopPropagation();
-            return;
-        }
+    // Toggle profile dropdown
+    profileBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        profileDropdown.classList.toggle("show-dropdown");
+    });
 
-        // Close dropdown if clicked outside
-        if (profileDropdown && !profileDropdown.contains(e.target)) {
+    // Close menus if clicked outside
+    document.addEventListener("click", function (e) {
+        if (!profileBtn.contains(e.target) && !profileDropdown.contains(e.target)) {
             profileDropdown.classList.remove("show-dropdown");
         }
     });
-});
 
+    // Close the hamburger menu if clicked outside (on mobile)
+    document.addEventListener("click", function (e) {
+        if (isMobileView() && !hamburgerMenu.contains(e.target) && !navLinks.contains(e.target)) {
+            navLinks.classList.remove("show");
+        }
+    });
+});
