@@ -1,51 +1,76 @@
-    <!-- Include Header -->
-    <%- include('partials/header') %>
+<!-- Include Header -->
+<%- include('partials/header') %>
 
-    <!-- Main Content -->
-    <main>
-        <section class="wallet-section">
-            <div class="wallet-container">
-                <div class="add-wallet">
-                    <h1><i class="fa-solid fa-wallet"></i> My Wallet</h1>
-                    <a href="#">Add Funds</a>
-                </div>
-                
-                <div class="balance">
-                    <p>Available Balance</p>
-                    <h1>$<%= wallet ? wallet.availableAmount : "0.00" %></h1>
-                </div>
-
-                <div class="transfer-icon">
-                    <a href="#">Deposit Funds</a>
-                    <a href="#">Withdraw Funds</a>
-                </div>
-
-                <div class="transaction-history">
-                    <h2>Transaction History</h2>
-                    
-                    <% if (wallet && wallet.transactionHistory && wallet.transactionHistory.length > 0) { %>
-                        <ul>
-                            <% wallet.transactionHistory.forEach(transaction => { %>
-                                <li>
-                                    <div class="transction-type">
-                                        <p id="type"><%= transaction.type %></p>
-                                        <p id="date"><%= transaction.date %></p>
-                                    </div>
-                                    <div class="transection-status">
-                                        <p>$<%= transaction.amount %></p>
-                                        <p><%= transaction.status %></p>
-                                    </div>
-                                </li>
-                            <% }) %>
-                        </ul>
-                    <% } else { %>
-                        <p class="no-transactions">No transactions found.</p>
-                    <% } %>
-
-                </div>
+<!-- Main Content -->
+<main>
+    <section class="wallet-section">
+        <div class="wallet-container">
+            <div class="add-wallet">
+                <h1><i class="fa-solid fa-wallet"></i> My Wallet</h1>
+                <a href="#" id="addFundsBtn">Add Funds</a>
             </div>
-        </section>
-    </main>
+            
+            <div class="balance">
+                <p>Available Balance</p>
+                <h1>$<%= wallet ? wallet.availableAmount : "0.00" %></h1>
+            </div>
 
-    <!-- Include Footer -->
-    <%- include('partials/footer') %>
+            <div class="transfer-icon">
+                <a href="#">Deposit Funds</a>
+                <a href="#">Withdraw Funds</a>
+            </div>
+
+            <div class="transaction-history">
+                <h2>Transaction History</h2>
+                
+                <% if (wallet && wallet.transactionHistory && wallet.transactionHistory.length > 0) { %>
+                    <ul>
+                        <% wallet.transactionHistory.forEach(transaction => { %>
+                            <li>
+                                <div class="transction-type">
+                                    <p id="type"><%= transaction.type %></p>
+                                    <p id="date"><%= transaction.date %></p>
+                                </div>
+                                <div class="transection-status">
+                                    <p>$<%= transaction.amount %></p>
+                                    <p><%= transaction.status %></p>
+                                </div>
+                            </li>
+                        <% }) %>
+                    </ul>
+                <% } else { %>
+                    <p class="no-transactions">No transactions found.</p>
+                <% } %>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Funds Popup -->
+    <div id="addFundsPopup" class="popup">
+        <div class="popup-content">
+            <h2>Add Funds to Your Wallet</h2>
+            <form id="addFundsForm">
+                <div class="form-group">
+                    <label for="amount">Amount to Add:</label>
+                    <input type="number" id="amount" name="amount" min="1" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method:</label>
+                    <select id="paymentMethod" name="paymentMethod" required>
+                        <option value="">Select a payment method</option>
+                        <option value="creditCard">Credit Card</option>
+                        <option value="debitCard">Debit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="bankTransfer">Bank Transfer</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">Process Payment</button>
+            </form>
+            <button id="closePopup" class="btn-secondary">Close</button>
+        </div>
+    </div>
+</main>
+
+<!-- Include Footer -->
+<%- include('partials/footer') %>
+
