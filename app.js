@@ -48,6 +48,7 @@ const walletRoutes = require('./routes/walletRoute');
 const listItemRoutes = require('./routes/listItemRoute');
 const placeBidRoutes = require('./routes/placeBidRoute');
 const otpVerifyRoutes = require('./routes/optVerificationRouts');
+const liveBiddingRoutes = require('./routes/liveBiddingRouts');
 
 // Log Middleware
 // app.use(appendLogs);
@@ -61,6 +62,7 @@ app.use('/wallet',walletRoutes);
 app.use('/list', listItemRoutes);
 app.use('/bid', placeBidRoutes);
 app.use('/otp',otpVerifyRoutes)
+app.use('/live-bidding', liveBiddingRoutes)
 
 
 //In developing page
