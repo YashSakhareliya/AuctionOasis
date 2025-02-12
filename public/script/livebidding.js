@@ -2,66 +2,33 @@
 lucide.createIcons();
 
 // Sample data
-let auctions = [
-    {
-        id: '1',
-        title: 'Vintage Rolex Submariner',
-        image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        currentBid: 15000,
-        timeRemaining: '2025-02-20T07:26:00.000+00:00',
-        bids: 23,
-        status: 'live',
-        participants: 12
-    },
-    {
-        id: '2',
-        title: 'Vintage Rolex Submariner',
-        image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        currentBid: 15000,
-        timeRemaining: '2025-02-20T07:26:00.000+00:00',
-        bids: 23,
-        status: 'active',
-        participants: 12
-    },
-    {
-        id: '3',
-        title: 'Vintage Rolex Submariner',
-        image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        currentBid: 15000,
-        timeRemaining: '2025-02-20T07:26:00.000+00:00',
-        bids: 23,
-        status: 'ended',
-        participants: 12
-    },
-    {
-        id: '4',
-        title: 'Vintage Rolex Submariner',
-        image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-        currentBid: 15000,
-        timeRemaining: '2025-02-20T07:26:00.000+00:00',
-        bids: 23,
-        status: 'live',
-        participants: 12
-    }
-];
+let auctions = [];
 
-const fetchAuctions = () => {
-    console.log('in fetch item function')
-    const pathUrl = window.location.pathname
-    console.log(pathUrl)
-    fetch(pathUrl,{
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
+
+const fetchAuctions = async () => {
+
+    const pathUrl = window.location.pathname;
+
+    try {
+        const response = await fetch(pathUrl, { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    })
-    .then(responce => responce.json())
-    .then(data => {
-        auctions = data;
-        console.log('success')
-    })
-    .catch(error => console.error('Error:', error));
-}
+        const data = await response.json();
+
+        auctions = data.items; 
+    } catch (error) {
+        console.error('Error fetching auctions:', error);
+    }
+    
+};
+
 // DOM Elements
 const biddingTabs = document.getElementById('biddingTabs');
 const auctionsList = document.getElementById('auctionsList');
@@ -103,11 +70,11 @@ function renderAuctions(filteredAuctions) {
     auctionsList.innerHTML = filteredAuctions.map(auction => `
         <div class="auction-card">
             <div class="auction-image">
-                <img src="${auction.image}" alt="${auction.title}">
+                <img src="${auction.image}" alt="${auction.name}">
             </div>
             <div class="auction-content">
                 <div class="auction-header">
-                    <h2>${auction.title}</h2>
+                    <h2>${auction.name}</h2>
                     <div class="time-remaining">
                         <i data-lucide="clock" class="icon-sm"></i>
                         <p class="item-remTime" data-endtime="${auction.timeRemaining}"><span id="timeRemainingDisplay"></span></p>
@@ -120,16 +87,16 @@ function renderAuctions(filteredAuctions) {
                     </div>
                     <div class="stat">
                         <p class="stat-label">Total Bids</p>
-                        <p class="stat-value">${auction.bids}</p>
+                        <p class="stat-value">${auction.recentBids.length}</p>
                     </div>
                     <div class="stat">
                         <p class="stat-label">Participants</p>
-                        <p class="stat-value">${auction.participants}</p>
+                        <p class="stat-value">${auction.participants.length}</p>
                     </div>
                 </div>
                 <div class="auction-actions">
                     ${auction.status === 'active' ? `
-                        <button class="btn-primary">
+                        <button class="btn-primary" onclick="renderItemPage('${auction._id}')">
                             <i data-lucide="users" class="icon-sm"></i>
                             Join Group Bidding
                         </button>
@@ -148,7 +115,13 @@ function renderAuctions(filteredAuctions) {
     lucide.createIcons();
 }
 
+const renderItemPage = (itemId) => {
+    window.location.href = `/item/${itemId}`;
+}
+
 // Initial render
 // document.querySelector('.tab-btn[data-tab="active"]').classList.add('active')
-fetchAuctions()
-renderAuctions(filterAuctions('upcoming'));
+document.addEventListener("DOMContentLoaded", async ()=>{
+    await fetchAuctions();
+    renderAuctions(filterAuctions('upcoming'));
+});
