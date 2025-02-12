@@ -1,8 +1,9 @@
 const express = require('express');
-const {liveBiddingItems} = require('../controllers/liveBiddingController')
+const {liveBiddingItems, renderLiveBiddingPage} = require('../controllers/liveBiddingController')
 const router = express.Router();
 const { ensureAuthenticated } = require('../Middleware/authMiddleware');
 // live bidding
-router.get('/:userId', ensureAuthenticated, liveBiddingItems)
+router.post('/:userId', ensureAuthenticated, liveBiddingItems)
+router.get('/:userId', ensureAuthenticated, renderLiveBiddingPage)
 
 module.exports = router
