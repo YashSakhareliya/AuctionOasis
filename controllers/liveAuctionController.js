@@ -106,7 +106,7 @@ const updateExpiredItem = async (req, res, next) => {
         
         const updatedItem = await Item.findByIdAndUpdate(
             itemId,
-            { $set: { status: 'ended' } },
+            { $set: { status: 'active' } },
             { new: true }
         );
 

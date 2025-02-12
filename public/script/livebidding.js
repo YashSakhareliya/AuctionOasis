@@ -83,7 +83,7 @@ function renderAuctions(filteredAuctions) {
                 <div class="auction-stats">
                     <div class="stat">
                         <p class="stat-label">Current Bid</p>
-                        <p class="stat-value">$${auction.currentBid.toLocaleString()}</p>
+                        <p class="stat-value">${auction.currentBid.toLocaleString()}</p>
                     </div>
                     <div class="stat">
                         <p class="stat-label">Total Bids</p>
@@ -115,6 +115,7 @@ function renderAuctions(filteredAuctions) {
     lucide.createIcons();
 }
 
+// need to work on this using event listener
 const renderItemPage = (itemId) => {
     window.location.href = `/item/${itemId}`;
 }
