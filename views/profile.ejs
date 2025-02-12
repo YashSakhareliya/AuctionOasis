@@ -48,7 +48,7 @@
                                 <h2><%= item.name %></h2>
                             </div>
                             <div class="my-item-price">
-                                <p>Current Bid: $<%= item.currentBid %></p>
+                                <p>Current Bid: <%= item.currentBid %></p>
                             </div>
                             <div class="my-item-summery">
                                 <ul class="my-item-summery-list">
@@ -93,7 +93,7 @@
                             <p><%= bid.date %></p>
                         </div>
                         <div style="text-align: right;" class="bid-amount">
-                            <h4>$<%= bid.amount %></h4>
+                            <h4><%= bid.amount %></h4>
                             <% if(bid.isWinningBid) { %>
                                 <p style="color: green;">Winning Bid</p>
                             <% } else { %>
