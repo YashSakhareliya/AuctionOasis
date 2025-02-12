@@ -46,7 +46,9 @@ let auctions = [
 ];
 
 const fetchAuctions = () => {
+    console.log('in fetch item function')
     const pathUrl = window.location.pathname
+    console.log(pathUrl)
     fetch(pathUrl,{
         method: 'GET',
         headers: {
@@ -56,6 +58,7 @@ const fetchAuctions = () => {
     .then(responce => responce.json())
     .then(data => {
         auctions = data;
+        console.log('success')
     })
     .catch(error => console.error('Error:', error));
 }
@@ -147,5 +150,5 @@ function renderAuctions(filteredAuctions) {
 
 // Initial render
 // document.querySelector('.tab-btn[data-tab="active"]').classList.add('active')
-
+fetchAuctions()
 renderAuctions(filterAuctions('upcoming'));
