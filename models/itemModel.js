@@ -48,6 +48,12 @@ const itemSchema = new mongoose.Schema({
         enum: ['live', 'active', 'ended'], 
         default: 'live',
     },
+    participants: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User', 
+        }
+    ],
     recentBids: [
         {
             type: mongoose.Schema.Types.ObjectId,
