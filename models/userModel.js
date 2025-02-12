@@ -95,6 +95,12 @@ const userSchema = new mongoose.Schema({
             ref: "Item",
         },
     ],
+    registeredItems: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Item",
+        },
+    ],
     createdAt: {
         type: Date,
         default: Date.now,
