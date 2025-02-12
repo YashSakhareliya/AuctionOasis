@@ -2,15 +2,15 @@
 lucide.createIcons();
 
 // Sample data
-const auctions = [
+let auctions = [
     {
         id: '1',
         title: 'Vintage Rolex Submariner',
         image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
         currentBid: 15000,
-        timeLeft: '2h 15m',
+        timeRemaining: '2025-02-20T07:26:00.000+00:00',
         bids: 23,
-        status: 'upcoming',
+        status: 'live',
         participants: 12
     },
     {
@@ -18,7 +18,7 @@ const auctions = [
         title: 'Vintage Rolex Submariner',
         image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
         currentBid: 15000,
-        timeLeft: '2h 15m',
+        timeRemaining: '2025-02-20T07:26:00.000+00:00',
         bids: 23,
         status: 'active',
         participants: 12
@@ -28,7 +28,7 @@ const auctions = [
         title: 'Vintage Rolex Submariner',
         image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
         currentBid: 15000,
-        timeLeft: '2h 15m',
+        timeRemaining: '2025-02-20T07:26:00.000+00:00',
         bids: 23,
         status: 'ended',
         participants: 12
@@ -38,13 +38,27 @@ const auctions = [
         title: 'Vintage Rolex Submariner',
         image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
         currentBid: 15000,
-        timeLeft: '2h 15m',
+        timeRemaining: '2025-02-20T07:26:00.000+00:00',
         bids: 23,
-        status: 'upcoming',
+        status: 'live',
         participants: 12
     }
 ];
 
+const fetchAuctions = () => {
+    const pathUrl = window.location.pathname
+    fetch(pathUrl,{
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(responce => responce.json())
+    .then(data => {
+        auctions = data;
+    })
+    .catch(error => console.error('Error:', error));
+}
 // DOM Elements
 const biddingTabs = document.getElementById('biddingTabs');
 const auctionsList = document.getElementById('auctionsList');
@@ -71,7 +85,7 @@ function filterAuctions(status) {
     return auctions.filter(auction => {
         switch (status) {
             case 'upcoming':
-                return auction.status === 'upcoming';
+                return auction.status === 'live';
             case 'active':
                 return auction.status === 'active';
             case 'ended':
@@ -93,7 +107,7 @@ function renderAuctions(filteredAuctions) {
                     <h2>${auction.title}</h2>
                     <div class="time-remaining">
                         <i data-lucide="clock" class="icon-sm"></i>
-                        <span>${auction.timeLeft}</span>
+                        <p class="item-remTime" data-endtime="${auction.timeRemaining}"><span id="timeRemainingDisplay"></span></p>
                     </div>
                 </div>
                 <div class="auction-stats">
@@ -133,4 +147,5 @@ function renderAuctions(filteredAuctions) {
 
 // Initial render
 // document.querySelector('.tab-btn[data-tab="active"]').classList.add('active')
+
 renderAuctions(filterAuctions('upcoming'));

@@ -45,7 +45,7 @@ const itemSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['live', 'completed', 'cancelled'], 
+        enum: ['live', 'active', 'ended'], 
         default: 'live',
     },
     recentBids: [
