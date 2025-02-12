@@ -71,7 +71,8 @@ const placeBid = async (req, res, next) => {
 
         // 3. Update user's bidHistory
         await User.findByIdAndUpdate(userId, {
-            $push: { bidHistory: savedBid._id }
+            $push: { bidHistory: savedBid._id },
+            $addToSet: { registeredItems: item._id }
         });
 
         // 4. Update item's recentBids and currentBid
