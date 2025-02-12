@@ -7,8 +7,6 @@ const placeBid = async (req, res, next) => {
         const itemId = req.params.itemId;
         const userId = req.params.userId;
 
-        console.log(itemId, userId)
-        console.log('DOne ')
 
         // 1. Get item and user details
         const [item, user] = await Promise.all([
@@ -20,7 +18,7 @@ const placeBid = async (req, res, next) => {
             req.flash('error', 'Item or User not found');
             return res.redirect(`/live/auction/item/${itemId}`);
         }
-        console.log('DOne 1')
+
 
         // need imporvement of this section
         // need to solve error is user place bid on his placed item 
@@ -29,7 +27,7 @@ const placeBid = async (req, res, next) => {
             req.flash('error', "you can't place bid on your item");
             return res.redirect(`/live/auction/item/${itemId}`);
         }
-        console.log('DOne 2')
+
 
 
         // Check if item has expired
@@ -41,7 +39,7 @@ const placeBid = async (req, res, next) => {
         const currentAmount = item.currentBid || item.startingBid;
         const newBidAmount = Math.ceil(currentAmount * 1.1);
 
-        console.log('DOne 3')
+
 
         // Validate bid amount
         if (newBidAmount <= currentAmount) {
@@ -78,6 +76,7 @@ const placeBid = async (req, res, next) => {
         // 4. Update item's recentBids and currentBid
         await Item.findByIdAndUpdate(itemId, {
             $push: { recentBids: savedBid._id },
+            $addToSet: { participants: user._id },
             currentBid: newBidAmount
         });
 

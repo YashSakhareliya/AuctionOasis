@@ -14,11 +14,14 @@
             model: 'Item',
         })
         
-        res.render('liveBidding', { items: user.registeredItems })        
+        res.status(200).json({ items: user.registeredItems })
     }
     catch(err){
         return next(err)
     }
  }
 
- module.exports = {liveBiddingItems};
+ const renderLiveBiddingPage = (req, res, next) => {
+     res.render('liveBidding', { title: 'Live Bidding' });
+ }
+ module.exports = {liveBiddingItems, renderLiveBiddingPage};
