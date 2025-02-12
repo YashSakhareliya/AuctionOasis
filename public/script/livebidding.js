@@ -12,6 +12,36 @@ const auctions = [
         bids: 23,
         status: 'upcoming',
         participants: 12
+    },
+    {
+        id: '2',
+        title: 'Vintage Rolex Submariner',
+        image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        currentBid: 15000,
+        timeLeft: '2h 15m',
+        bids: 23,
+        status: 'active',
+        participants: 12
+    },
+    {
+        id: '3',
+        title: 'Vintage Rolex Submariner',
+        image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        currentBid: 15000,
+        timeLeft: '2h 15m',
+        bids: 23,
+        status: 'ended',
+        participants: 12
+    },
+    {
+        id: '4',
+        title: 'Vintage Rolex Submariner',
+        image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+        currentBid: 15000,
+        timeLeft: '2h 15m',
+        bids: 23,
+        status: 'upcoming',
+        participants: 12
     }
 ];
 
@@ -81,7 +111,7 @@ function renderAuctions(filteredAuctions) {
                     </div>
                 </div>
                 <div class="auction-actions">
-                    ${auction.status === 'ended' ? `
+                    ${auction.status === 'active' ? `
                         <button class="btn-primary">
                             <i data-lucide="users" class="icon-sm"></i>
                             Join Group Bidding
@@ -102,4 +132,5 @@ function renderAuctions(filteredAuctions) {
 }
 
 // Initial render
-renderAuctions(filterAuctions('active'));
+// document.querySelector('.tab-btn[data-tab="active"]').classList.add('active')
+renderAuctions(filterAuctions('upcoming'));
