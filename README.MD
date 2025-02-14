@@ -53,7 +53,7 @@ We welcome all contributions! Follow these steps to contribute:
 3. **Commit** your changes.
 4. Submit a **Pull Request** (PR) in **home** branch.
 
-🔗 **Check the [CONTRIBUTING.md](CONTRIBUTING.md) for more details.**
+🔗 **Check the [CONTRIBUTING.md](CODE_OF_CONDUCT.md) for more details.**
 
 ---
 
