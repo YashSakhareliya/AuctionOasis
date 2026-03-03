@@ -120,15 +120,26 @@ jobs:
             --parameters '{"commands":[
               "echo === Starting Deployment ===",
               "docker --version",
+              "echo Logging into Docker Hub...",
               "echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin",
+              "echo Pulling latest Docker image...",
               "docker pull '"${DOCKER_IMAGE}"'",
-              "docker stop auctionoasis 2>/dev/null || true",
-              "docker rm auctionoasis 2>/dev/null || true",
+              "echo Stopping all auctionoasis containers...",
+              "docker ps -a --filter name=auctionoasis -q | xargs -r docker stop || true",
+              "docker ps -a --filter name=auctionoasis -q | xargs -r docker rm || true",
+              "echo Checking if port 3000 is in use...",
+              "sudo lsof -ti:3000 | xargs -r sudo kill -9 || echo Port 3000 is free",
+              "sleep 2",
+              "echo Starting new container...",
               "docker run -d --name auctionoasis --restart unless-stopped -p 3000:3000 '"${DOCKER_IMAGE}"'",
-              "docker ps | grep auctionoasis",
+              "sleep 3",
+              "echo Verifying container is running...",
+              "docker ps --filter name=auctionoasis",
+              "echo Container logs:",
               "docker logs auctionoasis --tail 20",
+              "echo Cleaning up old images...",
               "docker image prune -f",
-              "echo === Deployment completed ==="
+              "echo === Deployment completed successfully ==="
             ]}' \
             --timeout-seconds 300 \
             --output text \
