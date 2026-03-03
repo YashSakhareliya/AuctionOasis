@@ -37,7 +37,7 @@ const loginUser = async (req, res) => {
       const token = jwt.sign({userId, username}, JWT_SECRET, {expiresIn: '1d'})
       
       // set cookie
-      res.cookie('auth_token',token,{httpOnly: true, secure: true})
+      res.cookie('auth_token',token,{httpOnly: true, secure: false})
 
       res.locals.username = loginUser.username
       res.locals.userId = userId

@@ -1,0 +1,53 @@
+name: Auctionoasis Workflow
+on:
+  push:
+    branches:
+      - devops
+
+  pull_request:
+    branches: 
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Verify installation
+        run: npm list --depth=0
+      
+      - name: Check for syntax errors
+        run: node -c app.js
+  
+  lint-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Check file structure
+        run: |
+          echo "Checking project structure..."
+          ls -la
+          echo "Verifying required files exist..."
+          test -f package.json && echo "✓ package.json found"
+          test -f app.js && echo "✓ app.js found"
+          test -f Dockerfile && echo "✓ Dockerfile found"
+  
