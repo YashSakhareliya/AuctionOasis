@@ -108,34 +108,71 @@ jobs:
             --document-name "AWS-RunShellScript" \
             --comment "Deploy AuctionOasis from GitHub Actions" \
             --parameters 'commands=[
-              "echo Logging into Docker Hub...",
-              "echo ${{ secrets.DOCKER_HUB_TOKEN }} | sudo docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin",
-              "echo Pulling latest Docker image...",
-              "sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/auctionoasis:${{ github.ref_name }}-${{ github.sha }}",
-              "echo Stopping old container...",
-              "sudo docker stop auctionoasis || true",
-              "sudo docker rm auctionoasis || true",
-              "echo Starting new container...",
-              "sudo docker run -d --name auctionoasis --restart unless-stopped -p 3000:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/auctionoasis:${{ github.ref_name }}-${{ github.sha }}",
-              "echo Cleaning up old images...",
-              "sudo docker image prune -f",
-              "echo Deployment completed successfully!"
+              "set -e",
+              "echo \"=== Starting Deployment ===\"",
+              "echo \"Checking Docker installation...\"",
+              "docker --version || (echo \"Docker not found! Installing...\" && sudo yum install -y docker && sudo systemctl start docker && sudo systemctl enable docker)",
+              "echo \"Adding user to docker group if needed...\"",
+              "sudo usermod -aG docker ssm-user || true",
+              "echo \"Logging into Docker Hub...\"",
+              "echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin",
+              "echo \"Pulling latest Docker image...\"",
+              "docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/auctionoasis:${{ github.ref_name }}-${{ github.sha }}",
+              "echo \"Stopping old container if exists...\"",
+              "docker stop auctionoasis 2>/dev/null || echo \"No existing container to stop\"",
+              "docker rm auctionoasis 2>/dev/null || echo \"No existing container to remove\"",
+              "echo \"Starting new container...\"",
+              "docker run -d --name auctionoasis --restart unless-stopped -p 3000:3000 ${{ secrets.DOCKER_HUB_USERNAME }}/auctionoasis:${{ github.ref_name }}-${{ github.sha }}",
+              "echo \"Verifying container is running...\"",
+              "docker ps | grep auctionoasis",
+              "echo \"Container logs:\"",
+              "docker logs auctionoasis --tail 20",
+              "echo \"Cleaning up old images...\"",
+              "docker image prune -f",
+              "echo \"=== Deployment completed successfully! ===\"",
+              "echo \"Available images:\"",
+              "docker images | grep auctionoasis",
+              "echo \"Running containers:\"",
+              "docker ps -a | grep auctionoasis"
             ]' \
+            --timeout-seconds 300 \
             --output text \
             --query "Command.CommandId")
           
           echo "Command ID: $COMMAND_ID"
           echo "Waiting for command to complete..."
           
-          # Wait for command to complete
+          # Wait for command to complete (with timeout)
           aws ssm wait command-executed \
             --command-id $COMMAND_ID \
-            --instance-id ${{ secrets.EC2_INSTANCE_ID }}
+            --instance-id ${{ secrets.EC2_INSTANCE_ID }} || true
           
-          # Get command output
+          # Get command status and output
+          echo "=== Command Output ==="
           aws ssm get-command-invocation \
             --command-id $COMMAND_ID \
             --instance-id ${{ secrets.EC2_INSTANCE_ID }} \
-            --output text \
-            --query "StandardOutputContent"
+            --query "StandardOutputContent" \
+            --output text
+          
+          echo "=== Command Errors (if any) ==="
+          aws ssm get-command-invocation \
+            --command-id $COMMAND_ID \
+            --instance-id ${{ secrets.EC2_INSTANCE_ID }} \
+            --query "StandardErrorContent" \
+            --output text
+          
+          # Check command status
+          STATUS=$(aws ssm get-command-invocation \
+            --command-id $COMMAND_ID \
+            --instance-id ${{ secrets.EC2_INSTANCE_ID }} \
+            --query "Status" \
+            --output text)
+          
+          echo "Command Status: $STATUS"
+          
+          if [ "$STATUS" != "Success" ]; then
+            echo "Deployment failed with status: $STATUS"
+            exit 1
+          fi
   
